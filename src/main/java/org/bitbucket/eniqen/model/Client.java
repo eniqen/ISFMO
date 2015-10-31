@@ -4,7 +4,6 @@ package org.bitbucket.eniqen.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -16,34 +15,27 @@ import java.util.List;
 
 @Entity
 @Table(name = "CLIENT_TBL")
-@NamedQuery(name = "Client.getAll", query = "SELECT client FROM Client client")
+@NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
 public class Client implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CLIENT_ID", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Integer id;
-    @Column
+    @Column(name = "FIRSTNAME")
     private String firstname;
-    @Column
+    @Column(name = "LASTNAME")
     private String lastname;
-    @Column
+    @Column(name = "BIRTHDAY")
+    @Temporal(value = TemporalType.DATE)
     private Date birthday;
-    @Column
+    @Column(name = "PASSPORT")
     private Long passport;
-    @Column
+    @Column(name = "ADDRESS")
     private String address;
-
-    @OneToMany
-    @JoinTable(
-            name = "CONTRACT_TBL",
-            joinColumns = @JoinColumn(name = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ID"))
-    private List<Contract> contractList;
+    @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PASSWORD")
     private String password;
-
-    public Client() {
-    }
 
     public Integer getId() {
         return id;
@@ -77,11 +69,11 @@ public class Client implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getPassport() {
+    public Long getPassport() {
         return passport;
     }
 
-    public void setPassport(String passport) {
+    public void setPassport(Long passport) {
         this.passport = passport;
     }
 
@@ -91,15 +83,6 @@ public class Client implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-
-    public List<Contract> getContractList() {
-        return contractList;
-    }
-
-    public void setContractList(List<Contract> contractList) {
-        this.contractList = contractList;
     }
 
     public String getEmail() {
@@ -115,6 +98,19 @@ public class Client implements Serializable {
     }
 
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Client() {
+    }
+
+    public Client(String firstname, String lastname, Date birthday, Long passport, String address, String email, String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.passport = passport;
+        this.address = address;
+        this.email = email;
         this.password = password;
     }
 }
