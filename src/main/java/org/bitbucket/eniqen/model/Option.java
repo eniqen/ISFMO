@@ -1,6 +1,6 @@
-package model;
+package org.bitbucket.eniqen.model;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -10,8 +10,7 @@ import javax.persistence.Entity;
  * @version 1.0
  */
 
-@Entity
-public class Option extends BaseModel {
+public class Option implements Serializable {
     private String name;
     private Double price;
     private Double connectionPrice;

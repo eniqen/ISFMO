@@ -1,6 +1,6 @@
-package dao;
+package org.bitbucket.eniqen.dao;
 
-import model.Option;
+import org.bitbucket.eniqen.model.Option;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.

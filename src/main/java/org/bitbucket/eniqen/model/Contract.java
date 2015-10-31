@@ -1,7 +1,8 @@
-package model;
+package org.bitbucket.eniqen.model;
 
 import javax.persistence.Entity;
-import java.util.List;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -12,10 +13,12 @@ import java.util.List;
  */
 
 @Entity
-public class Contract extends BaseModel {
+public class Contract implements Serializable {
+
+    @Id
+    private Integer id;
 
     private Tariff tariff;
-    private List<Option> optionList;
 
     public Tariff getTariff() {
         return tariff;
@@ -25,19 +28,22 @@ public class Contract extends BaseModel {
         this.tariff = tariff;
     }
 
-    public List<Option> getOptionList() {
-        return optionList;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setOptionList(List<Option> optionList) {
-        this.optionList = optionList;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Contract() {
     }
 
-    public Contract(Tariff tariff, List<Option> optionList) {
+    public Contract(Integer id, Tariff tariff) {
+        this.id = id;
         this.tariff = tariff;
-        this.optionList = optionList;
     }
+
+
 }

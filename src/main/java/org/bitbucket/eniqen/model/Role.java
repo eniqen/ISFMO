@@ -1,4 +1,6 @@
-package model;
+package org.bitbucket.eniqen.model;
+
+import java.io.Serializable;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -8,6 +10,6 @@ package model;
  * @version 1.0
  */
 
-public class Role extends BaseModel {
+public class Role implements Serializable {
     private String name;
 }

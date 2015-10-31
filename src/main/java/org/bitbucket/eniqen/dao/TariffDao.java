@@ -1,8 +1,6 @@
-package dao;
+package org.bitbucket.eniqen.dao;
 
-import model.Tariff;
-
-import java.util.List;
+import org.bitbucket.eniqen.model.Tariff;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.

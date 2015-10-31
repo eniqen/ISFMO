@@ -1,6 +1,8 @@
-package model;
+package org.bitbucket.eniqen.model;
 
-import javax.persistence.Entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,13 +15,29 @@ import java.util.List;
  */
 
 @Entity
-public class Client extends BaseModel {
-
+@Table(name = "CLIENT_TBL")
+@NamedQuery(name = "Client.getAll", query = "SELECT client FROM Client client")
+public class Client implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CLIENT_ID", unique = true, nullable = false)
+    private Integer id;
+    @Column
     private String firstname;
+    @Column
     private String lastname;
+    @Column
     private Date birthday;
-    private String passport;
+    @Column
+    private Long passport;
+    @Column
     private String address;
+
+    @OneToMany
+    @JoinTable(
+            name = "CONTRACT_TBL",
+            joinColumns = @JoinColumn(name = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ID"))
     private List<Contract> contractList;
     private String email;
     private String password;
@@ -27,16 +45,12 @@ public class Client extends BaseModel {
     public Client() {
     }
 
-    public Client(String firstname, String lastname, Date birthday, String passport, String address, List<Contract> contractList, String email, String password) {
+    public Integer getId() {
+        return id;
+    }
 
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birthday = birthday;
-        this.passport = passport;
-        this.address = address;
-        this.contractList = contractList;
-        this.email = email;
-        this.password = password;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -78,6 +92,7 @@ public class Client extends BaseModel {
     public void setAddress(String address) {
         this.address = address;
     }
+
 
     public List<Contract> getContractList() {
         return contractList;

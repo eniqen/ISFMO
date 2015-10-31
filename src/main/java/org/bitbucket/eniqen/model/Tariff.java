@@ -1,6 +1,6 @@
-package model;
+package org.bitbucket.eniqen.model;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,8 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 
-@Entity
-public class Tariff extends BaseModel {
+public class Tariff implements Serializable {
     private String name;
     private Double price;
     private List<Option> options;

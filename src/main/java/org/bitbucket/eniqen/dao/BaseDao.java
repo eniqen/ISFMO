@@ -1,7 +1,6 @@
-package dao;
+package org.bitbucket.eniqen.dao;
 
-import model.BaseModel;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface BaseDao<T extends BaseModel> {
+public interface BaseDao<T extends Serializable> {
 
     List<T> getAll();
 

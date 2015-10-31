@@ -1,6 +1,7 @@
-package dao;
+package org.bitbucket.eniqen.dao;
 
-import model.Role;
+
+import org.bitbucket.eniqen.model.Role;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
