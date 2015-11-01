@@ -16,6 +16,7 @@ import java.util.Set;
 @NamedQuery(name = "Option.getAll", query = "SELECT o FROM Option o")
 public class Option implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
     @Column(name = "TITLE")

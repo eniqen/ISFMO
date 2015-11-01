@@ -18,6 +18,7 @@ import java.util.Set;
 @NamedQuery(name = "Tariff.getAll", query = "SELECT t FROM Tariff t")
 public class Tariff implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
     @Column(name = "TITLE")
