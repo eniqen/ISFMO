@@ -2,7 +2,6 @@ package org.bitbucket.eniqen.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,18 +18,26 @@ import java.util.Set;
 public class Tariff implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "TITLE")
+    @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
-    @Column(name = "PRICE")
+    @Column(name = "PRICE", nullable = false)
     private Double price;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="TARIFF_TBL_has_OPTION_TBL",
-            joinColumns=@JoinColumn(name="TARIFF_TBL_ID"),
-            inverseJoinColumns=@JoinColumn(name="OPTION_TBL_ID"))
+    @JoinTable(name = "TARIFF_OPTION_TBL",
+            joinColumns = @JoinColumn(name = "TARIFF_ID"),
+            inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))
     private Set<Option> options;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

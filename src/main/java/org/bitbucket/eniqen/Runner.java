@@ -1,9 +1,9 @@
 package org.bitbucket.eniqen;
 
 import org.bitbucket.eniqen.model.Client;
+import org.bitbucket.eniqen.model.RoleType;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Date;
 
@@ -15,7 +15,10 @@ public class Runner {
         EntityManager entityManager = Persistence.createEntityManagerFactory("ISFMO").createEntityManager();
         entityManager.getTransaction().begin();
 
-        Client client = new Client("Вася", "Батарейкин", new Date(), 1234567487L, "Карла-Маркса","test@bk.ru","123123");
+        Client client = new Client("Вася", "Батарейкин", new Date(), "1234567487", "Карла-Маркса", "test@bk.ru", "123123", RoleType.USER);
+//
+//        ClientServiceImpl clientService = new ClientServiceImpl();
+//        clientService.addClient(client);
         entityManager.persist(client);
         entityManager.getTransaction().commit();
         entityManager.close();

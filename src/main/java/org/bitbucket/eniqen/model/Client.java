@@ -19,23 +19,30 @@ import java.util.Date;
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "FIRSTNAME")
+    @Column(name = "FIRSTNAME", length = 50, nullable = false)
     private String firstname;
-    @Column(name = "LASTNAME")
+    @Column(name = "LASTNAME", length = 50, nullable = false)
     private String lastname;
-    @Column(name = "BIRTHDAY")
+    @Column(name = "BIRTHDAY", nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
-    @Column(name = "PASSPORT")
-    private Long passport;
-    @Column(name = "ADDRESS")
+    @Column(name = "PASSPORT", unique = true, nullable = false, length = 12)
+    private String passport;
+    @Column(name = "ADDRESS", length = 100, nullable = false)
     private String address;
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true, length = 64, nullable = false)
     private String email;
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", length = 20, nullable = false)
     private String password;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "ROLE_ID", nullable = false)
+    private RoleType role;
+
+    public void setRole(RoleType role) {
+        this.role = role;
+    }
 
     public Integer getId() {
         return id;
@@ -69,11 +76,11 @@ public class Client implements Serializable {
         this.birthday = birthday;
     }
 
-    public Long getPassport() {
+    public String getPassport() {
         return passport;
     }
 
-    public void setPassport(Long passport) {
+    public void setPassport(String passport) {
         this.passport = passport;
     }
 
@@ -104,7 +111,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String firstname, String lastname, Date birthday, Long passport, String address, String email, String password) {
+    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
@@ -112,5 +119,6 @@ public class Client implements Serializable {
         this.address = address;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 }

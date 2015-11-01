@@ -19,20 +19,21 @@ public class Contract implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
+    @Column(name = "NUMBER", length = 11, unique = true, nullable = false)
+    private String number;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "TARIFF_TBL", joinColumns = @JoinColumn(name = "ID"), inverseJoinColumns = @JoinColumn(name = "ID"))
+    @JoinColumn(name = "TARIFF_TBL_ID", nullable = false)
     private Tariff tariff;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "CLIENT_TBL", joinColumns = @JoinColumn(name = "ID"), inverseJoinColumns = @JoinColumn(name = "ID"))
+    @JoinColumn(name = "CLIENT_TBL_ID", nullable = false)
     private Client client;
-
     @ManyToMany
     @JoinTable(
-            name = "CONTRACT_TBL_has_OPTION_TBL",
-            joinColumns = {@JoinColumn(name = "CONTRACT_TBL_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "OPTION_TBL_ID", referencedColumnName = "ID")})
+            name = "CONTRACT_OPTION_TBL",
+            joinColumns = {@JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "OPTION_ID", referencedColumnName = "ID")})
     private Set<Option> options;
 
     public Set<Option> getOptions() {
@@ -41,6 +42,14 @@ public class Contract implements Serializable {
 
     public Client getClient() {
         return client;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public void setClient(Client client) {
@@ -59,7 +68,6 @@ public class Contract implements Serializable {
         this.tariff = tariff;
     }
 
-
     public Integer getId() {
         return id;
     }
@@ -71,8 +79,10 @@ public class Contract implements Serializable {
     public Contract() {
     }
 
-    public Contract(Integer id, Tariff tariff) {
-        this.id = id;
+    public Contract(String number, Tariff tariff, Client client, Set<Option> options) {
+        this.number = number;
         this.tariff = tariff;
+        this.client = client;
+        this.options = options;
     }
 }

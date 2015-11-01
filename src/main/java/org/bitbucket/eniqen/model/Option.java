@@ -15,29 +15,40 @@ import java.util.Set;
 @Table(name = "OPTION_TBL")
 @NamedQuery(name = "Option.getAll", query = "SELECT o FROM Option o")
 public class Option implements Serializable {
+    private static final long serialVersionUID = 3612798297284489917L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "TITLE")
+    @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
-    @Column(name = "PRICE")
+    @Column(name = "PRICE", nullable = false)
     private Double price;
-    @Column(name = "CONNECTION_PRICE")
+    @Column(name = "CONNECTION_PRICE", nullable = false)
     private Double connectionPrice;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "INCOMPATIBLE_OPTIONS_TBL",
-            joinColumns = @JoinColumn(name = "OPTION_TBL_ID"),
-            inverseJoinColumns = @JoinColumn(name = "OPTION_TBL_ID1"))
+            joinColumns = @JoinColumn(name = "OPTION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "OPTION_ID1"))
     private Set<Option> incompatibleOptions;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "COMPATIBLE_OPTIONS_TBL",
-            joinColumns = @JoinColumn(name = "OPTION_TBL_ID"),
-            inverseJoinColumns = @JoinColumn(name = "OPTION_TBL_ID1"))
+            joinColumns = @JoinColumn(name = "OPTION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "OPTION_ID1"))
     private Set<Option> compatibleOptions;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "options")
+    private Set<Contract> contracts;
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
+    }
 
     public Set<Option> getIncompatibleOptions() {
         return incompatibleOptions;
@@ -90,4 +101,12 @@ public class Option implements Serializable {
     public Option() {
     }
 
+    public Option(String title, Double price, Double connectionPrice, Set<Option> incompatibleOptions, Set<Option> compatibleOptions, Set<Contract> contracts) {
+        this.title = title;
+        this.price = price;
+        this.connectionPrice = connectionPrice;
+        this.incompatibleOptions = incompatibleOptions;
+        this.compatibleOptions = compatibleOptions;
+        this.contracts = contracts;
+    }
 }

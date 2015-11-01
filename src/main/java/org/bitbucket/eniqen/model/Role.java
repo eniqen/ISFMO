@@ -4,27 +4,39 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Mikhail Nemenko on 31.10.2015.
- * <p>
- * Сущность для работы с Ролями
- *
- * @version 1.0
+ * Created by Mikhail Nemenko on 01.11.2015.
  */
+
 @Entity
 @Table(name = "ROLE_TBL")
 public class Role implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false, length = 1)
     private Integer id;
-    @Column(name = "TITLE")
-    private String name;
+    @Column(name = "TITLE" , unique = true, nullable = false)
+    private String title;
 
-    public Role(Integer id, String name) {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
-        this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Role() {
+    }
+
+    public Role(Integer id, String title) {
+        this.id = id;
+        this.title = title;
     }
 }
