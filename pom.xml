@@ -7,7 +7,7 @@
     <groupId>org.bitbucket.eniqen</groupId>
     <artifactId>ISFMO</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <build>
         <plugins>
@@ -18,6 +18,15 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>9999</port>
+                    <path>/</path>
                 </configuration>
             </plugin>
         </plugins>
@@ -103,5 +112,19 @@
             <scope>test</scope>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>org.apache.tomcat.embed</groupId>-->
+            <!--<artifactId>tomcat-embed-core</artifactId>-->
+            <!--<version>8.0.28</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.tomcat</groupId>-->
+            <!--<artifactId>tomcat-catalina</artifactId>-->
+            <!--<version>8.0.28</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
     </dependencies>
+
 </project>

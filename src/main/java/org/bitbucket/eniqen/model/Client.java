@@ -40,6 +40,10 @@ public class Client implements Serializable {
     @Column(name = "ROLE_ID", nullable = false)
     private RoleType role;
 
+    public RoleType getRole() {
+        return role;
+    }
+
     public void setRole(RoleType role) {
         this.role = role;
     }
