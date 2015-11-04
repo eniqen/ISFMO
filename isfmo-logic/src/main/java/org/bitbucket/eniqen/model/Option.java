@@ -17,7 +17,7 @@ import java.util.Set;
 public class Option implements Serializable {
     private static final long serialVersionUID = 3612798297284489917L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
     @Column(name = "TITLE", length = 100, nullable = false)

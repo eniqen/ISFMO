@@ -18,10 +18,10 @@ import java.util.Set;
 public class Contract implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "NUMBER", length = 11, unique = true, nullable = false)
+    @Column(name = "NUMBER",length = 11, unique = true, nullable = false)
     private String number;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TARIFF_TBL_ID", nullable = false)

@@ -1,52 +1,50 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.ClientDao;
+import org.bitbucket.eniqen.dao.ContractDao;
 import org.bitbucket.eniqen.model.Client;
+import org.bitbucket.eniqen.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Bean;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
- * Created by Mikhail Nemenko on 01.11.2015.
+ * Created by Mikhail Nemenko on 04.11.2015.
  */
-public class ClientDaoImpl implements ClientDao {
-
+public class ContractDaoImpl implements ContractDao {
     private EntityManager entityManager;
 
-    public ClientDaoImpl(EntityManager entityManager) {
+    public ContractDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public List<Client> getAll() {
-        return this.entityManager.createNamedQuery("Client.getAll").getResultList();
+    public List<Contract> getAll() {
+        return this.entityManager.createNamedQuery("Contract.getAll").getResultList();
     }
 
     @Override
-    public Client getById(Integer id) {
-        return this.entityManager.find(Client.class, id);
+    public Contract getById(Integer id) {
+        return this.entityManager.find(Contract.class, id);
     }
 
     @Override
-    public void add(Client model) {
+    public void add(Contract model) {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(model);
         this.entityManager.getTransaction().commit();
     }
 
     @Override
-    public void delete(Client model) {
+    public void delete(Contract model) {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(model);
         this.entityManager.getTransaction().commit();
     }
 
     @Override
-    public void update(Client model) {
+    public void update(Contract model) {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(model);
         this.entityManager.getTransaction().commit();

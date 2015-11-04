@@ -1,7 +1,6 @@
 package org.bitbucket.eniqen.dao;
 
 
-import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
 
 /**
@@ -11,7 +10,4 @@ import org.bitbucket.eniqen.model.Contract;
  */
 
 public interface ContractDao extends BaseDao<Contract> {
-    Contract findByNumber(String number);
-
-    Client findUserByNumber(String number);
 }

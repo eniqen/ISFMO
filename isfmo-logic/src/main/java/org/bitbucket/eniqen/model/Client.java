@@ -18,7 +18,7 @@ import java.util.Date;
 @NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
 public class Client implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Integer id;
     @Column(name = "FIRSTNAME", length = 50, nullable = false)
@@ -124,5 +124,20 @@ public class Client implements Serializable {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthday=" + birthday +
+                ", passport='" + passport + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
