@@ -1,3 +1,5 @@
+package org.bitbucket.eniqen;
+
 import org.bitbucket.eniqen.dao.impl.ClientDaoImpl;
 import org.bitbucket.eniqen.model.Client;
 
@@ -42,5 +44,4 @@ public class FirstServlet extends HttpServlet {
         sb.append("</table></body></html>");
         resp.getOutputStream().write(sb.toString().getBytes());
     }
-
 }

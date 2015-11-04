@@ -1,7 +1,7 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.ClientDao;
 import org.bitbucket.eniqen.model.Client;
+import org.bitbucket.eniqen.dao.ClientDao;
 
 import javax.persistence.EntityManager;
 import java.util.List;

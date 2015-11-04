@@ -1,7 +1,7 @@
 package org.bitbucket.eniqen.service.impl;
 
-import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.repository.ClientRepository;
+import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
