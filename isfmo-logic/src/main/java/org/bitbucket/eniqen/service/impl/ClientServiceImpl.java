@@ -1,11 +1,14 @@
 package org.bitbucket.eniqen.service.impl;
 
-import org.bitbucket.eniqen.repository.ClientRepository;
 import org.bitbucket.eniqen.model.Client;
+import org.bitbucket.eniqen.model.Contract;
+import org.bitbucket.eniqen.repository.*;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -15,32 +18,27 @@ import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Autowired
     private ClientRepository clientRepository;
-
-    @Override
-    public Client addClient(Client client) {
-        Client newClient = clientRepository.saveAndFlush(client);
-        return newClient;
-    }
-
-    @Override
-    public void delete(int id) {
-        clientRepository.delete(id);
-    }
-
-    @Override
-    public Client findByName(String name) {
-        return clientRepository.findByName(name);
-    }
+    @Autowired
+    private ContractRepository contractRepository;
+    @Autowired
+    private OptionRepository optionRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private TariffRepository tariffRepository;
 
     @Override
     public Client editClient(Client client) {
-        return clientRepository.saveAndFlush(client);
+        return em.merge(client);
     }
 
     @Override
-    public List<Client> findAll() {
-        return clientRepository.findAll();
+    public List<Contract> findAllContractsByClient(Client client) {
+        return contractRepository.findByClient(client);
     }
 }

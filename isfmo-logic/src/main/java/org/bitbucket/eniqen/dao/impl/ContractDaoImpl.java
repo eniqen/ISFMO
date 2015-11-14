@@ -1,10 +1,7 @@
 package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ContractDao;
-import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -25,7 +22,7 @@ public class ContractDaoImpl implements ContractDao {
     }
 
     @Override
-    public Contract getById(Integer id) {
+    public Contract getById(Long id) {
         return this.entityManager.find(Contract.class, id);
     }
 

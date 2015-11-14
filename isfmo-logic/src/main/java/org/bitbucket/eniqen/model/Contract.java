@@ -17,18 +17,24 @@ import java.util.Set;
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
 public class Contract implements Serializable {
 
+    private static final long serialVersionUID = -6907032170871161564L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
-    private Integer id;
-    @Column(name = "NUMBER",length = 11, unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "NUMBER", length = 11, unique = true, nullable = false)
     private String number;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TARIFF_TBL_ID", nullable = false)
     private Tariff tariff;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CLIENT_TBL_ID", nullable = false)
     private Client client;
+
     @ManyToMany
     @JoinTable(
             name = "CONTRACT_OPTION_TBL",
@@ -36,12 +42,30 @@ public class Contract implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "OPTION_ID", referencedColumnName = "ID")})
     private Set<Option> options;
 
+    public Contract() {
+    }
+
+    public Contract(String number, Tariff tariff, Client client, Set<Option> options) {
+        this.number = number;
+        this.tariff = tariff;
+        this.client = client;
+        this.options = options;
+    }
+
     public Set<Option> getOptions() {
         return options;
     }
 
+    public void setOptions(Set<Option> optionList) {
+        this.options = optionList;
+    }
+
     public Client getClient() {
         return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String getNumber() {
@@ -52,14 +76,6 @@ public class Contract implements Serializable {
         this.number = number;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public void setOptions(Set<Option> optionList) {
-        this.options = optionList;
-    }
-
     public Tariff getTariff() {
         return tariff;
     }
@@ -68,21 +84,22 @@ public class Contract implements Serializable {
         this.tariff = tariff;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Contract() {
-    }
-
-    public Contract(String number, Tariff tariff, Client client, Set<Option> options) {
-        this.number = number;
-        this.tariff = tariff;
-        this.client = client;
-        this.options = options;
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", tariff=" + tariff +
+                ", client=" + client +
+                ", options=" + options +
+                '}';
     }
 }

@@ -15,7 +15,7 @@ public interface BaseDao<T extends Serializable> {
 
     List<T> getAll();
 
-    T getById(Integer id);
+    T getById(Long id);
 
     void add(T model);
 

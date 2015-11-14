@@ -22,7 +22,7 @@ public class TariffDaoImpl implements TariffDao {
     }
 
     @Override
-    public Tariff getById(Integer id) {
+    public Tariff getById(Long id) {
         return this.entityManager.find(Tariff.class, id);
     }
 

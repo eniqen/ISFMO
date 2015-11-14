@@ -1,10 +1,7 @@
 package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.OptionDao;
-import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Option;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -25,7 +22,7 @@ public class OptionDaoIpml implements OptionDao {
     }
 
     @Override
-    public Option getById(Integer id) {
+    public Option getById(Long id) {
         return this.entityManager.find(Option.class, id);
     }
 

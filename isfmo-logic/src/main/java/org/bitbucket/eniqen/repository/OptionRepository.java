@@ -1,10 +1,15 @@
 package org.bitbucket.eniqen.repository;
 
 import org.bitbucket.eniqen.model.Option;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Mikhail Nemenko on 01.11.2015.
  */
-public interface OptionRepository extends JpaRepository<Option, Integer> {
+
+@Transactional(readOnly = true)
+@Repository
+public interface OptionRepository extends CrudRepository<Option, Integer> {
 }

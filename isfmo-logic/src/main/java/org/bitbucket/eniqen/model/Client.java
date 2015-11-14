@@ -17,28 +17,74 @@ import java.util.Date;
 @Table(name = "CLIENT_TBL")
 @NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
 public class Client implements Serializable {
+    private static final long serialVersionUID = -5258599731511643040L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
-    private Integer id;
+    private Long id;
+
     @Column(name = "FIRSTNAME", length = 50, nullable = false)
     private String firstname;
+
     @Column(name = "LASTNAME", length = 50, nullable = false)
     private String lastname;
+
     @Column(name = "BIRTHDAY", nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
+
     @Column(name = "PASSPORT", unique = true, nullable = false, length = 12)
     private String passport;
+
     @Column(name = "ADDRESS", length = 100, nullable = false)
     private String address;
+
     @Column(name = "EMAIL", unique = true, length = 64, nullable = false)
     private String email;
+
     @Column(name = "PASSWORD", length = 20, nullable = false)
     private String password;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "ROLE_ID", nullable = false)
     private RoleType role;
+
+    private boolean isBlockedOperator;
+
+    private boolean isBlockedUser;
+
+    public Client() {
+    }
+
+    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role, boolean isBlockedOperator, boolean isBlockedUser) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.passport = passport;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.isBlockedOperator = isBlockedOperator;
+        this.isBlockedUser = isBlockedUser;
+    }
+
+    public boolean isBlockedOperator() {
+        return isBlockedOperator;
+    }
+
+    public void setIsBlockedOperator(boolean isBlockedOperator) {
+        this.isBlockedOperator = isBlockedOperator;
+    }
+
+    public boolean isBlockedUser() {
+        return isBlockedUser;
+    }
+
+    public void setIsBlockedUser(boolean isBlockedUser) {
+        this.isBlockedUser = isBlockedUser;
+    }
 
     public RoleType getRole() {
         return role;
@@ -48,11 +94,11 @@ public class Client implements Serializable {
         this.role = role;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -112,20 +158,6 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Client() {
-    }
-
-    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birthday = birthday;
-        this.passport = passport;
-        this.address = address;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
     @Override
     public String toString() {
         return "Client{" +
@@ -138,6 +170,8 @@ public class Client implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", isBlockedOperator=" + isBlockedOperator +
+                ", isBlockedUser=" + isBlockedUser +
                 '}';
     }
 }

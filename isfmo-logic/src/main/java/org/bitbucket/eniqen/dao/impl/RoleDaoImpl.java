@@ -22,7 +22,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Role getById(Integer id) {
+    public Role getById(Long id) {
         return this.entityManager.find(Role.class, id);
     }
 

@@ -1,6 +1,9 @@
 package org.bitbucket.eniqen.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -10,17 +13,29 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ROLE_TBL")
 public class Role implements Serializable {
+
+    private static final long serialVersionUID = -2456384787174634222L;
+
     @Id
     @Column(name = "ID", unique = true, nullable = false, length = 1)
-    private Integer id;
-    @Column(name = "TITLE" , unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "TITLE", unique = true, nullable = false)
     private String title;
 
-    public Integer getId() {
+    public Role() {
+    }
+
+    public Role(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,11 +47,11 @@ public class Role implements Serializable {
         this.title = title;
     }
 
-    public Role() {
-    }
-
-    public Role(Integer id, String title) {
-        this.id = id;
-        this.title = title;
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

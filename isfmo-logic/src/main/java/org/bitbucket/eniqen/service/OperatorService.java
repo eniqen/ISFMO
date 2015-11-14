@@ -6,12 +6,18 @@ import org.bitbucket.eniqen.model.Contract;
 import java.util.List;
 
 /**
- * Created by Mikhail Nemenko on 01.11.2015.
+ * Created by Mikhail Nemenko on 14.11.2015.
  */
+public interface OperatorService {
+    Client addClient(Client client);
 
-public interface ClientService {
+    void delete(Client client);
+
+    Client findByName(String name);
 
     Client editClient(Client client);
+
+    List<Client> findAll();
 
     List<Contract> findAllContractsByClient(Client client);
 }

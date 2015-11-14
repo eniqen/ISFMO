@@ -1,13 +1,10 @@
 package org.bitbucket.eniqen;
 
-import org.bitbucket.eniqen.dao.ClientDao;
 import org.bitbucket.eniqen.dao.impl.ClientDaoImpl;
 import org.bitbucket.eniqen.model.Client;
-import org.bitbucket.eniqen.model.RoleType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import java.util.Date;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.

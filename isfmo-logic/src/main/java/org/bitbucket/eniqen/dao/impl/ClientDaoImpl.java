@@ -2,11 +2,7 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ClientDao;
 import org.bitbucket.eniqen.model.Client;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.context.annotation.Bean;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public Client getById(Integer id) {
+    public Client getById(Long id) {
         return this.entityManager.find(Client.class, id);
     }
 
