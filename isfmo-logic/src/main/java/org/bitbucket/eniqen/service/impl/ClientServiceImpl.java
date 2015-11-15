@@ -33,11 +33,6 @@ public class ClientServiceImpl implements ClientService {
     private TariffRepository tariffRepository;
 
     @Override
-    public Client editClient(Client client) {
-        return em.merge(client);
-    }
-
-    @Override
     public List<Contract> findAllContractsByClient(Client client) {
         return contractRepository.findByClient(client);
     }

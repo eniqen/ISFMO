@@ -18,7 +18,7 @@ import java.util.Set;
 public class Contract implements Serializable {
 
     private static final long serialVersionUID = -6907032170871161564L;
-
+    //todo вынести айдишники в моделях
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)

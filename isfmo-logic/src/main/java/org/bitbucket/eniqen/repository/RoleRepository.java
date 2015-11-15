@@ -13,7 +13,28 @@ import java.util.List;
 
 @Transactional(readOnly = true)
 @Repository
-public interface RoleRepository extends CrudRepository<Role, Integer> {
+public interface RoleRepository extends CrudRepository<Role, Long> {
 
     List<Role> findByName(String name);
+
+    @Override
+    Role save(Role entity);
+
+    @Override
+    Role findOne(Long aLong);
+
+    @Override
+    boolean exists(Long aLong);
+
+    @Override
+    Iterable<Role> findAll();
+
+    @Override
+    long count();
+
+    @Override
+    void delete(Long aLong);
+
+    @Override
+    void delete(Role entity);
 }

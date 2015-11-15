@@ -38,6 +38,8 @@ public class Option implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID1"))
     private Set<Option> compatibleOptions;
 
+
+    //todo посмотреть
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "options")
     private Set<Contract> contracts;
 

@@ -11,5 +11,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)
 @Repository
-public interface OptionRepository extends CrudRepository<Option, Integer> {
+public interface OptionRepository extends CrudRepository<Option, Long> {
+    @Override
+    Option save(Option entity);
+
+    @Override
+    Option findOne(Long aLong);
+
+    @Override
+    boolean exists(Long aLong);
+
+    @Override
+    Iterable<Option> findAll();
+
+    @Override
+    long count();
+
+    @Override
+    void delete(Long aLong);
+
+    @Override
+    void delete(Option entity);
 }

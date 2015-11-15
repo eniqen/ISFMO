@@ -11,7 +11,5 @@ import java.util.List;
 
 public interface ClientService {
 
-    Client editClient(Client client);
-
     List<Contract> findAllContractsByClient(Client client);
 }

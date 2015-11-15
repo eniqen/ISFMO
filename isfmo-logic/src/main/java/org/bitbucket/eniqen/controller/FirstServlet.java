@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen;
+package org.bitbucket.eniqen.controller;
 
 import org.bitbucket.eniqen.dao.impl.ClientDaoImpl;
 import org.bitbucket.eniqen.model.Client;
@@ -18,11 +18,12 @@ import java.util.List;
 /**
  * Created by Mikhail Nemenko on 01.11.2015.
  */
-@WebServlet("/hello")
+@WebServlet(name = "FirstServlet", urlPatterns = {"/cabinet"})
 public class FirstServlet extends HttpServlet {
 
     @PersistenceUnit()
     private EntityManagerFactory emf;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +33,6 @@ public class FirstServlet extends HttpServlet {
         EntityManager entityManager = emf.createEntityManager();
         List<Client> clientList = new ClientDaoImpl(entityManager).getAll();
         req.setAttribute("employees", clientList);
-        req.getRequestDispatcher("/WEB-INF/employees.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/employees.jsp").forward(req, resp);
     }
 }
