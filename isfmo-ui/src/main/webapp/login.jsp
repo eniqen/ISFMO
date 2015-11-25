@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Авторизация</title>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../bootstrap/css/login.css">
-    <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/login.css">
+    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 
 <body>

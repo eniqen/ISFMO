@@ -50,14 +50,10 @@ public class Client implements Serializable {
     @Column(name = "ROLE_ID", nullable = false)
     private RoleType role;
 
-    private boolean isBlockedOperator;
-
-    private boolean isBlockedUser;
-
     public Client() {
     }
 
-    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role, boolean isBlockedOperator, boolean isBlockedUser) {
+    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
@@ -66,24 +62,6 @@ public class Client implements Serializable {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.isBlockedOperator = isBlockedOperator;
-        this.isBlockedUser = isBlockedUser;
-    }
-
-    public boolean isBlockedOperator() {
-        return isBlockedOperator;
-    }
-
-    public void setIsBlockedOperator(boolean isBlockedOperator) {
-        this.isBlockedOperator = isBlockedOperator;
-    }
-
-    public boolean isBlockedUser() {
-        return isBlockedUser;
-    }
-
-    public void setIsBlockedUser(boolean isBlockedUser) {
-        this.isBlockedUser = isBlockedUser;
     }
 
     public RoleType getRole() {
@@ -169,9 +147,6 @@ public class Client implements Serializable {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
-                ", isBlockedOperator=" + isBlockedOperator +
-                ", isBlockedUser=" + isBlockedUser +
-                '}';
+                ", role=" + role + '}';
     }
 }
