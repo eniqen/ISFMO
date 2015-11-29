@@ -10,5 +10,5 @@ import org.bitbucket.eniqen.model.Role;
  *
  * @version 1.0
  */
-public interface RoleDao extends BaseDao<Role> {
+public interface RoleDao extends BaseDAO<Role> {
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface BaseDao<T extends Serializable> {
+public interface BaseDAO<T extends Serializable> {
 
     List<T> getAll();
 

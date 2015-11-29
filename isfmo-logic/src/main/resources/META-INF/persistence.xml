@@ -7,7 +7,7 @@
 
     <persistence-unit name="ISFMO" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!--<non-jta-data-source>java:/comp/env/jdbc/mobile_office</non-jta-data-source>-->
+        <!--<jta-data-source>jdbc/mobile_office</jta-data-source>-->
 
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

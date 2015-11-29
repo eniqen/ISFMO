@@ -9,5 +9,18 @@
         <session-timeout>10</session-timeout>
     </session-config>
 
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 
+    <!--<persistence-context-ref>-->
+        <!--<persistence-context-ref-name>jdbc/mobile_office</persistence-context-ref-name>-->
+        <!--<persistence-unit-name>ISFMO</persistence-unit-name>-->
+    <!--</persistence-context-ref>-->
+
+    <!--<resource-ref>-->
+        <!--<res-ref-name>jdbc/mobile_office</res-ref-name>-->
+        <!--<res-type>javax.sql.DataSource</res-type>-->
+        <!--<res-auth>Container</res-auth>-->
+    <!--</resource-ref>-->
 </web-app>

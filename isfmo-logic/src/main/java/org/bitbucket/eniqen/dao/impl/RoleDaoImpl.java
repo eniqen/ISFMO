@@ -2,6 +2,9 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.RoleDao;
 import org.bitbucket.eniqen.model.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -9,10 +12,14 @@ import java.util.List;
 /**
  * Created by Mikhail Nemenko on 04.11.2015.
  */
-public class RoleDaoImpl implements RoleDao {
+
+@Repository
+public class RoleDAOImpl implements RoleDao {
+
+    @Autowired
     private EntityManager entityManager;
 
-    public RoleDaoImpl(EntityManager entityManager) {
+    public RoleDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -26,24 +33,21 @@ public class RoleDaoImpl implements RoleDao {
         return this.entityManager.find(Role.class, id);
     }
 
+    @Transactional
     @Override
     public void add(Role model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.persist(model);
-        this.entityManager.getTransaction().commit();
     }
 
+    @Transactional
     @Override
     public void delete(Role model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.remove(model);
-        this.entityManager.getTransaction().commit();
     }
 
+    @Transactional
     @Override
     public void update(Role model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.merge(model);
-        this.entityManager.getTransaction().commit();
     }
 }

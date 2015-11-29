@@ -9,5 +9,9 @@ import org.bitbucket.eniqen.model.Client;
  * Дао класс для работы с сущностью Клиент
  */
 
-public interface ClientDao extends BaseDao<Client> {
+public interface ClientDAO extends BaseDAO<Client> {
+
+    Client findClientByNumber(String number);
+
+    Client findByEmail(String email);
 }

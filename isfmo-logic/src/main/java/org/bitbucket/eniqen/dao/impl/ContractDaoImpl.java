@@ -1,18 +1,26 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.ContractDao;
+import org.bitbucket.eniqen.dao.ContractDAO;
 import org.bitbucket.eniqen.model.Contract;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by Mikhail Nemenko on 04.11.2015.
  */
-public class ContractDaoImpl implements ContractDao {
+
+@Repository
+public class ContractDAOImpl implements ContractDAO {
+
+    @Autowired
     private EntityManager entityManager;
 
-    public ContractDaoImpl(EntityManager entityManager) {
+    public ContractDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -26,24 +34,27 @@ public class ContractDaoImpl implements ContractDao {
         return this.entityManager.find(Contract.class, id);
     }
 
+    @Transactional
     @Override
     public void add(Contract model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.persist(model);
-        this.entityManager.getTransaction().commit();
     }
 
+    @Transactional
     @Override
     public void delete(Contract model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.remove(model);
-        this.entityManager.getTransaction().commit();
+    }
+
+    @Transactional
+    @Override
+    public void update(Contract model) {
+        this.entityManager.merge(model);
     }
 
     @Override
-    public void update(Contract model) {
-        this.entityManager.getTransaction().begin();
-        this.entityManager.merge(model);
-        this.entityManager.getTransaction().commit();
+    public Contract findContractByNumber(String number) {
+        Query query = this.entityManager.createQuery("select c from Client c where c.number =:number");
+        return (Contract) query.setParameter("number", number).getSingleResult();
     }
 }

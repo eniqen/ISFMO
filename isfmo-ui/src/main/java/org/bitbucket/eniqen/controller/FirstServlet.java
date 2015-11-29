@@ -1,12 +1,11 @@
 package org.bitbucket.eniqen.controller;
 
-import org.bitbucket.eniqen.dao.impl.ClientDaoImpl;
+import org.bitbucket.eniqen.dao.impl.ClientDAOImpl;
 import org.bitbucket.eniqen.model.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +20,7 @@ import java.util.List;
 @WebServlet(name = "FirstServlet", urlPatterns = {"/cabinet"})
 public class FirstServlet extends HttpServlet {
 
-    @PersistenceUnit()
     private EntityManagerFactory emf;
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,8 +28,8 @@ public class FirstServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         emf = Persistence.createEntityManagerFactory("ISFMO");
         EntityManager entityManager = emf.createEntityManager();
-        List<Client> clientList = new ClientDaoImpl(entityManager).getAll();
+        List<Client> clientList = new ClientDAOImpl(entityManager).getAll();
         req.setAttribute("employees", clientList);
-        req.getRequestDispatcher("/WEB-INF/jsp/employees.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/employees.jsp").forward(req, resp);
     }
 }

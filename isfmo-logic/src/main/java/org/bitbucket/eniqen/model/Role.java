@@ -1,9 +1,6 @@
 package org.bitbucket.eniqen.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -12,6 +9,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ROLE_TBL")
+@NamedQuery(name = "Role.getAll", query = "select r from Role r")
 public class Role implements Serializable {
 
     private static final long serialVersionUID = -2456384787174634222L;

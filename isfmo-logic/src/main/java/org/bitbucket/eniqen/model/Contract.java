@@ -24,8 +24,12 @@ public class Contract implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "NUMBER", length = 11, unique = true, nullable = false)
-    private String number;
+    @Column(name = "BLOCKED", nullable = false, columnDefinition = "false")
+    private boolean blocked;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "NUMBER_ID", unique = true, nullable = false, updatable = false)
+    private Number number;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TARIFF_TBL_ID", nullable = false)
@@ -45,13 +49,6 @@ public class Contract implements Serializable {
     public Contract() {
     }
 
-    public Contract(String number, Tariff tariff, Client client, Set<Option> options) {
-        this.number = number;
-        this.tariff = tariff;
-        this.client = client;
-        this.options = options;
-    }
-
     public Set<Option> getOptions() {
         return options;
     }
@@ -68,11 +65,11 @@ public class Contract implements Serializable {
         this.client = client;
     }
 
-    public String getNumber() {
+    public Number getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Number number) {
         this.number = number;
     }
 
@@ -92,14 +89,19 @@ public class Contract implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Contract{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
-                ", tariff=" + tariff +
-                ", client=" + client +
-                ", options=" + options +
-                '}';
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public Contract(boolean blocked, Number number, Tariff tariff, Client client, Set<Option> options) {
+        this.blocked = blocked;
+        this.number = number;
+        this.tariff = tariff;
+        this.client = client;
+        this.options = options;
     }
 }

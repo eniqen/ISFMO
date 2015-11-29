@@ -9,5 +9,7 @@ import org.bitbucket.eniqen.model.Contract;
  * Дао класс для работы с сущностью Контракт
  */
 
-public interface ContractDao extends BaseDao<Contract> {
+public interface ContractDAO extends BaseDAO<Contract> {
+
+    Contract findContractByNumber(String number);
 }

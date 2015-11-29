@@ -8,6 +8,6 @@ import org.bitbucket.eniqen.model.Option;
  * Дао класс для работы с сущностью Опция
  */
 
-public interface OptionDao extends BaseDao<Option> {
+public interface OptionDAO extends BaseDAO<Option> {
 
 }

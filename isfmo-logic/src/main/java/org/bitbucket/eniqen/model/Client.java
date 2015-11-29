@@ -46,14 +46,10 @@ public class Client implements Serializable {
     @Column(name = "PASSWORD", length = 20, nullable = false)
     private String password;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "ROLE_ID", nullable = false)
-    private RoleType role;
-
     public Client() {
     }
 
-    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password, RoleType role) {
+    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
@@ -61,15 +57,6 @@ public class Client implements Serializable {
         this.address = address;
         this.email = email;
         this.password = password;
-        this.role = role;
-    }
-
-    public RoleType getRole() {
-        return role;
-    }
-
-    public void setRole(RoleType role) {
-        this.role = role;
     }
 
     public Long getId() {
@@ -147,6 +134,7 @@ public class Client implements Serializable {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role + '}';
+                '}';
     }
 }
+

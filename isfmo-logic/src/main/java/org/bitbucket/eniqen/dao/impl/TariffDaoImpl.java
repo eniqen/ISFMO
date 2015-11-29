@@ -2,6 +2,9 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.TariffDao;
 import org.bitbucket.eniqen.model.Tariff;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -9,10 +12,14 @@ import java.util.List;
 /**
  * Created by Mikhail Nemenko on 04.11.2015.
  */
-public class TariffDaoImpl implements TariffDao {
+
+@Repository
+public class TariffDAOImpl implements TariffDao {
+
+    @Autowired
     private EntityManager entityManager;
 
-    public TariffDaoImpl(EntityManager entityManager) {
+    public TariffDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -26,24 +33,21 @@ public class TariffDaoImpl implements TariffDao {
         return this.entityManager.find(Tariff.class, id);
     }
 
+    @Transactional
     @Override
     public void add(Tariff model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.persist(model);
-        this.entityManager.getTransaction().commit();
     }
 
+    @Transactional
     @Override
     public void delete(Tariff model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.remove(model);
-        this.entityManager.getTransaction().commit();
     }
 
+    @Transactional
     @Override
     public void update(Tariff model) {
-        this.entityManager.getTransaction().begin();
         this.entityManager.merge(model);
-        this.entityManager.getTransaction().commit();
     }
 }
