@@ -21,8 +21,8 @@ public class Contract extends BaseEntity {
     private boolean blocked;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NUMBER_ID", nullable = false, unique = true)
-    private Number number;
+    @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
+    private PhoneNumber phoneNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TARIFF_ID", nullable = false)
@@ -58,12 +58,12 @@ public class Contract extends BaseEntity {
         this.client = client;
     }
 
-    public Number getNumber() {
-        return number;
+    public PhoneNumber getNumber() {
+        return phoneNumber;
     }
 
-    public void setNumber(Number number) {
-        this.number = number;
+    public void setNumber(PhoneNumber number) {
+        this.phoneNumber = number;
     }
 
     public Tariff getTariff() {
@@ -82,9 +82,9 @@ public class Contract extends BaseEntity {
         this.blocked = blocked;
     }
 
-    public Contract(boolean blocked, Number number, Tariff tariff, Client client, Set<Option> options) {
+    public Contract(boolean blocked, PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> options) {
         this.blocked = blocked;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.client = client;
         this.options = options;
