@@ -10,26 +10,15 @@ import java.io.Serializable;
 @Entity
 @Table(name = "NUMBER_TBL")
 @NamedQuery(name = "Number.getAll", query = "select n from Number n")
-public class Number implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Long id;
+public class Number extends BaseEntity {
 
     @Column(name = "NUMBER", length = 11, nullable = false, unique = true)
     private String number;
 
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="number")
+    private Contract contract;
+
     public Number() {
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNumber() {
@@ -42,5 +31,13 @@ public class Number implements Serializable {
 
     public Number(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Number{" +
+                "number='" + number + '\'' +
+                ", contract=" + contract +
+                '}';
     }
 }

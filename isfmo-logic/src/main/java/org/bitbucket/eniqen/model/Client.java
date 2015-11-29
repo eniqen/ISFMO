@@ -16,13 +16,7 @@ import java.util.Date;
 @Entity
 @Table(name = "CLIENT_TBL")
 @NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
-public class Client implements Serializable {
-    private static final long serialVersionUID = -5258599731511643040L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Long id;
+public class Client extends BaseEntity {
 
     @Column(name = "FIRSTNAME", length = 50, nullable = false)
     private String firstname;
@@ -59,13 +53,6 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -126,8 +113,7 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
+                "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthday=" + birthday +
                 ", passport='" + passport + '\'' +

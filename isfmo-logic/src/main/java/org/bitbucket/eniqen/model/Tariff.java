@@ -15,14 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "TARIFF_TBL")
 @NamedQuery(name = "Tariff.getAll", query = "SELECT t FROM Tariff t")
-public class Tariff implements Serializable {
-
-    private static final long serialVersionUID = -5854707098403602263L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Long id;
+public class Tariff extends BaseEntity {
 
     @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
@@ -43,14 +36,6 @@ public class Tariff implements Serializable {
     }
 
     public Tariff() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -80,8 +65,7 @@ public class Tariff implements Serializable {
     @Override
     public String toString() {
         return "Tariff{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", price=" + price +
                 ", options=" + options +
                 '}';

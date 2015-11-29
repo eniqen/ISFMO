@@ -14,14 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "OPTION_TBL")
 @NamedQuery(name = "Option.getAll", query = "SELECT o FROM Option o")
-public class Option implements Serializable {
-
-    private static final long serialVersionUID = 3612798297284489917L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Long id;
+public class Option extends BaseEntity {
 
     @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
@@ -70,14 +63,6 @@ public class Option implements Serializable {
         this.compatibleOptions = compatibleOptions;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -105,8 +90,7 @@ public class Option implements Serializable {
     @Override
     public String toString() {
         return "Option{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", price=" + price +
                 ", connectionPrice=" + connectionPrice +
                 ", compatibleOptions=" + compatibleOptions +

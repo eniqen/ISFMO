@@ -10,31 +10,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ROLE_TBL")
 @NamedQuery(name = "Role.getAll", query = "select r from Role r")
-public class Role implements Serializable {
-
-    private static final long serialVersionUID = -2456384787174634222L;
-
-    @Id
-    @Column(name = "ID", unique = true, nullable = false, length = 1)
-    private Long id;
+public class Role extends BaseEntity{
 
     @Column(name = "TITLE", unique = true, nullable = false)
     private String title;
 
     public Role() {
-    }
-
-    public Role(Long id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -48,8 +29,7 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "Role{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 '}';
     }
 }

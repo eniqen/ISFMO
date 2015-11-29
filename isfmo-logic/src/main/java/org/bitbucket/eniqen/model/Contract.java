@@ -15,28 +15,21 @@ import java.util.Set;
 @Entity
 @Table(name = "CONTRACT_TBL")
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
-public class Contract implements Serializable {
+public class Contract extends BaseEntity {
 
-    private static final long serialVersionUID = -6907032170871161564L;
-    //todo вынести айдишники в моделях
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Long id;
-
-    @Column(name = "BLOCKED", nullable = false, columnDefinition = "false")
+    @Column(name = "BLOCKED", nullable = false)
     private boolean blocked;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "NUMBER_ID", unique = true, nullable = false, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NUMBER_ID", nullable = false, unique = true)
     private Number number;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TARIFF_TBL_ID", nullable = false)
+    @JoinColumn(name = "TARIFF_ID", nullable = false)
     private Tariff tariff;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLIENT_TBL_ID", nullable = false)
+    @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
     @ManyToMany
@@ -79,14 +72,6 @@ public class Contract implements Serializable {
 
     public void setTariff(Tariff tariff) {
         this.tariff = tariff;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public boolean isBlocked() {
