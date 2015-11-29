@@ -27,7 +27,8 @@
         <!-- Левый блок -->
         <div class="col-sm-2">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Клиенты</a></li>
+                <li class="active"><a href="#">Контракты</a></li>
+                <li><a href="#">Клиенты</a></li>
                 <li><a href="#">Тарифы</a></li>
                 <li><a href="#">Сообщение</a></li>
             </ul>
@@ -36,32 +37,33 @@
         <!--Основной блок-->
         <div class="col-sm-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Clients list</div>
+                <div class="panel-heading">Список клиентов
+                    <div class="btn btn-success glyphicon-credit-card">Создать</div>
+                </div>
                 <!-- Таблица с клиентами -->
-                <table class="table">
+                <table class="table table-striped table-bordered">
                     <tr>
-                        <td><strong>ID</strong></td>
+                        <td hidden="true"><strong>ID</strong></td>
                         <td><strong>FIRSTNAME</strong></td>
                         <td><strong>LASTNAME</strong></td>
                         <td><strong>BIRTHDAY</strong></td>
                         <td><strong>ADDRESS</strong></td>
                         <td><strong>E-MAIL</strong></td>
                         <td><strong>PASSPORT</strong></td>
-                        <td><strong>PASSWORD</strong></td>
+                        <td></td>
                     </tr>
                     <%--@elvariable id="employees" type="java.util.List"--%>
                     <c:forEach var="employee" items="${employees}">
                         <tr>
-                            <td>${employee.id}</td>
+                            <td hidden="true">${employee.id}</td>
                             <td>${employee.firstname}</td>
                             <td>${employee.lastname}</td>
                             <td>${employee.birthday}</td>
                             <td>${employee.address}</td>
                             <td>${employee.email}</td>
                             <td>${employee.passport}</td>
-                            <td>${employee.password}</td>
                             <td>
-                                <button type="button" class="btn btn-success navbar-btn btn-sm">Редактировать</button>
+                                <button type="button" class="btn btn-success navbar-btn btn-xs">Редактировать</button>
                             </td>
                         </tr>
                     </c:forEach>
