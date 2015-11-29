@@ -35,6 +35,11 @@ public class Tariff extends BaseEntity {
         this.options = options;
     }
 
+    public Tariff(String title, Double price) {
+        this.title = title;
+        this.price = price;
+    }
+
     public Tariff() {
     }
 

@@ -10,26 +10,32 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ROLE_TBL")
 @NamedQuery(name = "Role.getAll", query = "select r from Role r")
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 
     @Column(name = "TITLE", unique = true, nullable = false)
-    private String title;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
     public Role() {
     }
 
-    public String getTitle() {
-        return title;
+    public RoleType getTitle() {
+        return roleType;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
+    public Role(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     @Override
     public String toString() {
         return "Role{" +
-                "title='" + title + '\'' +
+                "roleType='" + roleType + '\'' +
                 '}';
     }
 }

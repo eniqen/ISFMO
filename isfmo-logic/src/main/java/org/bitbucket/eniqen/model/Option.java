@@ -39,6 +39,12 @@ public class Option extends BaseEntity {
     public Option() {
     }
 
+    public Option(String title, Double price, Double connectionPrice) {
+        this.title = title;
+        this.price = price;
+        this.connectionPrice = connectionPrice;
+    }
+
     public Option(String title, Double price, Double connectionPrice, Set<Option> compatibleOptions, Set<Contract> contracts) {
         this.title = title;
         this.price = price;

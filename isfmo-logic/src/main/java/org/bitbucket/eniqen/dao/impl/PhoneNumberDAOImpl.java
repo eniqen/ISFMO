@@ -15,9 +15,15 @@ import java.util.List;
 @Repository
 public class PhoneNumberDAOImpl implements PhoneNumberDAO {
 
-
     @Autowired
     private EntityManager entityManager;
+
+    public PhoneNumberDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public PhoneNumberDAOImpl() {
+    }
 
     @Override
     public List<PhoneNumber> getAll() {

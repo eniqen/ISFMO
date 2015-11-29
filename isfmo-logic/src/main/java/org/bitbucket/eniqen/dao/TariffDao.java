@@ -8,6 +8,6 @@ import org.bitbucket.eniqen.model.Tariff;
  * Дао класс для работы с сущностью Тариф
  */
 
-public interface TariffDao extends BaseDAO<Tariff> {
+public interface TariffDAO extends BaseDAO<Tariff> {
 
 }

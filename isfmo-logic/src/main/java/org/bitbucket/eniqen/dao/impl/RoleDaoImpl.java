@@ -1,6 +1,6 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.RoleDao;
+import org.bitbucket.eniqen.dao.RoleDAO;
 import org.bitbucket.eniqen.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public class RoleDAOImpl implements RoleDao {
+public class RoleDAOImpl implements RoleDAO {
 
     @Autowired
     private EntityManager entityManager;

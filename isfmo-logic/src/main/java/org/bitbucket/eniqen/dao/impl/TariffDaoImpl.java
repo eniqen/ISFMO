@@ -1,6 +1,6 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.TariffDao;
+import org.bitbucket.eniqen.dao.TariffDAO;
 import org.bitbucket.eniqen.model.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public class TariffDAOImpl implements TariffDao {
+public class TariffDAOImpl implements TariffDAO {
 
     @Autowired
     private EntityManager entityManager;
