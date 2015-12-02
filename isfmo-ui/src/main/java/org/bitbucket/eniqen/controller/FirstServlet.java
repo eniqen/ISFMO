@@ -24,12 +24,19 @@ public class FirstServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         emf = Persistence.createEntityManagerFactory("ISFMO");
         EntityManager entityManager = emf.createEntityManager();
         List<Client> clientList = new ClientDAOImpl(entityManager).getAll();
         req.setAttribute("employees", clientList);
+        String email = req.getParameter("hui");
+        req.setAttribute("mail", email);
         req.getRequestDispatcher("/WEB-INF/view/employees.jsp").forward(req, resp);
     }
 }

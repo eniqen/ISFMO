@@ -4,8 +4,11 @@
 <html>
 <head>
     <title>Тест</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../jquery-ui/jquery-ui.css">
+    <script src="../../jquery-ui/jquery-ui.js"></script>
 </head>
 <body>
 <div class="row">
@@ -21,7 +24,6 @@
         </nav>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <!-- Левый блок -->
@@ -38,10 +40,94 @@
         <div class="col-sm-10">
             <div class="panel panel-default">
                 <div class="panel-heading">Список клиентов
-                    <div class="btn btn-success glyphicon-credit-card">Создать</div>
+
+                    <button type="button" class="btn btn-success btn-sm glyphicon glyphicon-plus" data-toggle="modal"
+                            data-target="#clientModal">
+                    </button>
+                    <!-- Modal -->
+                    <div id="clientModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title glyphicon glyphicon-user"> Создание клиента</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm" for="firstname">Имя:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="firstname"
+                                                       placeholder="Введите имя">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm"
+                                                   for="lastname">Фамилия:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="lastname"
+                                                       placeholder="Введите фамилию">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm" for="birthday">Дата
+                                                рождения:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="birthday"
+                                                       placeholder="Введите дату рождения">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm" for="address">Адрес:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="address"
+                                                       placeholder="Введите адрес">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm"
+                                                   for="passport">Паспорт:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="passport"
+                                                       placeholder="Введите серию и номер паспорта">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm" for="e-mail">Е-мейл:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control input-sm" id="e-mail"
+                                                       placeholder="Введите е-мейл">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2 input-sm"
+                                                   for="password">Пароль:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" id="password"
+                                                       placeholder="Введите пароль">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-save" data-dismiss="modal"> Сохранить
+                                    </button>
+                                    <button type="button" class="btn btn-default glyphicon glyphicon-floppy-remove" data-dismiss="modal"> Отменить</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
+
                 <!-- Таблица с клиентами -->
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered table-condensed table-hover">
                     <tr>
                         <td hidden="true"><strong>ID</strong></td>
                         <td><strong>FIRSTNAME</strong></td>
@@ -63,7 +149,7 @@
                             <td>${employee.email}</td>
                             <td>${employee.passport}</td>
                             <td>
-                                <button type="button" class="btn btn-success navbar-btn btn-xs">Редактировать</button>
+                                <button type="button" class="btn btn-success navbar-btn btn-sm glyphicon glyphicon-pencil"> Edit</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -82,7 +168,11 @@
             <p>© Nemenko Mikhail 2016</p>
         </footer>
     </div>
-
 </div>
+<script>
+    $(function() {
+        $( "#birthday" ).datepicker();
+    });
+</script>
 </body>
 </html>
