@@ -15,7 +15,7 @@ public class PhoneNumber extends BaseEntity {
     @Column(name = "PHONENUMBER", length = 11, nullable = false, unique = true)
     private String number;
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="phoneNumber")
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="phoneNumber", cascade = CascadeType.ALL)
     private Contract contract;
 
     public PhoneNumber() {

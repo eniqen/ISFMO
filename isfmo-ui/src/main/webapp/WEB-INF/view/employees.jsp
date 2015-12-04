@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
+<%@ taglib prefix="dandelion" uri="http://github.com/dandelion" %>
 
 <html>
 <head>
@@ -129,7 +131,6 @@
                 <!-- Таблица с клиентами -->
                 <table class="table table-striped table-bordered table-condensed table-hover">
                     <tr>
-                        <td hidden="true"><strong>ID</strong></td>
                         <td><strong>FIRSTNAME</strong></td>
                         <td><strong>LASTNAME</strong></td>
                         <td><strong>BIRTHDAY</strong></td>
@@ -138,18 +139,16 @@
                         <td><strong>PASSPORT</strong></td>
                         <td></td>
                     </tr>
-                    <%--@elvariable id="employees" type="java.util.List"--%>
-                    <c:forEach var="employee" items="${employees}">
+                    <c:forEach var="client" items="${clients}}">
                         <tr>
-                            <td hidden="true">${employee.id}</td>
-                            <td>${employee.firstname}</td>
-                            <td>${employee.lastname}</td>
-                            <td>${employee.birthday}</td>
-                            <td>${employee.address}</td>
-                            <td>${employee.email}</td>
-                            <td>${employee.passport}</td>
+                            <td>${client.firstname}</td>
+                            <td>${client.lastname}</td>
+                            <td>${client.birthday}</td>
+                            <td>${client.address}</td>
+                            <td>${client.email}</td>
+                            <td>${client.passport}</td>
                             <td>
-                                <button type="button" class="btn btn-success navbar-btn btn-sm glyphicon glyphicon-pencil"> Edit</button>
+                                <button type="button" class="btn btn-success navbar-btn btn-sm glyphicon glyphicon-pencil" href="/operator/deliteClient?id=${client.id}"> Edit</button>
                             </td>
                         </tr>
                     </c:forEach>

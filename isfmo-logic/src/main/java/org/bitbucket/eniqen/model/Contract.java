@@ -20,7 +20,7 @@ public class Contract extends BaseEntity {
     @Column(name = "BLOCKED", nullable = false)
     private boolean blocked;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
     private PhoneNumber phoneNumber;
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -17,11 +18,10 @@ import java.util.List;
 @Repository
 public class ClientDAOImpl implements ClientDAO {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
-    public ClientDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public ClientDAOImpl() {
     }
 
     @Override
@@ -53,9 +53,9 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public Client findClientByNumber(String number) {
-        Query query = this.entityManager.createQuery("select c from Client c inner join Contract con where con.number =:number");
-        return (Client) query.setParameter("number", number).getSingleResult();
+    public Client findClientByNumber(String phoneNumber) {
+        Query query = this.entityManager.createQuery("select c from Client c inner join Contract con where con.phoneNumber =:phoneNumber");
+        return (Client) query.setParameter("phoneNumber", phoneNumber).getSingleResult();
     }
 
     @Override
