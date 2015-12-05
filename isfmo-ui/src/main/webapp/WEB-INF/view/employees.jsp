@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <%@ taglib prefix="dandelion" uri="http://github.com/dandelion" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
 <head>
@@ -16,8 +17,8 @@
         <!-- Левый блок -->
         <div class="col-sm-2">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Контракты</a></li>
-                <li><a href="#">Клиенты</a></li>
+                <li class="active"><a href="<c:url value="/operator/clients"/>">Клиенты</a></li>
+                <li><a href="#">Контракты</a></li>
                 <li><a href="#">Тарифы</a></li>
                 <li><a href="#">Сообщение</a></li>
             </ul>
@@ -26,8 +27,9 @@
         <!--Основной блок-->
         <div class="col-sm-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Список клиентов
-                    <button align="right" type="button" class="btn btn-success btn-xs glyphicon glyphicon-plus"
+                <div style="padding: 5px 10px" class="panel-heading">Список клиентов
+                    <button style="padding: 0px 10px" type="button"
+                            class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right"
                             data-toggle="modal"
                             data-target="#clientModal">
                     </button>
@@ -40,11 +42,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title glyphicon glyphicon-user"> Создание клиента</h3>
+                                <h3 class="modal-title glyphicon glyphicon-user">Создание клиента</h3>
                             </div>
                             <div class="modal-body">
                                 <form style="margin-bottom: -8px" class="form-horizontal" role="form" method="POST"
-                                      action="${pageContext.request.contextPath}/operator/addClient">
+                                      action="<c:url value="/operator/add"/>">
                                     <div class="form-group">
                                         <label class="control-label col-sm-2 input-sm" for="firstname">Имя:</label>
 
@@ -114,7 +116,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit"
-                                                class="btn btn-default glyphicon glyphicon-floppy-save"> Сохранить
+                                                class="btn btn-default glyphicon glyphicon-floppy-save"><spring:message
+                                                code="messages.save"/>
                                         </button>
                                     </div>
                                 </form>
@@ -125,14 +128,16 @@
                 </div>
 
                 <!-- Таблица с клиентами -->
-                <table class="table table-striped table-bordered table-condensed table-hover">
+                <table style="padding: 0"
+                       class="table table-striped table-bordered table-condensed table-hover text-center">
+
                     <tr>
-                        <td><strong>Firstname</strong></td>
-                        <td><strong>Lastname</strong></td>
-                        <td><strong>Birthday</strong></td>
-                        <td><strong>Address</strong></td>
-                        <td><strong>E-mail</strong></td>
-                        <td><strong>Passport</strong></td>
+                        <td><strong><spring:message code="messages.firstname"/></strong></td>
+                        <td><strong><spring:message code="messages.lastname"/></strong></td>
+                        <td><strong><spring:message code="messages.birthday"/></strong></td>
+                        <td><strong><spring:message code="messages.address"/></strong></td>
+                        <td><strong><spring:message code="messages.email"/></strong></td>
+                        <td><strong><spring:message code="messages.passport"/></strong></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -145,7 +150,7 @@
                             <td>${client.email}</td>
                             <td>${client.passport}</td>
                             <td>
-                                <a class="btn btn-success navbar-btn btn-sm btn-danger glyphicon glyphicon-pencil"
+                                <a class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
                                    href="<c:url value="/operator/edit?id=${client.id}"/>">Edit
                                 </a>
                             </td>
