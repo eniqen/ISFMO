@@ -12,4 +12,7 @@ import java.util.List;
 public interface ClientService {
 
     List<Contract> findAllContractsByClient(Client client);
+
+    List<Client> getAll();
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -16,8 +17,11 @@ import java.util.List;
 @Repository
 public class OptionDAOImpl implements OptionDAO {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
+
+    public OptionDAOImpl() {
+    }
 
     public OptionDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

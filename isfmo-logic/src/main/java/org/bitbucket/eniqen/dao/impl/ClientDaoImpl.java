@@ -2,7 +2,7 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ClientDAO;
 import org.bitbucket.eniqen.model.Client;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +19,11 @@ import java.util.List;
 public class ClientDAOImpl implements ClientDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    public EntityManager entityManager;
 
     public ClientDAOImpl() {
     }
+
 
     @Override
     public List<Client> getAll() {
@@ -54,7 +55,8 @@ public class ClientDAOImpl implements ClientDAO {
 
     @Override
     public Client findClientByNumber(String phoneNumber) {
-        Query query = this.entityManager.createQuery("select c from Client c inner join Contract con where con.phoneNumber =:phoneNumber");
+        Query query = this.entityManager.createQuery("select c from Client c inner join Contract con where con" +
+                ".phoneNumber =:phoneNumber");
         return (Client) query.setParameter("phoneNumber", phoneNumber).getSingleResult();
     }
 

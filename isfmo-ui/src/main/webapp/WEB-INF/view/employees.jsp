@@ -13,19 +13,11 @@
     <script src="../../jquery-ui/jquery-ui.js"></script>
 </head>
 <body>
+
 <div class="row">
-    <!-- Шапка -->
-    <div class="col-md-12">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><img src="../../bootstrap/1.jpg" class="img-circle"></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+    <jsp:include page="header.jsp"/>
 </div>
+
 <div class="container">
     <div class="row">
         <!-- Левый блок -->
@@ -60,6 +52,7 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="control-label col-sm-2 input-sm" for="firstname">Имя:</label>
+
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control input-sm" id="firstname"
                                                        placeholder="Введите имя">
@@ -68,6 +61,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-2 input-sm"
                                                    for="lastname">Фамилия:</label>
+
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control input-sm" id="lastname"
                                                        placeholder="Введите фамилию">
@@ -76,6 +70,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-2 input-sm" for="birthday">Дата
                                                 рождения:</label>
+
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control input-sm" id="birthday"
                                                        placeholder="Введите дату рождения">
@@ -83,6 +78,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2 input-sm" for="address">Адрес:</label>
+
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control input-sm" id="address"
                                                        placeholder="Введите адрес">
@@ -117,9 +113,12 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-save" data-dismiss="modal"> Сохранить
+                                    <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-save"
+                                            data-dismiss="modal"> Сохранить
                                     </button>
-                                    <button type="button" class="btn btn-default glyphicon glyphicon-floppy-remove" data-dismiss="modal"> Отменить</button>
+                                    <button type="button" class="btn btn-default glyphicon glyphicon-floppy-remove"
+                                            data-dismiss="modal"> Отменить
+                                    </button>
                                 </div>
                             </div>
 
@@ -131,15 +130,15 @@
                 <!-- Таблица с клиентами -->
                 <table class="table table-striped table-bordered table-condensed table-hover">
                     <tr>
-                        <td><strong>FIRSTNAME</strong></td>
-                        <td><strong>LASTNAME</strong></td>
-                        <td><strong>BIRTHDAY</strong></td>
-                        <td><strong>ADDRESS</strong></td>
-                        <td><strong>E-MAIL</strong></td>
-                        <td><strong>PASSPORT</strong></td>
+                        <td><strong>Firstname</strong></td>
+                        <td><strong>Lastname</strong></td>
+                        <td><strong>Birthday</strong></td>
+                        <td><strong>Address</strong></td>
+                        <td><strong>E-mail</strong></td>
+                        <td><strong>Passport</strong></td>
                         <td></td>
                     </tr>
-                    <c:forEach var="client" items="${clients}}">
+                    <c:forEach var="client" items="${clients}">
                         <tr>
                             <td>${client.firstname}</td>
                             <td>${client.lastname}</td>
@@ -148,7 +147,10 @@
                             <td>${client.email}</td>
                             <td>${client.passport}</td>
                             <td>
-                                <button type="button" class="btn btn-success navbar-btn btn-sm glyphicon glyphicon-pencil" href="/operator/deliteClient?id=${client.id}"> Edit</button>
+                                <button type="button"
+                                        class="btn btn-success navbar-btn btn-sm glyphicon glyphicon-pencil"
+                                        href="/operator/deliteClient?id=${client.id}"> Edit
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -161,16 +163,11 @@
     <div class="clearfix"></div>
 
     <!--Подвал сайта-->
-    <div class="col-sm-12">
-        <hr>
-        <footer>
-            <p>© Nemenko Mikhail 2016</p>
-        </footer>
-    </div>
+    <jsp:include page="footer.jsp"/>
 </div>
 <script>
-    $(function() {
-        $( "#birthday" ).datepicker();
+    $(function () {
+        $("#birthday").datepicker();
     });
 </script>
 </body>

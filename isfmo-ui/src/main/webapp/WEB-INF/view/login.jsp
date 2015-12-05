@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Авторизация</title>
@@ -10,10 +11,10 @@
 <body>
 
 <div class="container">
-    <form class="form-signin" method="POST" action="${pageContext.request.contextPath}/showEmployees">
+    <form class="form-signin" method="GET" action="${pageContext.request.contextPath}/operator/showEmployees">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="hui" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 

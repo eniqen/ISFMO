@@ -1,14 +1,12 @@
 package org.bitbucket.eniqen.service.impl;
 
+import org.bitbucket.eniqen.dao.ClientDAO;
 import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
-import org.bitbucket.eniqen.repository.*;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -18,22 +16,16 @@ import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private ContractRepository contractRepository;
-    @Autowired
-    private OptionRepository optionRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private TariffRepository tariffRepository;
+    private ClientDAO clientDAO;
 
     @Override
     public List<Contract> findAllContractsByClient(Client client) {
-        return contractRepository.findByClient(client);
+        return null;
+    }
+
+    @Override
+    public List<Client> getAll() {
+        return clientDAO.getAll();
     }
 }

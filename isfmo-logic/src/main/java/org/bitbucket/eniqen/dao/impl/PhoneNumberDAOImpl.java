@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -15,8 +16,9 @@ import java.util.List;
 @Repository
 public class PhoneNumberDAOImpl implements PhoneNumberDAO {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
+
 
     public PhoneNumberDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

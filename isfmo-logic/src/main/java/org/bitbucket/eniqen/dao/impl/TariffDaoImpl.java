@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -16,8 +17,11 @@ import java.util.List;
 @Repository
 public class TariffDAOImpl implements TariffDAO {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
+
+    public TariffDAOImpl() {
+    }
 
     public TariffDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

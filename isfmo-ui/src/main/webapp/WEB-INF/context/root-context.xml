@@ -5,23 +5,25 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-
     	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
     	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--<jee:jndi-lookup id="dataSource" jndi-name="persistence/ISFMO"/>-->
-
+    <import resource="mobile-context.xml"/>
 
     <context:component-scan base-package="org.bitbucket.eniqen.*"/>
     <tx:annotation-driven/>
     <mvc:annotation-driven/>
-    <context:load-time-weaver/>
 
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="ISFMO"/>
+    <!-- Фубрика для entityManager-->
+    <bean id="entityManagerFactory" factory-method="createEntityManagerFactory" class="javax.persistence.Persistence">
+        <constructor-arg value="ISFMO"/>
     </bean>
 
+    <!-- Бин для анотации @PersistenceContext-->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <!-- Резолвер для вью-->
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/view/"/>
