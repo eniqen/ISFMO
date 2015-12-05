@@ -15,4 +15,13 @@ public interface ClientService {
 
     List<Client> getAll();
 
+    Client getById(Long id);
+
+    void add(Client model);
+
+    void delete(Client model);
+
+    void update(Client model);
+
+    void deleteById(Long id);
 }

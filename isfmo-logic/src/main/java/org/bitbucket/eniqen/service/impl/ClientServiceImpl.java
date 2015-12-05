@@ -28,4 +28,30 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getAll() {
         return clientDAO.getAll();
     }
+
+    @Override
+    public Client getById(Long id) {
+        return this.clientDAO.getById(id);
+    }
+
+    @Override
+    public void add(Client model) {
+        this.clientDAO.add(model);
+    }
+
+    @Override
+    public void delete(Client model) {
+        this.clientDAO.delete(model);
+    }
+
+    @Override
+    public void update(Client model) {
+        this.clientDAO.update(model);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Client client = this.clientDAO.getById(id);
+        this.clientDAO.delete(client);
+    }
 }

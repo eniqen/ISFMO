@@ -23,18 +23,28 @@ public class ClientController {
     @Autowired
     public ClientService clientService;
 
-//    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-//    public ModelAndView createEmployee(@ModelAttribute Client client) {
-//        this.clientDAO.add(client);
-//        return new ModelAndView("employees", "clients", this.clientDAO.getAll());
-//    }
+    @RequestMapping(value = "/addClient", method = RequestMethod.POST)
+    public String createEmployee(@ModelAttribute Client client) {
+        System.out.println(client.toString());
+            this.clientService.add(client);
+        return "redirect:/showEmployees";
+    }
 
     @RequestMapping(value = "/showEmployees", method = RequestMethod.GET)
     public ModelAndView showEmployees() {
         return new ModelAndView("employees", "clients", this.clientService.getAll());
     }
 
-//    @RequestMapping(value = "/deleteClient", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteClient(@RequestParam("id") long id){
+        Client client = this.clientService.getById(id);
+        System.out.println(client.toString());
+        this.clientService.delete(client);
+        return "redirect:/showEmployees";
+    }
+
+
+//    @RequestMapping(value = "/editClient", method = RequestMethod.GET)
 //    public ModelAndView editEmployee(@RequestParam(value = "id") long id) {
 //        Client client = this.clientDAO.getById(id);
 //        this.clientDAO.delete(client);

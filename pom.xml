@@ -28,8 +28,9 @@
         <jstl>1.2</jstl>
 
         <dandelion.version>0.10.1</dandelion.version>
-        <webjars-noty.version>2.2.4</webjars-noty.version>
         <webjars-datatables.version>1.9.4-2</webjars-datatables.version>
+        <bootstrap.version>3.3.1</bootstrap.version>
+        <jquery.version>2.1.1</jquery.version>
     </properties>
 
     <build>

@@ -1,6 +1,8 @@
 package org.bitbucket.eniqen.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,6 +28,7 @@ public class Client extends BaseEntity {
 
     @Column(name = "BIRTHDAY", nullable = false)
     @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     @Column(name = "PASSPORT", unique = true, nullable = false, length = 12)

@@ -3,16 +3,15 @@
 <html>
 <head>
     <title>Авторизация</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/login.css">
-    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <jsp:include page="fragments/headTag.jsp"/>
 </head>
 
 <body>
-
+<jsp:include page="fragments/bodyHead.jsp"/>
 <div class="container">
-    <form class="form-signin" method="GET" action="${pageContext.request.contextPath}/operator/showEmployees">
-        <h2 class="form-signin-heading">Please sign in</h2>
+    <form class="form-signin col-sm-4 col-md-offset-4" method="GET"
+          action="${pageContext.request.contextPath}/operator/showEmployees">
+        <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -20,12 +19,14 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> Запомнить меня
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     </form>
 </div>
 <!-- /container -->
+
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
