@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mikhail
@@ -6,35 +7,67 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!-- Шапка -->
-<div class="row">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a style="margin-left: 0" class="navbar-brand" href="/">Mobile Office</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Page 1</a></li>
-                </ul>
-            </div>
-            <div>
-                <ul class="nav navbar-nav pull-right">
-                    <li><a href="#" class="glyphicon glyphicon-user"></a></li>
-                    <li><a href="#" class="glyphicon glyphicon-off"></a></li>
-                    <%--<li class="dropdown">--%>
-                        <%--<div class="dropdown-toggle topline-dropdown-menu" data-toggle="dropdown" title="Нажмите для изменения языка">--%>
-                            <%--<a href="#" id="languages-menu"><img src="/resources/images/flags/ru.png" alt="Русский"/>--%>
-                            <%--</a><b class="caret"></b>--%>
-                            <%--<ul class="dropdown-menu lang-menu">--%>
-                                <%--<li id='lang-en'><a href="/language/?lang=en"><img src="/resources/images/flags/en.png" alt="Английский"/>Английский</a></li>--%>
-                                <%--<li id='lang-ru'><a href="/language/?lang=ru"><img src="/resources/images/flags/ru.png" alt="Русский"/>Русский</a></li>--%>
-                            <%--</ul>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a style="margin-left: 0" class="navbar-brand" href="/">Mobile Office</a>
         </div>
-    </nav>
-</div>
+        <div>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="#" class="glyphicon glyphicon-user"></a></li>
+                <li><a href="#" class="glyphicon glyphicon-off"></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ru<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="show('en')">English</a></li>
+                        <li><a onclick="show('ru_RU')">Русский</a></li>
+                    </ul>
+                </li>
+                <script type="text/javascript">
+                    function show(lang) {
+                        window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+                    }
+                </script>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<%--<div class="row">--%>
+<%--<div class="navbar navbar-inverse" role="navigation">--%>
+<%--<div class="container">--%>
+<%--<a href="/" class="navbar-brand">Mobile Office</a>--%>
+
+<%--<div class="collapse navbar-collapse">--%>
+<%--<ul class="nav navbar-nav navbar-right">--%>
+<%--<li>--%>
+<%--<form id="command" class="navbar-form" action="/logout" method="post">--%>
+<%--<a class="btn btn-info" role="button" href="/operator/clients">Clients List</a>--%>
+<%--<a class="btn btn-info" role="button" href="profile">Profile</a>--%>
+<%--<input type="submit" class="btn btn-primary" value="Exit">--%>
+
+<%--<div>--%>
+<%--<input type="hidden" name="_csrf" value="f3391500-7414-4e91-9b41-2f335b23969e"/>--%>
+<%--</div>--%>
+<%--</form>--%>
+<%--</li>--%>
+
+<%--<li class="dropdown">--%>
+<%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">ru<b class="caret"></b></a>--%>
+<%--<ul class="dropdown-menu">--%>
+<%--<li><a onclick="show('en')">English</a></li>--%>
+<%--<li><a onclick="show('ru')">Русский</a></li>--%>
+<%--</ul>--%>
+<%--</li>--%>
+<%--<script type="text/javascript">--%>
+<%--function show(lang) {--%>
+<%--window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;--%>
+<%--}--%>
+<%--</script>--%>
+<%--</ul>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 

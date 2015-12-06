@@ -28,7 +28,7 @@ public class Client extends BaseEntity {
 
     @Column(name = "BIRTHDAY", nullable = true)
     @Temporal(value = TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date birthday;
 
     @Column(name = "PASSPORT", unique = true, nullable = false, length = 12)

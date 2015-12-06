@@ -16,4 +16,9 @@ public class LoginController {
     public String loginPage(Model model) {
         return "login";
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String logout() {
+        return "redirect:/";
+    }
 }

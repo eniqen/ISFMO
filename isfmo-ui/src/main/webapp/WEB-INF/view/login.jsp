@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <html>
 <head>
     <title>Авторизация</title>
@@ -9,7 +10,7 @@
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
 <div class="container">
-    <form class="form-signin col-sm-4 col-md-offset-4" method="GET"
+    <form style="margin-top: 150px" class="form-signin col-sm-4 col-md-offset-4" method="GET"
           action="<c:url value="/operator/clients"/>">
         <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -19,7 +20,7 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> Запомнить меня
+                <input type="checkbox" value="remember-me"> <s:message code="messages.remember"/>
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
