@@ -25,9 +25,8 @@ public class ClientController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String createClient(@ModelAttribute Client client) {
-        System.out.println(client.toString());
-            this.clientService.add(client);
-        return "redirect:/showEmployees";
+        this.clientService.add(client);
+        return "redirect:/operator/clients";
     }
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
@@ -36,9 +35,9 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteClient(@RequestParam("id") long id){
+    public String deleteClient(@RequestParam("id") Long id) {
         this.clientService.deleteById(id);
-        return "redirect:/showEmployees";
+        return "redirect:/operator/clients";
     }
 
 

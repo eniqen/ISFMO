@@ -28,7 +28,7 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "TARIFF_ID", nullable = false)
     private Tariff tariff;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 

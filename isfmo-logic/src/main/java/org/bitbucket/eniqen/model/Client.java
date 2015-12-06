@@ -26,7 +26,7 @@ public class Client extends BaseEntity {
     @Column(name = "LASTNAME", length = 50, nullable = false)
     private String lastname;
 
-    @Column(name = "BIRTHDAY", nullable = false)
+    @Column(name = "BIRTHDAY", nullable = true)
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;

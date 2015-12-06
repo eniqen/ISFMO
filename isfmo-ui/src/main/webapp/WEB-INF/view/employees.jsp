@@ -116,8 +116,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit"
-                                                class="btn btn-default glyphicon glyphicon-floppy-save"><spring:message
-                                                code="messages.save"/>
+                                                class="btn btn-default glyphicon glyphicon-floppy-save">
+                                            <%--<spring:message code="messages.save"/>--%>
+                                            Сохранить
                                         </button>
                                     </div>
                                 </form>
@@ -132,12 +133,12 @@
                        class="table table-striped table-bordered table-condensed table-hover text-center">
 
                     <tr>
-                        <td><strong><spring:message code="messages.firstname"/></strong></td>
-                        <td><strong><spring:message code="messages.lastname"/></strong></td>
-                        <td><strong><spring:message code="messages.birthday"/></strong></td>
-                        <td><strong><spring:message code="messages.address"/></strong></td>
-                        <td><strong><spring:message code="messages.email"/></strong></td>
-                        <td><strong><spring:message code="messages.passport"/></strong></td>
+                        <td><strong>Firstname</strong></td>
+                        <td><strong>Lastname</strong></td>
+                        <td><strong>Birthday</strong></td>
+                        <td><strong>Address</strong></td>
+                        <td><strong>E-mail</strong></td>
+                        <td><strong>Passport</strong></td>
                         <td></td>
                         <td></td>
                     </tr>

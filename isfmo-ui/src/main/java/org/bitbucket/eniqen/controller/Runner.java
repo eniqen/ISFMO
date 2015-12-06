@@ -2,6 +2,7 @@ package org.bitbucket.eniqen.controller;
 
 import org.bitbucket.eniqen.dao.RoleDAO;
 import org.bitbucket.eniqen.dao.TariffDAO;
+import org.bitbucket.eniqen.dao.impl.ClientDAOImpl;
 import org.bitbucket.eniqen.dao.impl.RoleDAOImpl;
 import org.bitbucket.eniqen.dao.impl.TariffDAOImpl;
 import org.bitbucket.eniqen.model.*;
@@ -12,10 +13,11 @@ import javax.persistence.Persistence;
 /**
  * Created by Mikhail on 29.11.2015.
  */
-public class Runner {
+//public class Runner {
 
-    public static void main(String[] args) {
-        EntityManager entityManager = Persistence.createEntityManagerFactory("ISFMO").createEntityManager();
+//    public static void main(String[] args) {
+//        EntityManager entityManager = Persistence.createEntityManagerFactory("ISFMO").createEntityManager();
+
         //Номера
 //        PhoneNumberDAO phoneNumber = new PhoneNumberDAOImpl(entityManager);
 //        for (long i = 79999999990L; i < 80000000000L; i++) {
@@ -89,5 +91,5 @@ public class Runner {
 //        tariffDAO.add(new Tariff("Переходи на 0", 250.0));
 //        tariffDAO.add(new Tariff("Теплый прием", 400.0));
 //        entityManager.getTransaction().commit();
-    }
-}
+//    }
+//}

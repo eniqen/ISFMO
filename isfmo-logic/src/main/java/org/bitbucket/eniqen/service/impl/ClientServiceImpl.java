@@ -6,6 +6,7 @@ import org.bitbucket.eniqen.model.Contract;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,21 +35,25 @@ public class ClientServiceImpl implements ClientService {
         return this.clientDAO.getById(id);
     }
 
+    @Transactional
     @Override
     public void add(Client model) {
         this.clientDAO.add(model);
     }
 
+    @Transactional
     @Override
     public void delete(Client model) {
         this.clientDAO.delete(model);
     }
 
+    @Transactional
     @Override
     public void update(Client model) {
         this.clientDAO.update(model);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         Client client = this.clientDAO.getById(id);

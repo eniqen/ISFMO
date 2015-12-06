@@ -34,19 +34,16 @@ public class ClientDAOImpl implements ClientDAO {
         return this.entityManager.find(Client.class, id);
     }
 
-    @Transactional
     @Override
     public void add(Client model) {
         this.entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(Client model) {
         this.entityManager.remove(model);
     }
 
-    @Transactional
     @Override
     public void update(Client model) {
         this.entityManager.merge(model);
