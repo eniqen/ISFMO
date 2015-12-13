@@ -4,11 +4,11 @@ import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Mikhail on 02.12.2015.
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/operator")
-public class ClientController {
+public class OperatorController {
 
     @Autowired
     public ClientService clientService;
@@ -38,14 +38,22 @@ public class ClientController {
         return "redirect:/operator/clients";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView editEmployee(@RequestParam(value = "id") long id) {
-        Client client = this.clientService.getById(id);
-        return new ModelAndView("employees", "clients", this.clientService.getAll());
+    @RequestMapping(value = "/edit")
+    @ResponseBody
+    public Client edit(@RequestParam(value = "id") long id) {
+        return this.clientService.getById(id);
     }
-//
-//    @RequestMapping(value = "/search", method = RequestMethod.POST)
-//    public ModelAndView searchClient(@RequestParam("pattern") String pattern){
-//        return new ModelAndView("employees", "clients", this.clientDAO.findByEmail(pattern));
-//    }
+
+    @RequestMapping(value = "/search")
+    @ResponseBody
+    public List<Client> search(@RequestParam("pattern") String pattern) {
+        return this.clientService.getAll().stream()
+                .filter(client -> client.getLastname().toLowerCase().contains
+                (pattern.toLowerCase())
+                || client.getFirstname().toLowerCase().contains(pattern.toLowerCase())
+                || client.getPassport().toLowerCase().contains(pattern.toLowerCase())
+                || client.getAddress().toLowerCase().contains(pattern.toLowerCase())
+                || client.getEmail().toLowerCase().contains(pattern.toLowerCase())
+        ).collect(Collectors.toList());
+    }
 }

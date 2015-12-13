@@ -190,6 +190,5 @@
     $(function () {
         $("#birthday").datepicker();
     });
-    $('[data-toggle="tooltip"]').tooltip();
 </script>
 </body>

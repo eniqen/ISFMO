@@ -87,20 +87,17 @@
             <version>${webjars-datatables.version}</version>
         </dependency>
 
-        <!-- Dandelion -->
+        <!-- JSON -->
         <dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>datatables-jsp</artifactId>
-            <version>${dandelion.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>dandelion-webjars</artifactId>
-            <version>${dandelion.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>
-
-
 </project>
