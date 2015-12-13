@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
-<%@ taglib prefix="dandelion" uri="http://github.com/dandelion" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="frm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
@@ -33,11 +31,10 @@
                 <div class="panel panel-default">
                     <div style="padding: 5px 10px" class="panel-heading">
                         <s:message code="messages.client_list"/>
-                        <button style="padding: 0px 10px" type="button"
-                                class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right"
-                                data-toggle="modal"
-                                data-target="#clientModal">
-                        </button>
+                        <a style="padding: 0px 10px" type="button"
+                           class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right"
+                           id="add" data-toggle="modal" data-target="#clientModal">
+                        </a>
                     </div>
 
                     <!-- Таблица с клиентами -->
@@ -177,7 +174,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit"
-                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message code="messages.save"/>
+                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
+                                code="messages.save"/>
                         </button>
                     </div>
                 </form>
@@ -188,7 +186,8 @@
 <!-- Конец модального окна-->
 <script>
     $(function () {
-        $("#birthday").datepicker();
+        $('#birthday').datepicker();
     });
 </script>
 </body>
+</html>
