@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="frm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -11,7 +12,7 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-
+<c:set var="ajaxUrl" value="ajax/operator/"/>
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -32,9 +33,7 @@
                     <div style="padding: 5px 10px" class="panel-heading">
                         <s:message code="messages.client_list"/>
                         <button style="padding: 0px 10px" type="button"
-                                class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right"
-                                data-toggle="modal"
-                                data-target="#clientModal">
+                                class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right" id="add">
                         </button>
                     </div>
 
@@ -88,7 +87,7 @@
 <jsp:include page="fragments/footer.jsp"/>
 
 <!-- Modal -->
-<div id="clientModal" class="modal fade" role="dialog">
+<div id="editRow" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -98,8 +97,8 @@
                 <h3 class="modal-title glyphicon glyphicon-user"><s:message code="messages.client_create"/></h3>
             </div>
             <div class="modal-body">
-                <form style="margin-bottom: -8px" class="form-horizontal" role="form" method="POST"
-                      action="<c:url value="/operator/add"/>">
+                <form:form style="margin-bottom: -8px" class="form-horizontal" role="form" method="POST" id="detailsForm">
+                    <input type="text" hidden="hidden" id="id" name="id">
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
                             <s:message code="messages.firstname"/>:</label>
@@ -175,18 +174,40 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit"
-                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message code="messages.save"/>
+                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
+                                code="messages.save"/>
                         </button>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
 </div>
 <!-- Конец модального окна-->
 <script>
+    var ajaxUrl = '${ajaxUrl}';
+    var form = $('#detailsForm');
+
+    $('#add').click(function () {
+        form.find(":input").each(function () {
+            $(this).val("");
+        });
+        $('#id').val(0);
+        $('#editRow').modal();
+    });
+
+    function updateRow(id) {
+        $.get(ajaxUrl + id, function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            $('#editRow').modal();
+        });
+    }
+
     $(function () {
         $("#birthday").datepicker();
     });
+
 </script>
 </body>
