@@ -47,6 +47,13 @@
             <version>${mysql.version}</version>
         </dependency>
 
+        <!-- DataSource (HikariCP) -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikariCP}</version>
+        </dependency>
+
         <!-- Spring Data -->
         <dependency>
             <groupId>org.springframework.data</groupId>
