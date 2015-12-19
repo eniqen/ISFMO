@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>isfmo-ui</artifactId>
+    <artifactId>isfmo-view</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
@@ -50,14 +50,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>4.2.3.RELEASE</version>
-        </dependency>
-
-        <!-- Servlet-Api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!--JSTL-->

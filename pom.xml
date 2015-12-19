@@ -9,7 +9,7 @@
     <version>1.0</version>
     <modules>
         <module>isfmo-logic</module>
-        <module>isfmo-ui</module>
+        <module>isfmo-view</module>
     </modules>
     <packaging>pom</packaging>
 

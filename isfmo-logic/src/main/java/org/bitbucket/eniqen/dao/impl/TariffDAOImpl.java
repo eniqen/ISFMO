@@ -1,8 +1,7 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.RoleDAO;
-import org.bitbucket.eniqen.model.Role;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bitbucket.eniqen.dao.TariffDAO;
+import org.bitbucket.eniqen.model.Tariff;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,43 +14,43 @@ import java.util.List;
  */
 
 @Repository
-public class RoleDAOImpl implements RoleDAO {
+public class TariffDAOImpl implements TariffDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public RoleDAOImpl() {
+    public TariffDAOImpl() {
     }
 
-    public RoleDAOImpl(EntityManager entityManager) {
+    public TariffDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public List<Role> getAll() {
-        return this.entityManager.createNamedQuery("Role.getAll").getResultList();
+    public List<Tariff> getAll() {
+        return entityManager.createNamedQuery("Tariff.getAll").getResultList();
     }
 
     @Override
-    public Role getById(Long id) {
-        return this.entityManager.find(Role.class, id);
+    public Tariff getById(Long id) {
+        return this.entityManager.find(Tariff.class, id);
     }
 
     @Transactional
     @Override
-    public void add(Role model) {
+    public void add(Tariff model) {
         this.entityManager.persist(model);
     }
 
     @Transactional
     @Override
-    public void delete(Role model) {
+    public void delete(Tariff model) {
         this.entityManager.remove(model);
     }
 
     @Transactional
     @Override
-    public void update(Role model) {
+    public void update(Tariff model) {
         this.entityManager.merge(model);
     }
 }

@@ -56,4 +56,10 @@ public class OperatorController {
                 || client.getEmail().toLowerCase().contains(pattern.toLowerCase())
         ).collect(Collectors.toList());
     }
+
+    @RequestMapping(value = "/profile/{id}")
+    @ResponseBody
+    public Client getClientProfile(@PathVariable long id){
+        return clientService.getById(id);
+    }
 }

@@ -16,8 +16,3 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--%>
-<%--<link rel="stylesheet" href="<c:url value="/bootstrap/css/bootstrap.min.css"/>">--%>
-<%--<script src="<c:url value="/bootstrap/js/bootstrap.min.js"/>" type="text/javascript"></script>--%>
-<%--<link rel="stylesheet" href="<c:url value="/jquery-ui/jquery-ui.css"/>">--%>
-<%--<script src="<c:url value="/jquery-ui/jquery-ui.js"/>" type="text/javascript"></script>--%>

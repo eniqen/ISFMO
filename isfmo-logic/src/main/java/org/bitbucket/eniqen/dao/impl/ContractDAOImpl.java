@@ -2,7 +2,6 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ContractDAO;
 import org.bitbucket.eniqen.model.Contract;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
