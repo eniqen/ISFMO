@@ -12,7 +12,7 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-<c:set var="ajaxUrl" value="ajax/operator/"/>
+<c:set var="ajaxUrl" value="clients/"/>
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -26,6 +26,8 @@
                     <li><a href="#"><s:message code="messages.messages"/></a></li>
                 </ul>
             </div>
+
+
 
             <!--Основной блок-->
             <div class="col-sm-10">
@@ -59,7 +61,7 @@
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
                                 <td>
-                                    <a class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
+                                    <a id="edit" class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
                                        data-toggle="tooltip" title="<s:message code="messages.edit"/>"
                                        href="<c:url value="/operator/edit?id=${client.id}"/>">
                                     </a>
@@ -94,11 +96,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title glyphicon glyphicon-user"><s:message code="messages.client_create"/></h3>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i><s:message code="messages.client_create"/></h3>
             </div>
             <div class="modal-body">
-                <form:form style="margin-bottom: -8px" class="form-horizontal" role="form" method="POST" id="detailsForm">
+                <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
+                           id="detailsForm">
                     <input type="text" hidden="hidden" id="id" name="id">
+
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
                             <s:message code="messages.firstname"/>:</label>
@@ -193,21 +197,41 @@
             $(this).val("");
         });
         $('#id').val(0);
-        $('#editRow').modal();
+        $('#editRow').modal('show');
     });
-
-    function updateRow(id) {
-        $.get(ajaxUrl + id, function (data) {
-            $.each(data, function (key, value) {
-                form.find("input[name='" + key + "']").val(value);
-            });
-            $('#editRow').modal();
-        });
-    }
 
     $(function () {
         $("#birthday").datepicker();
     });
 
+    form.submit(function () {
+        save();
+        return false;
+    });
+
+    function save() {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl + 'add',
+            data: form.serialize(),
+            success: function (data) {
+                $('#editRow').modal('hide');
+                alert('Сохранено')
+            }
+        });
+    }
+    //
+    //    function deleteRow(id) {
+    //        $.ajax({
+    //            url: ajaxUrl + 'client/' + id,
+    //            type: 'DELETE'
+    ////            success: function () {
+    ////                updateTable();
+    ////                successNoty('Deleted');
+    ////            }
+    //        });
+    //    }
+    //
 </script>
 </body>
+</html>

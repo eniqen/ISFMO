@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller;
+package org.bitbucket.eniqen.controller.option;
 
 import org.springframework.stereotype.Controller;
 

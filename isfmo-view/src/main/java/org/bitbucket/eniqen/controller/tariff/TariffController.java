@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller;
+package org.bitbucket.eniqen.controller.tariff;
 
 import org.springframework.stereotype.Controller;
 
