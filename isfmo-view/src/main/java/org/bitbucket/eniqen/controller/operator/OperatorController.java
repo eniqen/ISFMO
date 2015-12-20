@@ -29,7 +29,7 @@ public class OperatorController {
 
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public ModelAndView showClients() {
-        return new ModelAndView("employees", "clients", this.clientService.getAll());
+        return new ModelAndView("clients", "clients", this.clientService.getAll());
     }
 
     /**

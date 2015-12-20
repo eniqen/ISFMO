@@ -12,25 +12,26 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-<c:set var="ajaxUrl" value="clients/"/>
-<div class="jumbotron">
-    <div class="container">
-        <div style="margin-top: 30px" class="row">
-            <!-- Левый блок -->
-            <div class="col-sm-2">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="<c:url value="/operator/clients"/>"><s:message
-                            code="messages.clients"/></a></li>
-                    <li><a href="#"><s:message code="messages.contracts"/></a></li>
-                    <li><a href="#"><s:message code="messages.tariffs"/></a></li>
-                    <li><a href="#"><s:message code="messages.messages"/></a></li>
-                </ul>
-            </div>
+            <c:set var="ajaxUrl" value="clients/"/>
+            <div class="jumbotron">
+                <div class="container">
+                    <div style="margin-top: 30px" class="row">
+                        <!-- Левый блок -->
+                        <div class="col-sm-2">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li class="active"><a href="<c:url value="/operator/clients"/>"><s:message
+                                        code="messages.clients"/></a></li>
+                                <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
+                                <li><a href="#"><s:message code="messages.tariffs"/></a></li>
+                                <li><a href="#"><s:message code="messages.options"/></a></li>
+                            </ul>
+                        </div>
 
 
 
             <!--Основной блок-->
             <div class="col-sm-10">
+                <legend class="legende">Список клиентов</legend>
                 <div class="panel panel-default">
                     <div style="padding: 5px 10px" class="panel-heading">
                         <s:message code="messages.client_list"/>

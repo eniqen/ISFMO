@@ -26,6 +26,6 @@
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        List<Client> clientList = clientDAO.getAll();
 //        req.setAttribute("employees", clientList);
-//        req.getRequestDispatcher("/WEB-INF/view/employees.jsp").forward(req, resp);
+//        req.getRequestDispatcher("/WEB-INF/view/clients.jsp").forward(req, resp);
 //    }
 //}
