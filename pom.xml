@@ -26,10 +26,8 @@
         <junit.version>4.11</junit.version>
         <jstl>1.2</jstl>
         <jackson.version>2.6.3</jackson.version>
-        <dandelion.version>0.10.1</dandelion.version>
-        <webjars-datatables.version>1.9.4-2</webjars-datatables.version>
-        <bootstrap.version>3.3.1</bootstrap.version>
-        <jquery.version>2.1.1</jquery.version>
+        <bootstrap.version>3.3.6</bootstrap.version>
+        <jquery.version>2.1.4</jquery.version>
     </properties>
 
     <build>
