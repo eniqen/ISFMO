@@ -4,11 +4,8 @@
 <%@ taglib prefix="frm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <html>
-<head>
     <jsp:include page="fragments/headTag.jsp"/>
-</head>
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
@@ -22,8 +19,8 @@
                     <li class="active"><a href="<c:url value="/clients"/>"><s:message
                             code="messages.clients"/></a></li>
                     <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
-                    <li><a href="#"><s:message code="messages.tariffs"/></a></li>
-                    <li><a href="#"><s:message code="messages.options"/></a></li>
+                    <li><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
+                    <li><a href="<c:url value="/options"/>"><s:message code="messages.options"/></a></li>
                 </ul>
             </div>
 

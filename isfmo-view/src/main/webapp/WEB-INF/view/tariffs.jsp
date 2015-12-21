@@ -13,9 +13,10 @@
     <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
+
 <tiles:insertAttribute name="body"/>
 
-<c:set var="ajaxUrl" value="contracts/"/>
+<c:set var="ajaxUrl" value="tarrifs/"/>
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -24,26 +25,23 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="<c:url value="/clients"/>"><s:message
                             code="messages.clients"/></a></li>
-                    <li class="active"><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
+                    <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
                     </li>
-                    <li><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
+                    <li class="active"><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
                     <li><a href="<c:url value="/options"/>"><s:message code="messages.options"/></a></li>
                 </ul>
             </div>
 
             <div class="container">
                 <fieldset class="col-sm-10 bordure">
-                    <legend class="legende">Список контрактов</legend>
+                    <legend class="legende">Список тарифов</legend>
 
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CLIENT_ID</th>
-                            <th>NUMBER</th>
-                            <th>TARIFF</th>
-                            <th>BLOCKED</th>
-
+                            <th>TITLE</th>
+                            <th>PRICE</th>
                             <s:url var="url_create" value="/book/form"/>
                             <th><a class="btn btn-info" href='${url_create}'>Создать</a></th>
                         </tr>
@@ -52,7 +50,6 @@
                         <c:forEach items="${contracts}" var="contract">
                             <tr>
                                 <td>${contract.id}</td>
-
                                 <s:url var="url_update" value="/book/form/${contracts.id}"/>
                                 <td><a class="btn btn-info" href="${url_update}">Редактировать</a></td>
                             </tr>

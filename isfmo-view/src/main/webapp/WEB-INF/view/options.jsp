@@ -1,4 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mikhail
@@ -8,27 +10,58 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
+    <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<nav class="navbar navbar-inverse navbar-static-top">
+<jsp:include page="fragments/bodyHead.jsp"/>
+<tiles:insertAttribute name="body"/>
+
+<c:set var="ajaxUrl" value="options/"/>
+<div class="jumbotron">
     <div class="container">
-        <div class="navbar-inner">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <spring:url value="/" var="url_home"/>
-            <a class="navbar-brand logo" href="${url_home}"</a>
-            <ul class="nav navbar-nav languages">
-                <li><a class="navbar-brand" href="?lang=en_US"><span class="glyphicon glyphicon-th-large"><jsp:text/></span>English</a></li>
-                <li><a class="navbar-brand" href="?lang=fr_FR"><span class="glyphicon glyphicon-th-large"><jsp:text/></span>Français</a></li>
-            </ul>
+        <div style="margin-top: 30px" class="row">
+            <!-- Левый блок -->
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="<c:url value="/clients"/>"><s:message
+                            code="messages.clients"/></a></li>
+                    <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
+                    </li>
+                    <li><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
+                    <li class="active"><a href="<c:url value="/options"/>"><s:message code="messages.options"/></a></li>
+                </ul>
+            </div>
+
+            <div class="container">
+                <fieldset class="col-sm-10 bordure">
+                    <legend class="legende">Список опций</legend>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>TITLE</th>
+                            <th>PRICE</th>
+                            <th>CONNECTIONS_PRICE</th>
+                            <s:url var="url_create" value="/book/form"/>
+                            <th><a class="btn btn-info" href='${url_create}'>Создать</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${contracts}" var="contract">
+                            <tr>
+                                <td>${contract.id}</td>
+
+                                <s:url var="url_update" value="/book/form/${contracts.id}"/>
+                                <td><a class="btn btn-info" href="${url_update}">Редактировать</a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
         </div>
     </div>
-</nav>
-<tiles:insertAttribute name="body" />
+</div>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
