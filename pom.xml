@@ -28,6 +28,7 @@
         <jackson.version>2.6.3</jackson.version>
         <bootstrap.version>3.3.6</bootstrap.version>
         <jquery.version>2.1.4</jquery.version>
+        <webjars-noty.version>2.2.4</webjars-noty.version>
     </properties>
 
     <build>

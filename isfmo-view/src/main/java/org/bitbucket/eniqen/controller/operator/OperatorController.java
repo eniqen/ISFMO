@@ -15,33 +15,15 @@ import java.util.stream.Collectors;
  */
 
 @Controller
-@RequestMapping("/operator")
+@RequestMapping("/clients")
 public class OperatorController {
 
     @Autowired
     public ClientService clientService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String createClient(@ModelAttribute Client client) {
-        this.clientService.add(client);
-        return "redirect:/operator/clients";
-    }
-
-    @RequestMapping(value = "/clients", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showClients() {
         return new ModelAndView("clients", "clients", this.clientService.getAll());
-    }
-
-    /**
-     * Удаление клиента
-     *
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteClient(@RequestParam("id") long id) {
-        this.clientService.deleteById(id);
-        return "redirect:/operator/clients";
     }
 
     /**
@@ -63,14 +45,13 @@ public class OperatorController {
                 ).collect(Collectors.toList());
     }
 
-
     /**
      * Получение профиля пользователя
      *
      * @param id идентификатор пользователя
      * @return
      */
-    @RequestMapping(value = "/clients/{id}")
+    @RequestMapping(value = "/edit/{id}")
     @ResponseBody
     public Client getClientProfile(@PathVariable long id) {
         return clientService.getById(id);
@@ -81,7 +62,7 @@ public class OperatorController {
      *
      * @param client
      */
-    @RequestMapping(value = "clients/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public void update(Client client) {
         if (client.getId() == 0) {
@@ -92,9 +73,14 @@ public class OperatorController {
         }
     }
 
-    @RequestMapping(value = "clients/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable("id") long id) {
         this.clientService.deleteById(id);
     }
+//
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<Client> getAll() {
+//        return this.clientService.getAll();
+//    }
 }

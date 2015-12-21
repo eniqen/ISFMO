@@ -44,9 +44,10 @@
             <!-- Левый блок -->
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="<c:url value="/operator/clients"/>"><s:message
+                    <li><a href="<c:url value="/clients"/>"><s:message
                             code="messages.clients"/></a></li>
-                    <li class="active"><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
+                    <li class="active"><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
+                    </li>
                     <li><a href="#"><s:message code="messages.tariffs"/></a></li>
                     <li><a href="#"><s:message code="messages.options"/></a></li>
                 </ul>
@@ -55,8 +56,6 @@
             <div class="container">
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список контрактов</legend>
-
-                    <util:message message="${message}" messages="${messages}"/>
 
                     <table class="table table-striped">
                         <thead>
@@ -85,5 +84,8 @@
                 </fieldset>
             </div>
         </div>
+    </div>
+</div>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

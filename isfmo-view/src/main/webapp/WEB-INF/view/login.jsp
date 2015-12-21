@@ -11,7 +11,7 @@
 <jsp:include page="fragments/bodyHead.jsp"/>
 <div class="container">
     <form style="margin-top: 150px" class="form-signin col-sm-4 col-md-offset-4" method="GET"
-          action="<c:url value="/operator/clients"/>">
+          action="<c:url value="/clients"/>">
         <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>

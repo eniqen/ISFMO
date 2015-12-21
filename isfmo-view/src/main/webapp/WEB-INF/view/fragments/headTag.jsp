@@ -20,4 +20,4 @@
 <link rel='stylesheet' href='/webjarslocator/jquery-ui/jquery-ui.css'>
 <link rel='stylesheet' href='/webjarslocator/bootstrap/css/bootstrap.min.css'>
 <script src='/webjarslocator/bootstrap/js/bootstrap.min.js'></script>
-
+<script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>

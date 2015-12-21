@@ -12,22 +12,20 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-            <c:set var="ajaxUrl" value="clients/"/>
-            <div class="jumbotron">
-                <div class="container">
-                    <div style="margin-top: 30px" class="row">
-                        <!-- Левый блок -->
-                        <div class="col-sm-2">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li class="active"><a href="<c:url value="/operator/clients"/>"><s:message
-                                        code="messages.clients"/></a></li>
-                                <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
-                                <li><a href="#"><s:message code="messages.tariffs"/></a></li>
-                                <li><a href="#"><s:message code="messages.options"/></a></li>
-                            </ul>
-                        </div>
-
-
+<c:set var="ajaxUrl" value="clients/"/>
+<div class="jumbotron">
+    <div class="container">
+        <div style="margin-top: 30px" class="row">
+            <!-- Левый блок -->
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="<c:url value="/clients"/>"><s:message
+                            code="messages.clients"/></a></li>
+                    <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
+                    <li><a href="#"><s:message code="messages.tariffs"/></a></li>
+                    <li><a href="#"><s:message code="messages.options"/></a></li>
+                </ul>
+            </div>
 
             <!--Основной блок-->
             <div class="col-sm-10">
@@ -42,7 +40,8 @@
 
                     <!-- Таблица с клиентами -->
                     <table style="padding: 0"
-                           class="table table-striped table-bordered table-condensed table-hover text-center">
+                           class="table table-striped table-bordered table-condensed table-hover text-center"
+                           id="table">
                         <tr>
                             <td><strong><s:message code="messages.firstname"/></strong></td>
                             <td><strong><s:message code="messages.lastname"/></strong></td>
@@ -62,18 +61,18 @@
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
                                 <td>
-                                    <a id="edit" class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
-                                       data-toggle="tooltip" title="<s:message code="messages.edit"/>"
-                                       href="<c:url value="/operator/edit?id=${client.id}"/>">
+                                    <a id="edit"
+                                       class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
+                                       title="<s:message code="messages.edit"/>" onclick="updateRow(${client.id})" type="button">
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success navbar-btn btn-sm btn-danger glyphicon glyphicon-trash"
-                                       data-toggle="tooltip" title="<s:message code="messages.delete"/>"
-                                       href="<c:url value="/operator/delete?id=${client.id}"/>">
-                                    </a>
+                                    <button
+                                            class="btn btn-success navbar-btn btn-sm btn-danger glyphicon glyphicon-trash"
+                                            title="<s:message code="messages.delete"/>"
+                                            onclick="deleteRow(${client.id})" type="button" id="delete">
+                                    </button>
                                 </td>
-
                             </tr>
                         </c:forEach>
                     </table>
@@ -97,20 +96,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i><s:message code="messages.client_create"/></h3>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i><s:message
+                        code="messages.client_create"/></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input type="text" hidden="hidden" id="id" name="id">
+                    <input name="id" type="text" hidden="hidden" id="id" >
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
                             <s:message code="messages.firstname"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="firstname"
-                                   name="firstname" value="${client.firstname}"
+                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                                    value="${client.firstname}"
                                    placeholder="<s:message code="messages.input.firstname"/>">
                         </div>
                     </div>
@@ -120,8 +120,8 @@
                             <s:message code="messages.lastname"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="lastname"
-                                   name="lastname" value="${client.lastname}"
+                            <input name="lastname" type="text" class="form-control input-sm" id="lastname"
+                                    value="${client.lastname}"
                                    placeholder="<s:message code="messages.input.lastname"/>">
                         </div>
                     </div>
@@ -130,8 +130,8 @@
                             <s:message code="messages.birthday"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="birthday"
-                                   name="birthday" value="${client.birthday}"
+                            <input name="birthday" type="text" class="form-control input-sm" id="birthday"
+                                    value="${client.birthday}"
                                    placeholder="<s:message code="messages.input.birthday"/>">
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                             <s:message code="messages.address"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="address" name="address"
+                            <input name="address" type="text" class="form-control input-sm" id="address"
                                    value="${client.address}"
                                    placeholder="<s:message code="messages.input.address"/>">
                         </div>
@@ -151,8 +151,8 @@
                             <s:message code="messages.passport"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="passport"
-                                   name="passport" value="${client.passport}"
+                            <input name="passport" type="text" class="form-control input-sm" id="passport"
+                                    value="${client.passport}"
                                    placeholder="<s:message code="messages.input.passport"/>">
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                             <s:message code="messages.email"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="email" class="form-control input-sm" id="email" name="email"
+                            <input name="email" type="email" class="form-control input-sm" id="email"
                                    value="${client.email}"
                                    placeholder="<s:message code="messages.input.email"/>">
                         </div>
@@ -172,8 +172,8 @@
                             <s:message code="messages.password"/>:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" id="password"
-                                   name="password" value="${client.password}"
+                            <input name="password" type="text" class="form-control input-sm" id="password"
+                                    value="${client.password}"
                                    placeholder="<s:message code="messages.input.password"/>">
                         </div>
                     </div>
@@ -192,6 +192,7 @@
 <script>
     var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
+    var table = $('#table');
 
     $('#add').click(function () {
         form.find(":input").each(function () {
@@ -217,22 +218,62 @@
             data: form.serialize(),
             success: function (data) {
                 $('#editRow').modal('hide');
-                alert('Сохранено')
+                successNoty('Сохранено');
             }
         });
     }
-    //
-    //    function deleteRow(id) {
-    //        $.ajax({
-    //            url: ajaxUrl + 'client/' + id,
-    //            type: 'DELETE'
-    ////            success: function () {
-    ////                updateTable();
-    ////                successNoty('Deleted');
-    ////            }
-    //        });
-    //    }
-    //
+
+    function updateRow(id) {
+        $.get(ajaxUrl + 'edit/' + id, function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            $('#editRow').modal();
+        });
+    }
+
+    function updateTable() {
+        $.ajax({
+            type: 'GET',
+            url: ajaxUrl,
+            success: function () {
+                successNoty('Обновленно');
+            }
+        });
+    }
+
+    $('#delete').click(function () {
+        alert('suka');
+    });
+
+    function deleteRow(id) {
+        $.ajax({
+            url: ajaxUrl + 'delete/' + id,
+            type: 'DELETE',
+            success: function () {
+                successNoty('Deleted');
+            }
+        });
+    }
+
+    function successNoty(text) {
+        noty({
+            text: text,
+            type: 'success',
+            layout: 'bottomRight',
+            timeout: true
+        });
+    }
+
+    function failNoty(event, jqXHR, options, jsExc) {
+        var errorInfo = $.parseJSON(jqXHR.responseText);
+        failedNote = noty({
+            text: 'Failed: ' + jqXHR.statusText + "<br>" + errorInfo.cause + "<br>" + errorInfo.detail,
+            type: 'error',
+            layout: 'bottomRight'
+        });
+    }
+
 </script>
 </body>
 </html>
