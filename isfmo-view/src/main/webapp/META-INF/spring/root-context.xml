@@ -14,6 +14,9 @@
     <context:component-scan base-package="org.bitbucket.eniqen.*"/>
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="txManager"/>
+    <!--  Mapping Static Resources -->
+
+    <mvc:resources mapping="/images/**" location="/resources/images/" />
 
     <!-- Фубрика для entityManager-->
     <bean id="emf" factory-method="createEntityManagerFactory" class="javax.persistence.Persistence">

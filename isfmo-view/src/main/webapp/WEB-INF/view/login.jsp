@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <html>
 <head>
     <title>Авторизация</title>
@@ -10,8 +10,9 @@
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
 <div class="container">
-    <form style="margin-top: 150px" class="form-signin col-sm-4 col-md-offset-4" method="GET"
+    <form style="margin-top: 50px" class="form-signin col-sm-4 col-md-offset-4" method="GET"
           action="<c:url value="/clients"/>">
+        <img class="center-block" height="100px" src="/resources/images/t-mobile_iphone5.jpg" alt="T-mobile">
         <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
