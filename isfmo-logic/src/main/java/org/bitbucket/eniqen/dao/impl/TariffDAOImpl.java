@@ -22,10 +22,6 @@ public class TariffDAOImpl implements TariffDAO {
     public TariffDAOImpl() {
     }
 
-    public TariffDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
     @Override
     public List<Tariff> getAll() {
         return entityManager.createNamedQuery("Tariff.getAll").getResultList();

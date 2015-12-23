@@ -15,19 +15,25 @@ import java.util.List;
  */
 
 @Service
+@Transactional
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
     private ClientDAO clientDAO;
 
     @Override
-    public List<Contract> findAllContractsByClient(Client client) {
+    public List<Contract> findAllContracts(Client model) {
         return null;
     }
 
     @Override
-    public List<Client> getAll() {
-        return clientDAO.getAll();
+    public Client findByEmail(String email) {
+        return this.clientDAO.findByEmail(email);
+    }
+
+    @Override
+    public Client findByNumber(String number) {
+        return this.clientDAO.findByNumber(number);
     }
 
     @Override
@@ -35,25 +41,26 @@ public class ClientServiceImpl implements ClientService {
         return this.clientDAO.getById(id);
     }
 
-    @Transactional
     @Override
     public void add(Client model) {
         this.clientDAO.add(model);
     }
 
-    @Transactional
     @Override
     public void delete(Client model) {
         this.clientDAO.delete(model);
     }
 
-    @Transactional
     @Override
     public void update(Client model) {
         this.clientDAO.update(model);
     }
 
-    @Transactional
+    @Override
+    public List<Client> getAll() {
+        return clientDAO.getAll();
+    }
+
     @Override
     public void deleteById(Long id) {
         Client client = this.clientDAO.getById(id);

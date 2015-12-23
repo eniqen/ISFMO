@@ -48,7 +48,7 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public Client findClientByNumber(String phoneNumber) {
+    public Client findByNumber(String phoneNumber) {
         Query query = this.entityManager.createQuery("select c from Client c inner join Contract con where con" +
                 ".phoneNumber =:phoneNumber");
         return (Client) query.setParameter("phoneNumber", phoneNumber).getSingleResult();

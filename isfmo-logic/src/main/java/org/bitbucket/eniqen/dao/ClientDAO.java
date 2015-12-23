@@ -1,6 +1,5 @@
 package org.bitbucket.eniqen.dao;
 
-
 import org.bitbucket.eniqen.model.Client;
 
 /**
@@ -11,7 +10,7 @@ import org.bitbucket.eniqen.model.Client;
 
 public interface ClientDAO extends BaseDAO<Client> {
 
-    Client findClientByNumber(String number);
+    Client findByNumber(String number);
 
     Client findByEmail(String email);
 }

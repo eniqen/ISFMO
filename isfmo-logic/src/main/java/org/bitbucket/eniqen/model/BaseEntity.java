@@ -22,4 +22,8 @@ public class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    protected boolean isNew(){
+        return this.id == null;
+    }
 }
