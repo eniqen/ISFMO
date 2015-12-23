@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
-    <jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
@@ -24,31 +24,28 @@
                 </ul>
             </div>
 
-            <!--Основной блок-->
-            <div class="col-sm-10">
-                <legend class="legende">Список клиентов</legend>
-                <div class="panel panel-default">
-                    <div style="padding: 5px 10px" class="panel-heading">
-                        <s:message code="messages.client_list"/>
-                        <button style="padding: 0px 10px" type="button"
-                                class="btn btn-success btn-sm glyphicon glyphicon-plus pull-right" id="add">
-                        </button>
-                    </div>
 
-                    <!-- Таблица с клиентами -->
-                    <table style="padding: 0"
-                           class="table table-striped table-bordered table-condensed table-hover text-center"
-                           id="table">
+            <div class="container">
+                <fieldset class="col-sm-10 bordure">
+                    <legend class="legende">Список клиентов</legend>
+
+                    <table class="table table-striped table-bordered table-condensed table-hover">
+                        <thead>
                         <tr>
-                            <td><strong><s:message code="messages.firstname"/></strong></td>
-                            <td><strong><s:message code="messages.lastname"/></strong></td>
-                            <td><strong><s:message code="messages.birthday"/></strong></td>
-                            <td><strong><s:message code="messages.address"/></strong></td>
-                            <td><strong><s:message code="messages.email"/></strong></td>
-                            <td><strong> <s:message code="messages.passport"/> </strong></td>
-                            <td></td>
-                            <td></td>
+                            <th><s:message code="messages.firstname"/></th>
+                            <th><s:message code="messages.lastname"/></th>
+                            <th><s:message code="messages.birthday"/></th>
+                            <th><s:message code="messages.address"/></th>
+                            <th><s:message code="messages.email"/></th>
+                            <th><s:message code="messages.passport"/></th>
+                            <th>
+                                <button id="add" class="modal-title btn btn-info pull-right"><i
+                                        class="glyphicon glyphicon-plus"></i> Создать
+                                </button>
+                            </th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach var="client" items="${clients}">
                             <tr>
                                 <td>${client.firstname}</td>
@@ -57,24 +54,18 @@
                                 <td>${client.address}</td>
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
-                                <td>
-                                    <a id="edit"
-                                       class="btn btn-success navbar-btn btn-sm btn-default glyphicon glyphicon-pencil"
-                                       title="<s:message code="messages.edit"/>" onclick="updateRow(${client.id})" type="button">
-                                    </a>
-                                </td>
-                                <td>
-                                    <button
-                                            class="btn btn-success navbar-btn btn-sm btn-danger glyphicon glyphicon-trash"
-                                            title="<s:message code="messages.delete"/>"
-                                            onclick="deleteRow(${client.id})" type="button" id="delete">
-                                    </button>
+                                <td><a id="edit" class="btn btn-success pull-left btn-sm"  onclick="updateRow(${client.id})"><s:message
+                                        code="messages.edit"/></a>
+                                    <a id="delete" class="btn btn-danger pull-right btn-sm"   onclick="deleteRow(${client.id})"><s:message
+                                            code="messages.delete"/></a>
                                 </td>
                             </tr>
                         </c:forEach>
+                        </tbody>
                     </table>
-                </div>
+                </fieldset>
             </div>
+
         </div>
     </div>
 </div>
@@ -88,7 +79,6 @@
 <!-- Modal -->
 <div id="editRow" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +97,7 @@
 
                         <div class="col-sm-10">
                             <input name="firstname" type="text" class="form-control input-sm" id="firstname"
-                                    value="${client.firstname}"
+                                   value="${client.firstname}"
                                    placeholder="<s:message code="messages.input.firstname"/>">
                         </div>
                     </div>
@@ -118,7 +108,7 @@
 
                         <div class="col-sm-10">
                             <input name="lastname" type="text" class="form-control input-sm" id="lastname"
-                                    value="${client.lastname}"
+                                   value="${client.lastname}"
                                    placeholder="<s:message code="messages.input.lastname"/>">
                         </div>
                     </div>
@@ -128,7 +118,7 @@
 
                         <div class="col-sm-10">
                             <input name="birthday" type="text" class="form-control input-sm" id="birthday"
-                                    value="${client.birthday}"
+                                   value="${client.birthday}"
                                    placeholder="<s:message code="messages.input.birthday"/>">
                         </div>
                     </div>
@@ -149,7 +139,7 @@
 
                         <div class="col-sm-10">
                             <input name="passport" type="text" class="form-control input-sm" id="passport"
-                                    value="${client.passport}"
+                                   value="${client.passport}"
                                    placeholder="<s:message code="messages.input.passport"/>">
                         </div>
                     </div>
@@ -170,7 +160,7 @@
 
                         <div class="col-sm-10">
                             <input name="password" type="text" class="form-control input-sm" id="password"
-                                    value="${client.password}"
+                                   value="${client.password}"
                                    placeholder="<s:message code="messages.input.password"/>">
                         </div>
                     </div>
@@ -274,5 +264,11 @@
     }
 
 </script>
+
+<style scoped>
+    .table-hover tbody tr:hover td {
+        background-color: #337ab7;
+    }
+</style>
 </body>
 </html>

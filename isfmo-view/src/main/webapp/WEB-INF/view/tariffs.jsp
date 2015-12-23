@@ -18,6 +18,7 @@
 <tiles:insertAttribute name="body"/>
 
 <c:set var="ajaxUrl" value="tarrifs/"/>
+
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -37,31 +38,42 @@
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список тарифов</legend>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>TITLE</th>
                             <th>PRICE</th>
-                            <s:url var="url_create" value="/book/form"/>
-                            <th><a class="btn btn-info" href='${url_create}'>Создать</a></th>
+                            <th>
+                                <button id="add" class="modal-title btn btn-info pull-right"><i
+                                        class="glyphicon glyphicon-plus"></i>Создать
+                                </button>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${contracts}" var="contract">
+                        <c:forEach items="${tariffs}" var="tariff">
                             <tr>
-                                <td>${contract.id}</td>
-                                <s:url var="url_update" value="/book/form/${contracts.id}"/>
-                                <td><a class="btn btn-info" href="${url_update}">Редактировать</a></td>
+                                <td>${tariff.id}</td>
+                                <td>${tariff.title}</td>
+                                <td>${tariff.price}</td>
+                                <s:url var="url_update" value="/book/form/${tariff.id}"/>
+                                <td><a id="edit" class="btn btn-success btn-sm pull"  onclick="updateRow(${tariff.id})"><s:message
+                                        code="messages.edit"/></a>
+                                    <a id="delete" class="btn btn-danger btn-sm"   onclick="deleteRow(${tariff.id})"><s:message
+                                            code="messages.delete"/></a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                 </fieldset>
             </div>
+
         </div>
     </div>
 </div>
+
 <jsp:include page="fragments/footer.jsp"/>
 
 <!-- Modal -->
@@ -78,28 +90,28 @@
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input name="id" type="text" hidden="hidden" id="id">
+                <input name="id" type="text" hidden="hidden" id="id">
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm" for="firstname">
-                            <s:message code="messages.firstname"/>:</label>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 input-sm" for="firstname">
+                        <s:message code="messages.firstname"/>:</label>
 
-                        <div class="col-sm-10">
-                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
-                                   value="${tariff.title}"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
-                        </div>
+                    <div class="col-sm-10">
+                        <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                               value="${tariff.title}"
+                               placeholder="<s:message code="messages.input.firstname"/>">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm"
-                               for="lastname">
-                            <s:message code="messages.lastname"/>:</label>
-
-                        <div class="col-sm-10">
-                            <input name="lastname" type="text" class="form-control input-sm" id="lastname"
-                                   value="${client.lastname}"
-                                   placeholder="<s:message code="messages.input.lastname"/>">
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="modal-body">
+                        <select id="example-dropRight" multiple="multiple">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="submit"
@@ -107,11 +119,31 @@
                                 code="messages.save"/>
                         </button>
                     </div>
-                </form:form>
+                    </form:form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Конец модального окна-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#add').click(function () {
+            $('#editRow').modal('show');
+        });
+
+        $('#example-dropRight').multiselect({
+            buttonWidth: '400px',
+            dropRight: true
+        });
+    });
+</script>
+<style scoped>
+    .table-hover tbody tr:hover td {
+        background-color: #337ab7;
+    }
+</style>
 </body>
 </html>
