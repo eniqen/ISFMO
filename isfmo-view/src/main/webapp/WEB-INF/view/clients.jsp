@@ -99,7 +99,7 @@
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input name="id" type="text" hidden="hidden" id="id" >
+                    <input name="id" type="text" hidden="hidden" id="id">
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
@@ -200,7 +200,9 @@
     });
 
     $(function () {
-        $("#birthday").datepicker();
+        $("#birthday").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     });
 
     form.submit(function () {
