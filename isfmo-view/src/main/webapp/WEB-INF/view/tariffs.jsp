@@ -58,10 +58,13 @@
                                 <td>${tariff.title}</td>
                                 <td>${tariff.price}</td>
                                 <s:url var="url_update" value="/book/form/${tariff.id}"/>
-                                <td><a id="edit" class="btn btn-success btn-sm pull"  onclick="updateRow(${tariff.id})"><s:message
-                                        code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger btn-sm"   onclick="deleteRow(${tariff.id})"><s:message
-                                            code="messages.delete"/></a>
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
+                                       onclick="updateRow(${tariff.id})"><s:message
+                                        code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <a id="delete" class="btn btn-danger btn-sm"
+                                       onclick="deleteRow(${tariff.id})"><s:message
+                                            code="messages.delete"/><i
+                                            class="glyphicon glyphicon-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

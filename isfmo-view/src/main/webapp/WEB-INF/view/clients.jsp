@@ -14,7 +14,7 @@
     <div class="container">
         <div style="margin-top: 30px" class="row">
             <!-- Левый блок -->
-            <div class="col-sm-2">
+            <div id="left-panel" class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="<c:url value="/clients"/>"><s:message
                             code="messages.clients"/></a></li>
@@ -39,7 +39,7 @@
                             <th><s:message code="messages.email"/></th>
                             <th><s:message code="messages.passport"/></th>
                             <th>
-                                <button id="add" class="modal-title btn btn-info pull-right"><i
+                                <button id="add" class="modal-title btn btn-info btn-sm pull-right"><i
                                         class="glyphicon glyphicon-plus"></i> Создать
                                 </button>
                             </th>
@@ -54,9 +54,11 @@
                                 <td>${client.address}</td>
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
-                                <td><a id="edit" class="btn btn-success pull-left btn-sm"  onclick="updateRow(${client.id})"><s:message
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"  onclick="updateRow(${client.id})"><i
+                                        class="glyphicon glyphicon-pencil"></i> <s:message
                                         code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger pull-right btn-sm"   onclick="deleteRow(${client.id})"><s:message
+                                    <a id="delete" class="btn btn-danger t btn-sm"   onclick="deleteRow(${client.id})"><i
+                                            class="glyphicon glyphicon-trash"></i> <s:message
                                             code="messages.delete"/></a>
                                 </td>
                             </tr>
@@ -268,6 +270,11 @@
 <style scoped>
     .table-hover tbody tr:hover td {
         background-color: #337ab7;
+    }
+
+    #left-panel ul li:hover a {
+        background-color: #337ab7;
+        color: white;
     }
 </style>
 </body>
