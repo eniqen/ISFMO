@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Mikhail on 23.12.2015.
  */
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class ContractServiceImpl implements ContractService {
 
     @Autowired

@@ -23,7 +23,7 @@
     <div class="container">
         <div style="margin-top: 30px" class="row">
             <!-- Левый блок -->
-            <div class="col-sm-2">
+            <div id="left-panel" class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="<c:url value="/clients"/>"><s:message
                             code="messages.clients"/></a></li>
@@ -41,9 +41,10 @@
                     <table class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>TITLE</th>
                             <th>PRICE</th>
+                            <th>OPTIONS</th>
                             <th>
                                 <button id="add" class="modal-title btn btn-info pull-right"><i
                                         class="glyphicon glyphicon-plus"></i>Создать
@@ -58,9 +59,7 @@
                                 <td>${tariff.id}</td>
                                 <td>${tariff.title}</td>
                                 <td>${tariff.price}</td>
-                                <c:forEach items="${tariff.options}" var="option">
-                                    <td>${option.title}</td>
-                                </c:forEach>
+                                <td>${tariff.options.size()}</td>
                                 <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
                                                           onclick="updateRow(${tariff.id})"><s:message
                                         code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
@@ -158,6 +157,11 @@
 <style scoped>
     .table-hover tbody tr:hover td {
         background-color: #337ab7;
+    }
+
+    #left-panel ul li:hover a {
+        background-color: #337ab7;
+        color: white;
     }
 </style>
 </body>

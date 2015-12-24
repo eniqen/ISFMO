@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 public class ContractDAOImpl implements ContractDAO {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
     public ContractDAOImpl() {
@@ -33,19 +34,16 @@ public class ContractDAOImpl implements ContractDAO {
         return this.entityManager.find(Contract.class, id);
     }
 
-    @Transactional
     @Override
     public void add(Contract model) {
         this.entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(Contract model) {
         this.entityManager.remove(model);
     }
 
-    @Transactional
     @Override
     public void update(Contract model) {
         this.entityManager.merge(model);

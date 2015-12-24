@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     @Autowired

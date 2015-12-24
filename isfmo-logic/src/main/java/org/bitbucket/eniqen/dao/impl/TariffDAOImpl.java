@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @Repository
 public class TariffDAOImpl implements TariffDAO {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
     public TariffDAOImpl() {
@@ -32,19 +33,16 @@ public class TariffDAOImpl implements TariffDAO {
         return this.entityManager.find(Tariff.class, id);
     }
 
-    @Transactional
     @Override
     public void add(Tariff model) {
         this.entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(Tariff model) {
         this.entityManager.remove(model);
     }
 
-    @Transactional
     @Override
     public void update(Tariff model) {
         this.entityManager.merge(model);

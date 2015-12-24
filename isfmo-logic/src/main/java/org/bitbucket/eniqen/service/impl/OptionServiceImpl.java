@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class OptionServiceImpl implements OptionService {
 
     @Autowired

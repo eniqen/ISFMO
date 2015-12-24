@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 @Repository
 public class PhoneNumberDAOImpl implements PhoneNumberDAO {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
 
@@ -36,19 +37,16 @@ public class PhoneNumberDAOImpl implements PhoneNumberDAO {
         return this.entityManager.find(PhoneNumber.class, id);
     }
 
-    @Transactional
     @Override
     public void add(PhoneNumber model) {
         entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(PhoneNumber model) {
         entityManager.detach(model);
     }
 
-    @Transactional
     @Override
     public void update(PhoneNumber model) {
         entityManager.merge(model);

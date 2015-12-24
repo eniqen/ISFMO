@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @Repository
 public class OptionDAOImpl implements OptionDAO {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
     public OptionDAOImpl() {
@@ -36,19 +37,17 @@ public class OptionDAOImpl implements OptionDAO {
         return this.entityManager.find(Option.class, id);
     }
 
-    @Transactional
     @Override
     public void add(Option model) {
         this.entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(Option model) {
         this.entityManager.remove(model);
     }
 
-    @Transactional
+
     @Override
     public void update(Option model) {
         this.entityManager.merge(model);

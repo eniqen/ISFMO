@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @Repository
 public class RoleDAOImpl implements RoleDAO {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
     public RoleDAOImpl() {
@@ -36,19 +37,16 @@ public class RoleDAOImpl implements RoleDAO {
         return this.entityManager.find(Role.class, id);
     }
 
-    @Transactional
     @Override
     public void add(Role model) {
         this.entityManager.persist(model);
     }
 
-    @Transactional
     @Override
     public void delete(Role model) {
         this.entityManager.remove(model);
     }
 
-    @Transactional
     @Override
     public void update(Role model) {
         this.entityManager.merge(model);

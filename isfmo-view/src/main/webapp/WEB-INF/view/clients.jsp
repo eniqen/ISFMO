@@ -54,10 +54,11 @@
                                 <td>${client.address}</td>
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"  onclick="updateRow(${client.id})"><i
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"
+                                                          onclick="updateRow(${client.id})"><i
                                         class="glyphicon glyphicon-pencil"></i> <s:message
                                         code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger t btn-sm"   onclick="deleteRow(${client.id})"><i
+                                    <a id="delete" class="btn btn-danger t btn-sm" onclick="deleteRow(${client.id})"><i
                                             class="glyphicon glyphicon-trash"></i> <s:message
                                             code="messages.delete"/></a>
                                 </td>
@@ -85,8 +86,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i><s:message
-                        code="messages.client_create"/></h3>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i>
+                    <c:choose>
+                        <c:when test="${id == 0}">
+                            <s:message code="messages.client_create"/>
+                        </c:when>
+                        <c:otherwise>
+                            <s:message code="messages.client_edit"/>
+                        </c:otherwise>
+                    </c:choose>
+                </h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"

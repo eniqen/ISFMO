@@ -1,5 +1,7 @@
 package org.bitbucket.eniqen.model;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -11,7 +13,6 @@ import java.util.Set;
  *
  * @version 1.0
  */
-
 @Entity
 @Table(name = "TARIFF_TBL")
 @NamedQuery(name = "Tariff.getAll", query = "SELECT t FROM Tariff t")
@@ -23,7 +24,7 @@ public class Tariff extends BaseEntity {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "TARIFF_OPTION_TBL",
             joinColumns = @JoinColumn(name = "TARIFF_ID"),
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))
