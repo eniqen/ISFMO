@@ -52,14 +52,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <%--@elvariable id="tariffs" type="java.util.List<org.bitbucket.eniqen.model.Tariff>"--%>
                         <c:forEach items="${tariffs}" var="tariff">
                             <tr>
                                 <td>${tariff.id}</td>
                                 <td>${tariff.title}</td>
                                 <td>${tariff.price}</td>
-                                <s:url var="url_update" value="/book/form/${tariff.id}"/>
+                                <c:forEach items="${tariff.options}" var="option">
+                                    <td>${option.title}</td>
+                                </c:forEach>
                                 <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
-                                       onclick="updateRow(${tariff.id})"><s:message
+                                                          onclick="updateRow(${tariff.id})"><s:message
                                         code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
                                     <a id="delete" class="btn btn-danger btn-sm"
                                        onclick="deleteRow(${tariff.id})"><s:message
@@ -87,34 +90,46 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i><s:message
+                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message
                         code="messages.tariff_create"/></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                <input name="id" type="text" hidden="hidden" id="id">
+                    <input name="id" type="text" hidden="hidden" id="id">
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2 input-sm" for="firstname">
-                        <s:message code="messages.firstname"/>:</label>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm" for="title">
+                            <s:message code="messages.tariff.title"/>:</label>
 
-                    <div class="col-sm-10">
-                        <input name="firstname" type="text" class="form-control input-sm" id="firstname"
-                               value="${tariff.title}"
-                               placeholder="<s:message code="messages.input.firstname"/>">
+                        <div class="col-sm-10">
+                            <input name="title" type="text" class="form-control input-sm" id="title"
+                                   value="${tariff.title}"
+                                   placeholder="<s:message code="messages.input.firstname"/>">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="modal-body">
-                        <select id="example-dropRight" multiple="multiple">
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
-                            <option value="6">Option 6</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm">
+                            <s:message code="messages.tariff.title"/>:</label>
+
+                        <div class="col-sm-10">
+                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                                   value="${tariff.title}"
+                                   placeholder="<s:message code="messages.input.firstname"/>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm">
+                            <s:message code="messages.options"/>:</label>
+
+                        <div class="col-sm-10">
+                            <select id="multi-select" name="field" multiple="multiple">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit"
@@ -122,11 +137,11 @@
                                 code="messages.save"/>
                         </button>
                     </div>
-                    </form:form>
-                </div>
+                </form:form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- Конец модального окна-->
 
@@ -137,10 +152,7 @@
             $('#editRow').modal('show');
         });
 
-        $('#example-dropRight').multiselect({
-            buttonWidth: '400px',
-            dropRight: true
-        });
+        $('#multi-select').multiselect();
     });
 </script>
 <style scoped>

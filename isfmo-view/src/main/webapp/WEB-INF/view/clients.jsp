@@ -233,10 +233,6 @@
         });
     }
 
-    $('#delete').click(function () {
-        alert('suka');
-    });
-
     function deleteRow(id) {
         $.ajax({
             url: ajaxUrl + 'delete/' + id,

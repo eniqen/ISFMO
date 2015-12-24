@@ -17,6 +17,8 @@
     <link rel='stylesheet' href='/webjarslocator/jquery-ui/jquery-ui.css'>
     <link rel='stylesheet' href='/webjarslocator/bootstrap/css/bootstrap.min.css'>
     <script src='/webjarslocator/bootstrap/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>

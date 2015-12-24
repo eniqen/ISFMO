@@ -23,7 +23,7 @@ public class Tariff extends BaseEntity {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "TARIFF_OPTION_TBL",
             joinColumns = @JoinColumn(name = "TARIFF_ID"),
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))

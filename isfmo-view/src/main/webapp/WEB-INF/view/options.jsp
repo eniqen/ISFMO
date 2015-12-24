@@ -47,11 +47,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${contracts}" var="contract">
+                        <c:forEach items="${options}" var="option">
                             <tr>
-                                <td>${contract.id}</td>
-
-                                <s:url var="url_update" value="/book/form/${contracts.id}"/>
+                                <td>${option.id}</td>
+                                <td>${option.title}</td>
+                                <td>${option.price}</td>
+                                <td>${option.connectionPrice}</td>
                                 <td><a class="btn btn-info" href="${url_update}">Редактировать</a></td>
                             </tr>
                         </c:forEach>
