@@ -59,7 +59,21 @@
                                 <td>${tariff.id}</td>
                                 <td>${tariff.title}</td>
                                 <td>${tariff.price}</td>
-                                <td>${tariff.options.size()}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${tariff.options.size() > 0}">
+                                            <a data-toggle="tooltip"
+                                               title="
+                                               <c:forEach
+                                               items="${tariff.options}" var="option">${option.title}</br>
+                                               </c:forEach>">опции ${tariff.options.size()}шт.
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a>опции не подключены</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
                                                           onclick="updateRow(${tariff.id})"><s:message
                                         code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
@@ -146,6 +160,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip({html: true});
 
         $('#add').click(function () {
             $('#editRow').modal('show');

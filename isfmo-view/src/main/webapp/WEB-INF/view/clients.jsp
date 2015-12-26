@@ -24,7 +24,6 @@
                 </ul>
             </div>
 
-
             <div class="container">
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список клиентов</legend>

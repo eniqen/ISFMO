@@ -36,7 +36,7 @@
 
             <div class="container">
                 <fieldset class="col-sm-10 bordure">
-                    <legend class="legende">Список тарифов</legend>
+                    <legend class="legende">Список контрактов</legend>
 
                     <table class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
@@ -63,7 +63,6 @@
                                 <td>${contract.client}</td>
                                 <td>${contract.tariff}</td>
                                 <td>${contract.options}</td>
-                                <td>${contract.blocked}</td>
                                 <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
                                                           onclick="updateRow(${tariff.id})"><s:message
                                         code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
