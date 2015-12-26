@@ -3,7 +3,6 @@ package org.bitbucket.eniqen.dao.impl;
 import org.bitbucket.eniqen.dao.ContractDAO;
 import org.bitbucket.eniqen.model.Contract;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

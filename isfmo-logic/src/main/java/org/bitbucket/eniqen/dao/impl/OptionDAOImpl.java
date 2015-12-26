@@ -23,9 +23,9 @@ public class OptionDAOImpl implements OptionDAO {
     public OptionDAOImpl() {
     }
 
-    public OptionDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+//    public OptionDAOImpl(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
 
     @Override
     public List<Option> getAll() {

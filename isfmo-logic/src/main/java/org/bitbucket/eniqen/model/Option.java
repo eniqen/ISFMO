@@ -32,25 +32,21 @@ public class Option extends BaseEntity {
     private Set<Option> compatibleOptions;
 
 
-    //todo посмотреть
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "options")
+    private Set<Tariff> tariffs;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contractOptions")
     private Set<Contract> contracts;
 
     public Option() {
     }
 
-    public Option(String title, Double price, Double connectionPrice) {
-        this.title = title;
-        this.price = price;
-        this.connectionPrice = connectionPrice;
+    public Set<Tariff> getTariffs() {
+        return tariffs;
     }
 
-    public Option(String title, Double price, Double connectionPrice, Set<Option> compatibleOptions, Set<Contract> contracts) {
-        this.title = title;
-        this.price = price;
-        this.connectionPrice = connectionPrice;
-        this.compatibleOptions = compatibleOptions;
-        this.contracts = contracts;
+    public void setTariffs(Set<Tariff> tariffs) {
+        this.tariffs = tariffs;
     }
 
     public Set<Contract> getContracts() {
@@ -61,13 +57,6 @@ public class Option extends BaseEntity {
         this.contracts = contracts;
     }
 
-    public Set<Option> getCompatibleOptions() {
-        return compatibleOptions;
-    }
-
-    public void setCompatibleOptions(Set<Option> compatibleOptions) {
-        this.compatibleOptions = compatibleOptions;
-    }
 
     public String getTitle() {
         return title;
@@ -93,14 +82,26 @@ public class Option extends BaseEntity {
         this.connectionPrice = connectionPrice;
     }
 
-    @Override
-    public String toString() {
-        return "Option{" +
-                "title='" + title + '\'' +
-                ", price=" + price +
-                ", connectionPrice=" + connectionPrice +
-                ", compatibleOptions=" + compatibleOptions +
-                ", contracts=" + contracts +
-                '}';
+    public Set<Option> getCompatibleOptions() {
+        return compatibleOptions;
+    }
+
+    public void setCompatibleOptions(Set<Option> compatibleOptions) {
+        this.compatibleOptions = compatibleOptions;
+    }
+
+    public Option(String title, Double price, Double connectionPrice, Set<Option> compatibleOptions, Set<Tariff> tariffs, Set<Contract> contracts) {
+        this.title = title;
+        this.price = price;
+        this.connectionPrice = connectionPrice;
+        this.compatibleOptions = compatibleOptions;
+        this.tariffs = tariffs;
+        this.contracts = contracts;
+    }
+
+    public Option(String title, Double price, Double connectionPrice) {
+        this.title = title;
+        this.price = price;
+        this.connectionPrice = connectionPrice;
     }
 }

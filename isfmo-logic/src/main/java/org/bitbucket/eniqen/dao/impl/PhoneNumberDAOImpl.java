@@ -20,9 +20,9 @@ public class PhoneNumberDAOImpl implements PhoneNumberDAO {
     private EntityManager entityManager;
 
 
-    public PhoneNumberDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+//    public PhoneNumberDAOImpl(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
 
     public PhoneNumberDAOImpl() {
     }

@@ -23,6 +23,10 @@ public class ClientDAOImpl implements ClientDAO {
     public ClientDAOImpl() {
     }
 
+//    public ClientDAOImpl(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
+
     @Override
     public List<Client> getAll() {
         return this.entityManager.createNamedQuery("Client.getAll").getResultList();

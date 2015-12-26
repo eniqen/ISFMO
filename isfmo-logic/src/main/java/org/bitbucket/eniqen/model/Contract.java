@@ -37,17 +37,17 @@ public class Contract extends BaseEntity {
             name = "CONTRACT_OPTION_TBL",
             joinColumns = {@JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "OPTION_ID", referencedColumnName = "ID")})
-    private Set<Option> options;
+    private Set<Option> contractOptions;
 
     public Contract() {
     }
 
     public Set<Option> getOptions() {
-        return options;
+        return contractOptions;
     }
 
     public void setOptions(Set<Option> optionList) {
-        this.options = optionList;
+        this.contractOptions = optionList;
     }
 
     public Client getClient() {
@@ -82,11 +82,11 @@ public class Contract extends BaseEntity {
         this.blocked = blocked;
     }
 
-    public Contract(boolean blocked, PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> options) {
+    public Contract(boolean blocked, PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
         this.blocked = blocked;
         this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.client = client;
-        this.options = options;
+        this.contractOptions = contractOptions;
     }
 }

@@ -23,9 +23,9 @@ public class RoleDAOImpl implements RoleDAO {
     public RoleDAOImpl() {
     }
 
-    public RoleDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+//    public RoleDAOImpl(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
 
     @Override
     public List<Role> getAll() {
