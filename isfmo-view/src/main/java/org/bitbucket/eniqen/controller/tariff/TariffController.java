@@ -17,8 +17,8 @@ public class TariffController {
     @Autowired
     private TariffDAO tariffDAO;
 
-    @RequestMapping(value = "/tariffs", method = RequestMethod.GET)
-    public ModelAndView showOptions() {
-        return new ModelAndView("tariffs", "tariffs", this.tariffDAO.getAll());
-    }
+//    @RequestMapping(value = "/tariffs", method = RequestMethod.GET)
+//    public ModelAndView showOptions() {
+//        return new ModelAndView("tariffs", "tariffs", this.tariffDAO.getAll());
+//    }
 }

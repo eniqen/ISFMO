@@ -15,16 +15,11 @@ import java.util.stream.Collectors;
  */
 
 @Controller
-@RequestMapping("/clients")
+@RequestMapping("/ajax/clients")
 public class OperatorController {
 
     @Autowired
     public ClientService clientService;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView showClients() {
-        return new ModelAndView("clients", "clients", this.clientService.getAll());
-    }
 
     /**
      * Поиск клиентов по введенному параметру
@@ -51,7 +46,7 @@ public class OperatorController {
      * @param id идентификатор пользователя
      * @return
      */
-    @RequestMapping(value = "/edit/{id}")
+    @RequestMapping(value = "/{id}/edit")
     @ResponseBody
     public Client getClientProfile(@PathVariable long id) {
         return clientService.getById(id);
@@ -73,14 +68,9 @@ public class OperatorController {
         }
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable("id") long id) {
         this.clientService.deleteById(id);
     }
-//
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Client> getAll() {
-//        return this.clientService.getAll();
-//    }
 }

@@ -17,8 +17,4 @@ public class ContractController {
     @Autowired
     private ContractDAO contractDAO;
 
-    @RequestMapping(value = "/contracts", method = RequestMethod.GET)
-    public ModelAndView showContracts() {
-        return new ModelAndView("contracts", "contracts", this.contractDAO.getAll());
-    }
 }

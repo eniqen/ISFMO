@@ -9,7 +9,7 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-<c:set var="ajaxUrl" value="clients/"/>
+<c:set var="ajaxUrl" value="ajax/clients/"/>
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -224,7 +224,7 @@
     }
 
     function updateRow(id) {
-        $.get(ajaxUrl + 'edit/' + id, function (data) {
+        $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
@@ -244,7 +244,7 @@
 
     function deleteRow(id) {
         $.ajax({
-            url: ajaxUrl + 'delete/' + id,
+            url: ajaxUrl + id + '/delete',
             type: 'DELETE',
             success: function () {
                 successNoty('Deleted');

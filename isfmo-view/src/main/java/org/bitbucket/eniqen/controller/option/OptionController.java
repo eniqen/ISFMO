@@ -17,8 +17,8 @@ public class OptionController {
     @Autowired
     private OptionDAO optionDAO;
 
-    @RequestMapping(value = "/options", method = RequestMethod.GET)
-    public ModelAndView showOptions() {
-        return new ModelAndView("options", "options", this.optionDAO.getAll());
-    }
+//    @RequestMapping(value = "/options", method = RequestMethod.GET)
+//    public ModelAndView showOptions() {
+//        return new ModelAndView("options", "options", this.optionDAO.getAll());
+//    }
 }
