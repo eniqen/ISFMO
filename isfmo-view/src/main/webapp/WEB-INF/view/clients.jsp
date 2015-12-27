@@ -87,7 +87,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i>
                     <c:choose>
-                        <c:when test="${id == 0}">
+                        <c:when test="${param.id == '0'}">
                             <s:message code="messages.client_create"/>
                         </c:when>
                         <c:otherwise>
@@ -99,7 +99,7 @@
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input name="id" type="text" hidden="hidden" id="id">
+                    <input name="id" type="text" hidden="hidden" id="id" value="0">
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
@@ -267,6 +267,17 @@
             type: 'error',
             layout: 'bottomRight'
         });
+
+        $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+            failNoty(event, jqXHR, options, jsExc);
+        });
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+        init();
     }
 
 </script>

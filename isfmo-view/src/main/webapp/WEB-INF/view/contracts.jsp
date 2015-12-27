@@ -159,11 +159,12 @@
 </script>
 <style scoped>
     .table-hover tbody tr:hover td {
-        background-color: #337ab7;
+        background-color: #54535c;
+        color: white;
     }
 
     #left-panel ul li:hover a {
-        background-color: #337ab7;
+        background-color: #54535c;
         color: white;
     }
 </style>
