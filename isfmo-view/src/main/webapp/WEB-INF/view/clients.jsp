@@ -85,21 +85,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-user"></i>
-                    <c:choose>
-                        <c:when test="${param.id == '0'}">
-                            <s:message code="messages.client_create"/>
-                        </c:when>
-                        <c:otherwise>
-                            <s:message code="messages.client_edit"/>
-                        </c:otherwise>
-                    </c:choose>
-                </h3>
+                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-user"></i><span></span></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input name="id" type="text" hidden="hidden" id="id" value="0">
+                    <input name="id" hidden="hidden" type="text" id="id">
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="firstname">
@@ -107,7 +98,6 @@
 
                         <div class="col-sm-10">
                             <input name="firstname" type="text" class="form-control input-sm" id="firstname"
-                                   value="${client.firstname}"
                                    placeholder="<s:message code="messages.input.firstname"/>">
                         </div>
                     </div>
@@ -118,7 +108,6 @@
 
                         <div class="col-sm-10">
                             <input name="lastname" type="text" class="form-control input-sm" id="lastname"
-                                   value="${client.lastname}"
                                    placeholder="<s:message code="messages.input.lastname"/>">
                         </div>
                     </div>
@@ -128,7 +117,6 @@
 
                         <div class="col-sm-10">
                             <input name="birthday" type="text" class="form-control input-sm" id="birthday"
-                                   value="${client.birthday}"
                                    placeholder="<s:message code="messages.input.birthday"/>">
                         </div>
                     </div>
@@ -138,7 +126,6 @@
 
                         <div class="col-sm-10">
                             <input name="address" type="text" class="form-control input-sm" id="address"
-                                   value="${client.address}"
                                    placeholder="<s:message code="messages.input.address"/>">
                         </div>
                     </div>
@@ -149,7 +136,6 @@
 
                         <div class="col-sm-10">
                             <input name="passport" type="text" class="form-control input-sm" id="passport"
-                                   value="${client.passport}"
                                    placeholder="<s:message code="messages.input.passport"/>">
                         </div>
                     </div>
@@ -159,7 +145,6 @@
 
                         <div class="col-sm-10">
                             <input name="email" type="email" class="form-control input-sm" id="email"
-                                   value="${client.email}"
                                    placeholder="<s:message code="messages.input.email"/>">
                         </div>
                     </div>
@@ -170,7 +155,6 @@
 
                         <div class="col-sm-10">
                             <input name="password" type="text" class="form-control input-sm" id="password"
-                                   value="${client.password}"
                                    placeholder="<s:message code="messages.input.password"/>">
                         </div>
                     </div>
@@ -196,6 +180,7 @@
             $(this).val("");
         });
         $('#id').val(0);
+        $('#modal_title span').text('<s:message code="messages.client_create"/>');
         $('#editRow').modal('show');
     });
 
@@ -227,6 +212,7 @@
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
+            $('#modal_title span').text('<s:message code="messages.client_edit"/>');
             $('#editRow').modal();
         });
     }
@@ -277,7 +263,6 @@
         $(document).ajaxSend(function(e, xhr, options) {
             xhr.setRequestHeader(header, token);
         });
-        init();
     }
 
 </script>
