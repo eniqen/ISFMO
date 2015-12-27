@@ -1,7 +1,8 @@
 package org.bitbucket.eniqen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -25,16 +26,18 @@ public class Option extends BaseEntity {
     @Column(name = "CONNECTION_PRICE", nullable = false)
     private Double connectionPrice;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "COMPATIBLE_OPTIONS_TBL",
             joinColumns = @JoinColumn(name = "OPTION_ID"),
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID1"))
     private Set<Option> compatibleOptions;
 
-
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "options")
     private Set<Tariff> tariffs;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contractOptions")
     private Set<Contract> contracts;
 

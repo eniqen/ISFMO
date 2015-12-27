@@ -132,7 +132,7 @@
                         <label class="control-label col-sm-2 input-sm">
                             <s:message code="messages.options"/>:</label>
 
-                        <div class="col-sm-10">
+                        <div id="select" class="col-sm-10">
                             <select id="multi-select" name="field" multiple="multiple">
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -171,9 +171,42 @@
             $('#editRow').modal('show');
         });
 
-
-
         $('[data-toggle="tooltip"]').tooltip({html: true});
+
+
+        form.submit(function () {
+            save();
+            return false;
+        });
+
+        function save() {
+            $.ajax({
+                type: "POST",
+                url: ajaxUrl + 'add',
+                data: form.serialize(),
+                success: function (data) {
+                    $('#editRow').modal('hide');
+                    successNoty('Сохранено');
+                }
+            });
+        }
+
+        $('#select').click(function() {
+            $.get('ajax/options', function (data) {
+              alert(data);
+            });
+        });
+
+
+        function getAllOptions() {
+            $.get('ajax/options', function (data) {
+                $.each(data, function (key, value) {
+                    form.find("select[value='" + key + "']").val(value);
+
+                });
+                $('#editRow').modal();
+            });
+        }
     });
 </script>
 <style scoped>

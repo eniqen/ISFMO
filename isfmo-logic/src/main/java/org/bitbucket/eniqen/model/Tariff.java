@@ -1,9 +1,8 @@
 package org.bitbucket.eniqen.model;
 
-import org.springframework.transaction.annotation.Transactional;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -24,6 +23,7 @@ public class Tariff extends BaseEntity {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "TARIFF_OPTION_TBL",
             joinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"),
