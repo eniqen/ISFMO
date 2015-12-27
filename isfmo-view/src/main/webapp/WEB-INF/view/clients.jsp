@@ -180,7 +180,7 @@
             $(this).val("");
         });
         $('#id').val(0);
-        $('#modal_title span').text('<s:message code="messages.client_create"/>');
+        $('#modal_title').find('span').text('<s:message code="messages.client_create"/>');
         $('#editRow').modal('show');
     });
 
@@ -212,7 +212,7 @@
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
-            $('#modal_title span').text('<s:message code="messages.client_edit"/>');
+            $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
             $('#editRow').modal();
         });
     }

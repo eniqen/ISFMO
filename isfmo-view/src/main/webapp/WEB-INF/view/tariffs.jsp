@@ -17,7 +17,7 @@
 
 <tiles:insertAttribute name="body"/>
 
-<c:set var="ajaxUrl" value="ajax/tarrifs/"/>
+<c:set var="ajaxUrl" value="tarrifs/"/>
 
 <div class="jumbotron">
     <div class="container">
@@ -25,8 +25,8 @@
             <!-- Левый блок -->
             <div id="left-panel" class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="<c:url value="/clients"/>">
-                        <s:message code="messages.clients"/></a></li>
+                    <li><a href="<c:url value="/clients"/>"><s:message
+                            code="messages.clients"/></a></li>
                     <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
                     </li>
                     <li class="active"><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
@@ -104,7 +104,6 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><span></span></h3>
-
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
@@ -125,7 +124,7 @@
                             <s:message code="messages.tariff.title"/>:</label>
 
                         <div class="col-sm-10">
-                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                            <input name="price" type="text" class="form-control input-sm" id="price"
                                    placeholder="<s:message code="messages.input.firstname"/>">
                         </div>
                     </div>
@@ -136,6 +135,8 @@
                         <div class="col-sm-10">
                             <select id="multi-select" name="field" multiple="multiple">
                                 <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
                             </select>
                         </div>
 
@@ -157,11 +158,8 @@
 <script type="text/javascript">
     var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
-    var table = $('#table');
 
     $(document).ready(function () {
-
-        $('[data-toggle="tooltip"]').tooltip({html: true});
 
         $('#add').click(function () {
             form.find(":input").each(function () {
@@ -169,37 +167,13 @@
             });
             $('#modal_title span').text('<s:message code="messages.tariff_create"/>');
             $('#id').val(0);
+            $('#multi-select').multiselect();
             $('#editRow').modal('show');
         });
 
-        form.submit(function () {
-            save();
-            return false;
-        });
 
-        function save() {
-            $.ajax({
-                type: "POST",
-                url: ajaxUrl + 'add',
-                data: form.serialize(),
-                success: function (data) {
-                    $('#editRow').modal('hide');
-                    successNoty('Сохранено');
-                }
-            });
-        }
 
-        function getAllOptions() {
-            $.get('ajax/options', function (data) {
-                $.each(data, function (key, value) {
-                    form.find("select[value='" + key + "']").val(value);
-
-                });
-                $('#editRow').modal();
-            });
-        }
-
-        $('#multi-select').multiselect();
+        $('[data-toggle="tooltip"]').tooltip({html: true});
     });
 </script>
 <style scoped>
