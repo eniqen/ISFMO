@@ -85,7 +85,6 @@
             <version>0.29</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery-ui</artifactId>
@@ -109,6 +108,13 @@
             <groupId>org.webjars</groupId>
             <artifactId>noty</artifactId>
             <version>${webjars-noty.version}</version>
+        </dependency>
+
+        <!-- HibernateValidator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.2.Final</version>
         </dependency>
 
     </dependencies>

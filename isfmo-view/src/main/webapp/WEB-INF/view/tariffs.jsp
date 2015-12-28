@@ -17,7 +17,7 @@
 
 <tiles:insertAttribute name="body"/>
 
-<c:set var="ajaxUrl" value="tarrifs/"/>
+<c:set var="ajaxUrl" value="/ajax/tariffs/"/>
 
 <div class="jumbotron">
     <div class="container">
@@ -74,13 +74,13 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
-                                                          onclick="updateRow(${tariff.id})"><s:message
-                                        code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a id="delete" class="btn btn-danger btn-sm"
-                                       onclick="deleteRow(${tariff.id})"><s:message
-                                            code="messages.delete"/><i
-                                            class="glyphicon glyphicon-trash"></i></a>
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"
+                                                          onclick="updateRow(${tariff.id})"><i
+                                        class="glyphicon glyphicon-pencil"></i> <s:message
+                                        code="messages.edit"/></a>
+                                    <a id="delete" class="btn btn-danger t btn-sm" onclick="deleteRow(${tariff.id})"><i
+                                            class="glyphicon glyphicon-trash"></i> <s:message
+                                            code="messages.delete"/></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -133,7 +133,7 @@
                             <s:message code="messages.options"/>:</label>
 
                         <div id="select" class="col-sm-10">
-                            <select id="multi-select" name="field" multiple="multiple">
+                            <select id="multi-select" name="options" multiple="multiple">
                             </select>
                         </div>
 
@@ -150,55 +150,112 @@
     </div>
 </div>
 <!-- Конец модального окна-->
-
-<script type="text/javascript">
+<script>
     var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
+    var table = $('#table');
 
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip({html: true});
-
-        $('#add').click(function () {
-            form.find(":input").each(function () {
-                $(this).val("");
-            });
-            $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
-            $('#id').val(0);
-            getAllOptions();
-            $('#editRow').modal('show');
+    $('#add').click(function () {
+        form.find(":input").each(function () {
+            $(this).val("");
         });
-
-        form.submit(function () {
-            save();
-            return false;
-        });
-
-        function save() {
-            $.ajax({
-                type: "POST",
-                url: ajaxUrl + 'add',
-                data: form.serialize(),
-                success: function (data) {
-                    $('#editRow').modal('hide');
-                    successNoty('Сохранено');
-                }
-            });
-        }
-
-        function getAllOptions() {
-            $.get('ajax/options', function (data) {
-                $.each(data, function (key, option) {
-                    $('#multi-select').append($('<option></option>').attr('value', key).text(option.title));
-                });
-                $('#multi-select').multiselect({
-                    enableFiltering: true,
-                    includeSelectAllOption: true,
-                    maxHeight: 400
-                });
-            });
-        }
+        $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
+        $('#id').val(0);
+        getAllOptions();
+        $('#editRow').modal('show');
     });
+
+    form.submit(function () {
+        save();
+        return false;
+    });
+
+    function getAllOptions() {
+        $.get('ajax/options', function (data) {
+            $.each(data, function (key, option) {
+                $('#multi-select').append($('<option></option>').attr('value', option.id).text(option.title));
+            });
+            $('#multi-select').multiselect({
+                enableFiltering: true,
+                includeSelectAllOption: true,
+                maxHeight: 400
+            });
+        });
+    }
+
+    function save() {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl + 'add',
+            data: form.serialize(),
+            success: function (data) {
+                $('#editRow').modal('hide');
+                successNoty('Сохранено');
+            }
+        });
+    }
+
+    function updateRow(id) {
+        $.get(ajaxUrl + id + '/edit', function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
+            $('#editRow').modal();
+        });
+    }
+
+    function updateTable() {
+        $.ajax({
+            type: 'GET',
+            url: ajaxUrl,
+            success: function () {
+                successNoty('Обновленно');
+            }
+        });
+    }
+
+    function deleteRow(id) {
+        $.ajax({
+            url: ajaxUrl + id + '/delete',
+            type: 'DELETE',
+            success: function () {
+                successNoty('Deleted');
+            }
+        });
+    }
+
+    function successNoty(text) {
+        noty({
+            text: text,
+            type: 'success',
+            layout: 'bottomRight',
+            timeout: true
+        });
+    }
+
+    function failNoty(event, jqXHR, options, jsExc) {
+        var errorInfo = $.parseJSON(jqXHR.responseText);
+        failedNote = noty({
+            text: 'Failed: ' + jqXHR.statusText + "<br>" + errorInfo.cause + "<br>" + errorInfo.detail,
+            type: 'error',
+            layout: 'bottomRight'
+        });
+
+        $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+            failNoty(event, jqXHR, options, jsExc);
+        });
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    }
+
+
 </script>
+
 <style scoped>
     .table-hover tbody tr:hover td {
         background-color: #54535c;

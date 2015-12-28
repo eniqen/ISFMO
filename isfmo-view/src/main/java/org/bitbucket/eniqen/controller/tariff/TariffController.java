@@ -3,11 +3,11 @@ package org.bitbucket.eniqen.controller.tariff;
 import org.bitbucket.eniqen.model.Tariff;
 import org.bitbucket.eniqen.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class TariffController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public void update(Tariff tariff) {
+    public void update(@Valid Tariff tariff, BindingResult bindingResult, Model model) {
         if (tariff.getId() == 0) {
             tariff.setId(null);
             this.tariffService.add(tariff);
@@ -34,5 +34,17 @@ public class TariffController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Tariff> getAll() {
         return this.tariffService.getAll();
+    }
+
+    @RequestMapping(value = "/{id}/edit")
+    @ResponseBody
+    public Tariff getTariffById(@PathVariable long id) {
+        return tariffService.getById(id);
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void delete(@PathVariable("id") long id) {
+        this.tariffService.deleteById(id);
     }
 }

@@ -9,7 +9,7 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-<c:set var="ajaxUrl" value="ajax/clients/"/>
+<c:set var="ajaxUrl" value="/ajax/clients/"/>
 <div class="jumbotron">
     <div class="container">
         <div style="margin-top: 30px" class="row">
@@ -260,10 +260,11 @@
 
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
-        $(document).ajaxSend(function(e, xhr, options) {
+        $(document).ajaxSend(function (e, xhr, options) {
             xhr.setRequestHeader(header, token);
         });
     }
+
 
 </script>
 
