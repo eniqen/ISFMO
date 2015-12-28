@@ -134,9 +134,6 @@
 
                         <div id="select" class="col-sm-10">
                             <select id="multi-select" name="field" multiple="multiple">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
                             </select>
                         </div>
 
@@ -152,7 +149,6 @@
         </div>
     </div>
 </div>
-</div>
 <!-- Конец модального окна-->
 
 <script type="text/javascript">
@@ -160,19 +156,17 @@
     var form = $('#detailsForm');
 
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip({html: true});
 
         $('#add').click(function () {
             form.find(":input").each(function () {
                 $(this).val("");
             });
-            $('#modal_title span').text('<s:message code="messages.tariff_create"/>');
+            $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
             $('#id').val(0);
-            $('#multi-select').multiselect();
+            getAllOptions();
             $('#editRow').modal('show');
         });
-
-        $('[data-toggle="tooltip"]').tooltip({html: true});
-
 
         form.submit(function () {
             save();
@@ -191,20 +185,16 @@
             });
         }
 
-        $('#select').click(function() {
-            $.get('ajax/options', function (data) {
-              alert(data);
-            });
-        });
-
-
         function getAllOptions() {
             $.get('ajax/options', function (data) {
-                $.each(data, function (key, value) {
-                    form.find("select[value='" + key + "']").val(value);
-
+                $.each(data, function (key, option) {
+                    $('#multi-select').append($('<option></option>').attr('value', key).text(option.title));
                 });
-                $('#editRow').modal();
+                $('#multi-select').multiselect({
+                    enableFiltering: true,
+                    includeSelectAllOption: true,
+                    maxHeight: 400
+                });
             });
         }
     });
