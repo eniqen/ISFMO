@@ -3,7 +3,6 @@ package org.bitbucket.eniqen.controller.operator;
 import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
  * Created by Mikhail on 02.12.2015.
  */
 
-@Controller
+@RestController
 @RequestMapping("/ajax/clients")
 public class OperatorController {
 
@@ -27,7 +26,6 @@ public class OperatorController {
      * @return результат поиска по Клиентам
      */
     @RequestMapping(value = "/search")
-    @ResponseBody
     public List<Client> search(@RequestParam("pattern") String pattern) {
         return this.clientService.getAll().stream()
                 .filter(client -> client.getLastname().toLowerCase().contains
@@ -46,7 +44,6 @@ public class OperatorController {
      * @return
      */
     @RequestMapping(value = "/{id}/edit")
-    @ResponseBody
     public Client getClientProfile(@PathVariable long id) {
         return clientService.getById(id);
     }
@@ -56,8 +53,7 @@ public class OperatorController {
      *
      * @param client
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "accept=application/json")
     public void update(@RequestBody Client client) {
         if (client.getId() == 0) {
             client.setId(null);
@@ -68,15 +64,13 @@ public class OperatorController {
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
-    @ResponseBody
     public void delete(@PathVariable("id") long id) {
         this.clientService.deleteById(id);
     }
 
 
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<Client> getAll(){
+    public List<Client> getAll() {
         return this.clientService.getAll();
     }
 }

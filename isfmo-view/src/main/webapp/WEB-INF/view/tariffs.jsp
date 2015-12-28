@@ -102,7 +102,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><span></span></h3>
             </div>
             <div class="modal-body">
@@ -155,6 +155,9 @@
     var form = $('#detailsForm');
     var table = $('#table');
 
+    /**
+     * Тултипы для отображения списка подключенных опций у тарифа
+     */
     $('[data-toggle="tooltip"]').tooltip({html: true});
 
     $('#add').click(function () {
@@ -172,19 +175,22 @@
         return false;
     });
 
+    /**
+     * Ajax запрос на получение списка опций в прорисовке их в мультиселекте
+     */
     function getAllOptions() {
+        $("#options").multiselect('destroy');
         $.get('ajax/options', function (data) {
             $.each(data, function (key, option) {
                 $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
             });
-            $('#options').multiselect({
-                enableFiltering: true,
-                includeSelectAllOption: true,
-                maxHeight: 400
-            });
+            multy();
         });
     }
 
+    /**
+     * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
+     */
     function save() {
         var options = [];
         $.each($('#options').find("option:selected"), function(){
@@ -217,7 +223,12 @@
         });
     }
 
+    /**
+     * Редактирование тарифа
+     * @param id идентификатор тарифа
+     */
     function updateRow(id) {
+        getAllOptions();
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
@@ -227,6 +238,10 @@
         });
     }
 
+    /**
+     * Удаление тарифа
+     * @param id идентификатор тарифа
+     */
     function deleteRow(id) {
         $.ajax({
             url: ajaxUrl + id + '/delete',
@@ -237,6 +252,19 @@
         });
     }
 
+    function multy(){
+        $('#options').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 400
+        });
+    }
+
+    /**
+     * Методы работы с JQuery Noty уведомлениями
+     * @param text
+     */
+    //todo Вынести в общий js скрипт
     function successNoty(text) {
         noty({
             text: text,
@@ -264,7 +292,6 @@
             xhr.setRequestHeader(header, token);
         });
     }
-
 
 </script>
 

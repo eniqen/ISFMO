@@ -196,12 +196,24 @@
     });
 
     function save() {
-        $.ajax({
-            type: "POST",
+        var sendRequest = {
+            id: $('#id').val(),
+            firstname:  $('#firstname').val(),
+            lastname: $('#lastname').val(),
+            birthday: $('#birthday').val(),
+            address: $('#address').val(),
+            passport: $('#passport').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+
+        };
+        $.ajax ({
             url: ajaxUrl + 'add',
+            type: "POST",
+            data: JSON.stringify(sendRequest),
+            dataType: "json",
             contentType: "application/json; charset=utf-8",
-            data: form.serialize(),
-            success: function (data) {
+            success: function () {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
             }
