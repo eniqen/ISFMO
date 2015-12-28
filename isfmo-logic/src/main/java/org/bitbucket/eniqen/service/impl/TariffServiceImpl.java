@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class TariffServiceImpl implements TariffService {
 
     @Autowired

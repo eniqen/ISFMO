@@ -3,26 +3,24 @@ package org.bitbucket.eniqen.controller.tariff;
 import org.bitbucket.eniqen.model.Tariff;
 import org.bitbucket.eniqen.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Created by Mikhail on 02.12.2015.
  */
 
-@RestController
+@Controller
 @RequestMapping("/ajax/tariffs")
 public class TariffController {
     @Autowired
     private TariffService tariffService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST,  headers = "accept=application/json")
     @ResponseBody
-    public void update(@Valid Tariff tariff, BindingResult bindingResult, Model model) {
+    public void update(@RequestBody Tariff tariff) {
         if (tariff.getId() == 0) {
             tariff.setId(null);
             this.tariffService.add(tariff);
@@ -32,6 +30,7 @@ public class TariffController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
     public List<Tariff> getAll() {
         return this.tariffService.getAll();
     }

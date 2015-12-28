@@ -133,7 +133,7 @@
                             <s:message code="messages.options"/>:</label>
 
                         <div id="select" class="col-sm-10">
-                            <select id="multi-select" name="options" multiple="multiple">
+                            <select id="options" name="options" multiple="multiple">
                             </select>
                         </div>
 
@@ -175,9 +175,9 @@
     function getAllOptions() {
         $.get('ajax/options', function (data) {
             $.each(data, function (key, option) {
-                $('#multi-select').append($('<option></option>').attr('value', option.id).text(option.title));
+                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
             });
-            $('#multi-select').multiselect({
+            $('#options').multiselect({
                 enableFiltering: true,
                 includeSelectAllOption: true,
                 maxHeight: 400
@@ -186,11 +186,31 @@
     }
 
     function save() {
-        $.ajax({
-            type: "POST",
+        var options = [];
+        $.each($('#options').find("option:selected"), function(){
+            options.push($(this).val());
+        });
+
+        var sendRequest = {
+            id: $('#id').val(),
+            title:  $('#title').val(),
+            price: $('#price').val(),
+            options: []
+        };
+
+        for (var i = 0; i < options.length; i++) {
+            sendRequest.options.push({
+                id: options[i]
+            });
+        }
+
+        $.ajax ({
             url: ajaxUrl + 'add',
-            data: form.serialize(),
-            success: function (data) {
+            type: "POST",
+            data: JSON.stringify(sendRequest),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function () {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
             }
@@ -204,16 +224,6 @@
             });
             $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
             $('#editRow').modal();
-        });
-    }
-
-    function updateTable() {
-        $.ajax({
-            type: 'GET',
-            url: ajaxUrl,
-            success: function () {
-                successNoty('Обновленно');
-            }
         });
     }
 
