@@ -53,8 +53,8 @@ public class OperatorController {
      *
      * @param client
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "accept=application/json")
-    public void update(@RequestBody Client client) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public void update(Client client) {
         if (client.getId() == 0) {
             client.setId(null);
             this.clientService.add(client);
