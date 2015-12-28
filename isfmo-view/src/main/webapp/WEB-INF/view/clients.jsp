@@ -199,6 +199,7 @@
         $.ajax({
             type: "POST",
             url: ajaxUrl + 'add',
+            contentType: "application/json; charset=utf-8",
             data: form.serialize(),
             success: function (data) {
                 $('#editRow').modal('hide');

@@ -155,6 +155,8 @@
     var form = $('#detailsForm');
     var table = $('#table');
 
+    $('[data-toggle="tooltip"]').tooltip({html: true});
+
     $('#add').click(function () {
         form.find(":input").each(function () {
             $(this).val("");
