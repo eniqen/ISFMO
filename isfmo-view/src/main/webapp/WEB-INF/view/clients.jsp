@@ -28,7 +28,7 @@
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список клиентов</legend>
 
-                    <table class="table table-striped table-bordered table-condensed table-hover">
+                    <table id="table" class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
                         <tr>
                             <th><s:message code="messages.firstname"/></th>
@@ -174,6 +174,10 @@
     var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
     var table = $('#table');
+
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
 
     $('#add').click(function () {
         form.find(":input").each(function () {

@@ -37,8 +37,7 @@
             <div class="container">
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список опций</legend>
-
-                    <table class="table table-striped table-bordered table-condensed table-hover">
+                    <table id="table" class="table table-striped table-bordered table-condensed table-hover cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -146,13 +145,14 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('#add').click(function () {
-            $('#editRow').modal('show');
-        });
-
-        $('#multi-select').multiselect();
+        $('#table').DataTable();
     });
+
+    $('#add').click(function () {
+        $('#editRow').modal('show');
+    });
+
+    $('#multi-select').multiselect();
 </script>
 <style scoped>
     .table-hover tbody tr:hover td {

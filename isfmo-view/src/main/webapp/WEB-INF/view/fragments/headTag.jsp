@@ -19,9 +19,11 @@
     <script src='/webjarslocator/bootstrap/js/bootstrap.min.js'></script>
     <script src='/webjarslocator/bootstrap-multiselect/js/bootstrap-multiselect.js'></script>
     <link rel='stylesheet' href='/webjarslocator/bootstrap-multiselect/css/bootstrap-multiselect.css'>
-    <%--<script type="text/javascript" src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>--%>
-    <%--<link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>--%>
+    <script src='https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js'></script>
+    <script src='  https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js'></script>
+    <link rel='stylesheet' href='   https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
+
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>
 <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>

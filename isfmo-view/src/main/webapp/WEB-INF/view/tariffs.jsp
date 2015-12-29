@@ -38,7 +38,7 @@
                 <fieldset class="col-sm-10 bordure">
                     <legend class="legende">Список тарифов</legend>
 
-                    <table class="table table-striped table-bordered table-condensed table-hover">
+                    <table id="table" class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -165,6 +165,8 @@
             });
         });
 
+        $('#table').DataTable();
+
     });
 
     function multy() {
@@ -245,6 +247,7 @@
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
+                form.find("select[name='" + key + "']").val(value);
             });
             multy();
             $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');

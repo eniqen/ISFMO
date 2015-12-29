@@ -22,13 +22,17 @@
         <mysql.version>5.1.29</mysql.version>
         <hb.manager>5.0.3.Final</hb.manager>
         <hb.core>5.0.3.Final</hb.core>
+        <hb.validator>5.2.2.Final</hb.validator>
         <jpa.version>1.0.1.Final</jpa.version>
         <junit.version>4.11</junit.version>
         <jstl>1.2</jstl>
         <jackson.version>2.6.3</jackson.version>
         <bootstrap.version>3.3.6</bootstrap.version>
         <jquery.version>2.1.4</jquery.version>
+        <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
+        <webjars-locator.version>0.29</webjars-locator.version>
         <webjars-noty.version>2.2.4</webjars-noty.version>
+        <webjars-bootstrap.multiselect.version>0.9.13</webjars-bootstrap.multiselect.version>
     </properties>
 
     <build>
