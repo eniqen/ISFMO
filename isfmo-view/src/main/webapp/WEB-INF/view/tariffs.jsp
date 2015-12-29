@@ -46,7 +46,7 @@
                             <th>PRICE</th>
                             <th>OPTIONS</th>
                             <th>
-                                <button id="add" class="modal-title btn btn-info pull-right"><i
+                                <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
                                         class="glyphicon glyphicon-plus"></i>Создать
                                 </button>
                             </th>
@@ -74,11 +74,11 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                           onclick="updateRow(${tariff.id})"><i
                                         class="glyphicon glyphicon-pencil"></i> <s:message
                                         code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger t btn-sm" onclick="deleteRow(${tariff.id})"><i
+                                    <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${tariff.id})"><i
                                             class="glyphicon glyphicon-trash"></i> <s:message
                                             code="messages.delete"/></a>
                                 </td>
@@ -167,11 +167,12 @@
 
     });
 
-    function multy(){
+    function multy() {
         $('#options').multiselect({
             enableFiltering: true,
             includeSelectAllOption: true,
-            maxHeight: 400
+            maxHeight: 260,
+            buttonWidth:468
         });
         $("#options").multiselect('rebuild');
     }
@@ -240,6 +241,7 @@
      * @param id идентификатор тарифа
      */
     function updateRow(id) {
+        $("option:selected").prop("selected", false);
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);

@@ -46,7 +46,7 @@
                             <th>PRICE</th>
                             <th>CONNECTION PRICE</th>
                             <th>
-                                <button id="add" class="modal-title btn btn-info pull-right"><i
+                                <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
                                         class="glyphicon glyphicon-plus"></i>Создать
                                 </button>
                             </th>
@@ -60,10 +60,10 @@
                                 <td>${option.title}</td>
                                 <td>${option.price}</td>
                                 <td>${option.connectionPrice}</td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-xs pull"
                                                           onclick="updateRow(${tariff.id})"><s:message
                                         code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a id="delete" class="btn btn-danger btn-sm"
+                                    <a id="delete" class="btn btn-danger btn-xs"
                                        onclick="deleteRow(${tariff.id})"><s:message
                                             code="messages.delete"/><i
                                             class="glyphicon glyphicon-trash"></i></a>

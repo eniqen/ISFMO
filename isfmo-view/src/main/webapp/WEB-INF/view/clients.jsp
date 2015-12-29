@@ -38,7 +38,7 @@
                             <th><s:message code="messages.email"/></th>
                             <th><s:message code="messages.passport"/></th>
                             <th>
-                                <button id="add" class="modal-title btn btn-info btn-sm pull-right"><i
+                                <button id="add" class="modal-title btn btn-info btn-xs pull-right"><i
                                         class="glyphicon glyphicon-plus"></i> Создать
                                 </button>
                             </th>
@@ -53,11 +53,11 @@
                                 <td>${client.address}</td>
                                 <td>${client.email}</td>
                                 <td>${client.passport}</td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm"
+                                <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                           onclick="updateRow(${client.id})"><i
                                         class="glyphicon glyphicon-pencil"></i> <s:message
                                         code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger t btn-sm" onclick="deleteRow(${client.id})"><i
+                                    <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${client.id})"><i
                                             class="glyphicon glyphicon-trash"></i> <s:message
                                             code="messages.delete"/></a>
                                 </td>
