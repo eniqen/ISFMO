@@ -155,6 +155,9 @@
     var form = $('#detailsForm');
     var table = $('#table');
 
+    $( document ).ready(function() {
+       getAllOptions();
+    });
     /**
      * Тултипы для отображения списка подключенных опций у тарифа
      */
@@ -211,14 +214,18 @@
         }
 
         $.ajax ({
+            type : "POST",
+            contentType : "application/json",
             url: ajaxUrl + 'add',
-            type: "POST",
-            data: JSON.stringify(sendRequest),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function () {
+            data : JSON.stringify(sendRequest),
+            dataType : 'json',
+            timeout : 100000,
+            success : function(data) {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
+            },
+            error : function(e) {
+                $('#editRow').modal('hide');
             }
         });
     }

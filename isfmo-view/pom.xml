@@ -73,6 +73,13 @@
             <version>${jquery.version}</version>
         </dependency>
 
+        <!-- Bootstrap-multiselect  -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-multiselect</artifactId>
+            <version>0.9.13</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
