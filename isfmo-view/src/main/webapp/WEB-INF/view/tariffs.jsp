@@ -155,9 +155,26 @@
     var form = $('#detailsForm');
     var table = $('#table');
 
-    $( document ).ready(function() {
-       getAllOptions();
+    $(document).ready(function () {
+        /**
+         * Ajax запрос на получение списка опций в прорисовке их в мультиселекте
+         */
+        $.get('ajax/options', function (data) {
+            $.each(data, function (key, option) {
+                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
+            });
+        });
+
     });
+
+    function multy(){
+        $('#options').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 400
+        });
+        $("#options").multiselect('rebuild');
+    }
     /**
      * Тултипы для отображения списка подключенных опций у тарифа
      */
@@ -169,7 +186,7 @@
         });
         $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
         $('#id').val(0);
-        getAllOptions();
+        multy();
         $('#editRow').modal('show');
     });
 
@@ -179,30 +196,17 @@
     });
 
     /**
-     * Ajax запрос на получение списка опций в прорисовке их в мультиселекте
-     */
-    function getAllOptions() {
-        $("#options").multiselect('destroy');
-        $.get('ajax/options', function (data) {
-            $.each(data, function (key, option) {
-                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
-            });
-            multy();
-        });
-    }
-
-    /**
      * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
      */
     function save() {
         var options = [];
-        $.each($('#options').find("option:selected"), function(){
+        $.each($('#options').find("option:selected"), function () {
             options.push($(this).val());
         });
 
         var sendRequest = {
             id: $('#id').val(),
-            title:  $('#title').val(),
+            title: $('#title').val(),
             price: $('#price').val(),
             options: []
         };
@@ -214,18 +218,19 @@
         }
 
         $.ajax ({
-            type : "POST",
-            contentType : "application/json",
+            type: "POST",
+            contentType: "application/json",
             url: ajaxUrl + 'add',
-            data : JSON.stringify(sendRequest),
-            dataType : 'json',
-            timeout : 100000,
-            success : function(data) {
+            data: JSON.stringify(sendRequest),
+            dataType: 'json',
+            timeout: 100000,
+            success: function (data) {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
             },
-            error : function(e) {
+            error: function (e) {
                 $('#editRow').modal('hide');
+                successNoty('Сохранено ошибка?');
             }
         });
     }
@@ -235,11 +240,11 @@
      * @param id идентификатор тарифа
      */
     function updateRow(id) {
-        getAllOptions();
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
+            multy();
             $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
             $('#editRow').modal();
         });
@@ -256,14 +261,6 @@
             success: function () {
                 successNoty('Deleted');
             }
-        });
-    }
-
-    function multy(){
-        $('#options').multiselect({
-            enableFiltering: true,
-            includeSelectAllOption: true,
-            maxHeight: 400
         });
     }
 
