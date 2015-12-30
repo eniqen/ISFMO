@@ -10,33 +10,36 @@
     <http pattern="/webjarslocator/**" security="none"/>
 
     <!--<http pattern="/ajax/**" use-expressions="true" create-session="stateless">-->
-        <!--<http-basic/>-->
-        <!--<intercept-url pattern="/ajax/clients/**" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/ajax/tariffs/**" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/ajax/options/**" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/ajax/contracts/**" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/ajax/numbers/**" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/**" access="isAuthenticated()"/>-->
-        <!--<csrf disabled="true"/>-->
+    <!--<http-basic/>-->
+    <!--<intercept-url pattern="/ajax/clients/**" access="hasRole('ROLE_OPERATOR')"/>-->
+    <!--<intercept-url pattern="/ajax/tariffs/**" access="hasRole('ROLE_OPERATOR')"/>-->
+    <!--<intercept-url pattern="/ajax/options/**" access="hasRole('ROLE_OPERATOR')"/>-->
+    <!--<intercept-url pattern="/ajax/contracts/**" access="hasRole('ROLE_OPERATOR')"/>-->
+    <!--<intercept-url pattern="/ajax/numbers/**" access="hasRole('ROLE_OPERATOR')"/>-->
+    <!--<intercept-url pattern="/**" access="isAuthenticated()"/>-->
+    <!--<csrf disabled="true"/>-->
     <!--</http>-->
 
-    <!--<http auto-config="true" use-expressions="true">-->
-        <!--<intercept-url pattern="/login" access="permitAll"/>-->
-        <!--<intercept-url pattern="/clients?" access="hasRole('ROLE_OPERATOR')"/>-->
-        <!--<intercept-url pattern="/**" access="isAuthenticated()" />-->
-        <!--<form-login login-page="/login" default-target-url="/clients"-->
-                    <!--authentication-failure-url="/login?error=true"-->
-                    <!--login-processing-url="/spring_security_check"/>-->
-        <!--<logout logout-success-url="/login"/>-->
-    <!--</http>-->
+    <http auto-config="true" use-expressions="true">
+        <access-denied-handler error-page="accessDenied"/>
+        
+        <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/**/clients/**" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+        <form-login login-page="/login" default-target-url="/clients"
+                    authentication-failure-url="/login?error=true"
+                    login-processing-url="/j_spring_security_check"/>
+        <logout logout-success-url="/login"/>
+        <csrf disabled="true"/>
+    </http>
 
-    <!--<authentication-manager>-->
-        <!--<authentication-provider>-->
-            <!--<user-service>-->
-                <!--<user name="admin@admin.ru" password="admin" authorities="ROLE_ADMIN"/>-->
-                <!--<user name="operator@operator.ru" password="operator" authorities="ROLE_OPERATOR"/>-->
-                <!--<user name="user@user.ru" password="user" authorities="ROLE_USER"/>-->
-            <!--</user-service>-->
-        <!--</authentication-provider>-->
-    <!--</authentication-manager>-->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+                <user name="operator" password="operator" authorities="ROLE_OPERATOR"/>
+                <user name="user" password="user" authorities="ROLE_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 </beans:beans>

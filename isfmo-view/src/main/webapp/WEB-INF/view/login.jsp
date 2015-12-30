@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
     <title>Авторизация</title>
@@ -9,15 +10,32 @@
 
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
+
+<div class="container row">
+    <c:if test="${error}">
+        <div class="bg-danger">
+                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+        </div>
+    </c:if>
+
+    <c:if test="${not empty message}">
+        <div class="message">
+            <b>Печаль</b>
+        </div>
+    </c:if>
+</div>
+
 <div class="container">
-    <form style="margin-top: 50px" class="form-signin col-sm-4 col-md-offset-4" method="GET"
-          action="<c:url value="/clients"/>">
+    <form style="margin-top: 50px" class="form-signin col-sm-4 col-md-offset-4" role="form"
+          action="/j_spring_security_check" method="post">
         <img class="center-block" height="100px" src="/resources/images/t-mobile_iphone5.jpg" alt="T-mobile">
+
         <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input  id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
+        <input name="username" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+               required>
 
         <div class="checkbox">
             <label>

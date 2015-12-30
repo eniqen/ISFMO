@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
@@ -64,7 +65,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form id="command" class="navbar-form" action="/logout" method="post">
+                        <form id="command" class="navbar-form" action="/j_spring_security_logout" method="post">
+                            <a href="/j_spring_security_logout">выйти</a>
                             <a class="btn btn-info" role="button" href="profile">Profile</a>
                             <input type="submit" class="btn btn-primary" value="Exit">
                         </form>
