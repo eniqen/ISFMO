@@ -9,19 +9,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-    <jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
 
 <div class="container-fluid">
     <div class="row">
-       <jsp:include page="fragments/panel.jsp"/>
+        <jsp:include page="fragments/panel.jsp"/>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h2 class="page-header">Список номеров</h2>
+
             <div class="table-responsive">
-                <fieldset class="bordure">
-                    <table  id="table" class="table table-striped table-condensed table-hover">
+                <table id="table" class="table table-striped table-condensed table-hover">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -54,8 +54,7 @@
                         </tr>
                     </c:forEach>
                     </tbody>
-                    </table>
-                </fieldset>
+                </table>
             </div>
         </div>
     </div>
@@ -82,6 +81,7 @@
     .sidebar {
         display: none;
     }
+
     @media (min-width: 768px) {
         .sidebar {
             position: fixed;
@@ -104,15 +104,16 @@
         margin-bottom: 20px;
         margin-left: -20px;
     }
+
     .nav-sidebar > li > a {
         padding-right: 20px;
         padding-left: 20px;
     }
 
     #left-panel li:hover a {
-         background-color: #3a434d;
-         color: white;
-     }
+        background-color: #3a434d;
+        color: white;
+    }
 </style>
 
 <script>

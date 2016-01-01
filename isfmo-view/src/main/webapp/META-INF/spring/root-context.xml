@@ -17,6 +17,7 @@
 
     <!--  Mapping Static Resources -->
     <mvc:resources mapping="/images/**" location="/resources/images/" />
+    <mvc:resources mapping="/css/**" location="/resources/css/" />
 
     <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>-->
 

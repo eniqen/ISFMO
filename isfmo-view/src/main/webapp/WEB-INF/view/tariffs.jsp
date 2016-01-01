@@ -24,56 +24,54 @@
             <h2 class="page-header">Список тарифов</h2>
 
             <div class="table-responsive">
-                <fieldset class="bordure">
-                    <table id="table" class="table table-striped table-condensed table-hover">
-                        <thead>
+                <table id="table" class="table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>TITLE</th>
+                        <th>PRICE</th>
+                        <th>OPTIONS</th>
+                        <th>
+                            <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
+                                    class="glyphicon glyphicon-plus"></i>Создать
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%--@elvariable id="tariffs" type="java.util.List<org.bitbucket.eniqen.model.Tariff>"--%>
+                    <c:forEach items="${tariffs}" var="tariff">
                         <tr>
-                            <th>#</th>
-                            <th>TITLE</th>
-                            <th>PRICE</th>
-                            <th>OPTIONS</th>
-                            <th>
-                                <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
-                                        class="glyphicon glyphicon-plus"></i>Создать
-                                </button>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <%--@elvariable id="tariffs" type="java.util.List<org.bitbucket.eniqen.model.Tariff>"--%>
-                        <c:forEach items="${tariffs}" var="tariff">
-                            <tr>
-                                <td>${tariff.id}</td>
-                                <td>${tariff.title}</td>
-                                <td>${tariff.price}</td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${tariff.options.size() > 0}">
-                                            <a data-toggle="tooltip"
-                                               title="
+                            <td>${tariff.id}</td>
+                            <td>${tariff.title}</td>
+                            <td>${tariff.price}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${tariff.options.size() > 0}">
+                                        <a data-toggle="tooltip"
+                                           title="
                                                <c:forEach
                                                items="${tariff.options}" var="option">${option.title}</br>
                                                </c:forEach>">подключено - ${tariff.options.size()}шт.
-                                            </a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a>не подключены</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
-                                                          onclick="updateRow(${tariff.id})"><i
-                                        class="glyphicon glyphicon-pencil"></i> <s:message
-                                        code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${tariff.id})"><i
-                                            class="glyphicon glyphicon-trash"></i> <s:message
-                                            code="messages.delete"/></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </fieldset>
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a>не подключены</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
+                                                      onclick="updateRow(${tariff.id})"><i
+                                    class="glyphicon glyphicon-pencil"></i> <s:message
+                                    code="messages.edit"/></a>
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${tariff.id})"><i
+                                        class="glyphicon glyphicon-trash"></i> <s:message
+                                        code="messages.delete"/></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
 

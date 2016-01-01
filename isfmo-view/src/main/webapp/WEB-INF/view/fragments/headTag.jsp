@@ -23,6 +23,7 @@
     <script src='  https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js'></script>
     <link rel='stylesheet' href='   https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
+    <script src="/webjarslocator/bootstrap-contextmenu/0.3.3/bootstrap-contextmenu.js"></script>
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>
 <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>

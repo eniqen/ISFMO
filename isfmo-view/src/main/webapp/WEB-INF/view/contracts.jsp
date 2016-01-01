@@ -22,45 +22,43 @@
             <h2 class="page-header">Список контрактов</h2>
 
             <div class="table-responsive">
-                <fieldset class="bordure">
-                    <table id="table" class="table table-striped table-condensed table-hover">
-                        <thead>
+                <table id="table" class="table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>NUMBER</th>
+                        <th>CLIENT</th>
+                        <th>TARIFF</th>
+                        <th>OPTIONS</th>
+                        <th>BLOCKED</th>
+                        <th>
+                            <button id="add" class="modal-title btn btn-info pull-right"><i
+                                    class="glyphicon glyphicon-plus"></i>Создать
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%--@elvariable id="contracts" type="java.util.List<org.bitbucket.eniqen.model.Contract>"--%>
+                    <c:forEach items="${contracts}" var="contract">
                         <tr>
-                            <th>#</th>
-                            <th>NUMBER</th>
-                            <th>CLIENT</th>
-                            <th>TARIFF</th>
-                            <th>OPTIONS</th>
-                            <th>BLOCKED</th>
-                            <th>
-                                <button id="add" class="modal-title btn btn-info pull-right"><i
-                                        class="glyphicon glyphicon-plus"></i>Создать
-                                </button>
-                            </th>
+                            <td>${contract.id}</td>
+                            <td>${contract.number}</td>
+                            <td>${contract.client}</td>
+                            <td>${contract.tariff}</td>
+                            <td>${contract.options}</td>
+                            <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
+                                                      onclick="updateRow(${tariff.id})"><s:message
+                                    code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a id="delete" class="btn btn-danger btn-sm"
+                                   onclick="deleteRow(${tariff.id})"><s:message
+                                        code="messages.delete"/><i
+                                        class="glyphicon glyphicon-trash"></i></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <%--@elvariable id="contracts" type="java.util.List<org.bitbucket.eniqen.model.Contract>"--%>
-                        <c:forEach items="${contracts}" var="contract">
-                            <tr>
-                                <td>${contract.id}</td>
-                                <td>${contract.number}</td>
-                                <td>${contract.client}</td>
-                                <td>${contract.tariff}</td>
-                                <td>${contract.options}</td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-sm pull"
-                                                          onclick="updateRow(${tariff.id})"><s:message
-                                        code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a id="delete" class="btn btn-danger btn-sm"
-                                       onclick="deleteRow(${tariff.id})"><s:message
-                                            code="messages.delete"/><i
-                                            class="glyphicon glyphicon-trash"></i></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </fieldset>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -167,6 +165,7 @@
     .sidebar {
         display: none;
     }
+
     @media (min-width: 768px) {
         .sidebar {
             position: fixed;
@@ -189,6 +188,7 @@
         margin-bottom: 20px;
         margin-left: -20px;
     }
+
     .nav-sidebar > li > a {
         padding-right: 20px;
         padding-left: 20px;
