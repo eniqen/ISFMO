@@ -18,45 +18,43 @@
             <h2 class="page-header">Список клиентов</h2>
 
             <div class="table-responsive">
-                <fieldset class="bordure">
-                    <table id="table" class="table table-striped table-condensed table-hover">
-                        <thead>
+                <table id="table" class="table table-striped table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th><s:message code="messages.firstname"/></th>
+                        <th><s:message code="messages.lastname"/></th>
+                        <th><s:message code="messages.birthday"/></th>
+                        <th><s:message code="messages.address"/></th>
+                        <th><s:message code="messages.email"/></th>
+                        <th><s:message code="messages.passport"/></th>
+                        <th>
+                            <button id="add" class="modal-title btn btn-info btn-xs pull-right"><i
+                                    class="glyphicon glyphicon-plus"></i> Создать
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="client" items="${clients}">
                         <tr>
-                            <th><s:message code="messages.firstname"/></th>
-                            <th><s:message code="messages.lastname"/></th>
-                            <th><s:message code="messages.birthday"/></th>
-                            <th><s:message code="messages.address"/></th>
-                            <th><s:message code="messages.email"/></th>
-                            <th><s:message code="messages.passport"/></th>
-                            <th>
-                                <button id="add" class="modal-title btn btn-info btn-xs pull-right"><i
-                                        class="glyphicon glyphicon-plus"></i> Создать
-                                </button>
-                            </th>
+                            <td>${client.firstname}</td>
+                            <td>${client.lastname}</td>
+                            <td>${client.birthday}</td>
+                            <td>${client.address}</td>
+                            <td>${client.email}</td>
+                            <td>${client.passport}</td>
+                            <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
+                                                      onclick="updateRow(${client.id})"><i
+                                    class="glyphicon glyphicon-pencil"></i><s:message
+                                    code="messages.edit"/></a>
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${client.id})"><i
+                                        class="glyphicon glyphicon-trash"></i> <s:message
+                                        code="messages.delete"/></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="client" items="${clients}">
-                            <tr>
-                                <td>${client.firstname}</td>
-                                <td>${client.lastname}</td>
-                                <td>${client.birthday}</td>
-                                <td>${client.address}</td>
-                                <td>${client.email}</td>
-                                <td>${client.passport}</td>
-                                <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
-                                                          onclick="updateRow(${client.id})"><i
-                                        class="glyphicon glyphicon-pencil"></i><s:message
-                                        code="messages.edit"/></a>
-                                    <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${client.id})"><i
-                                            class="glyphicon glyphicon-trash"></i> <s:message
-                                            code="messages.delete"/></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </fieldset>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
