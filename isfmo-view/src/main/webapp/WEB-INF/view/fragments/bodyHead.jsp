@@ -55,37 +55,26 @@
 <%--</nav>--%>
 
 
-<div class="row">
-    <div style="margin-bottom: 0px" class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <a style="padding: 0px 0px 0px 0px" class="navbar-brand" href="/">
-                <img height="50px" src="/resources/images/t-mobilelogo.jpg" alt="">
-            </a>
-            <a style="margin-left: 0" class="navbar-brand" href="/">Mobile</a>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form id="command" class="navbar-form" action="/j_spring_security_logout" method="post">
-                            <a href="/j_spring_security_logout">выйти</a>
-                            <a class="btn btn-info" role="button" href="profile">Profile</a>
-                            <input type="submit" class="btn btn-primary" value="Exit">
-                        </form>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ru<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a onclick="show('en')">English</a></li>
-                            <li><a onclick="show('ru_RU')">Русский</a></li>
-                        </ul>
-                    </li>
-                    <script type="text/javascript">
-                        function show(lang) {
-                            window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
-                        }
-                    </script>
+<div class="col-sm-12 container navbar navbar-inverse navbar-fixed-top">
+    <a style="padding: 0px 0px 0px 0px" class="navbar-brand" href="/">
+        <img height="50px" src="/resources/images/t-mobilelogo.jpg" alt="">
+    </a>
+    <a style="margin-left: 0" class="navbar-brand" href="/">Mobile</a>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">ru<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="show('en')">English</a></li>
+                    <li><a onclick="show('ru_RU')">Русский</a></li>
                 </ul>
-            </div>
-        </div>
+            </li>
+            <script type="text/javascript">
+                function show(lang) {
+                    window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+                }
+            </script>
+        </ul>
     </div>
 </div>
 

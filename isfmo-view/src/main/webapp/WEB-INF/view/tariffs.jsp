@@ -9,36 +9,23 @@
   Time: 22:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-
-<tiles:insertAttribute name="body"/>
-
 <c:set var="ajaxUrl" value="/ajax/tariffs/"/>
 
-<div class="jumbotron">
-    <div class="container">
-        <div style="margin-top: 30px" class="row">
-            <!-- Левый блок -->
-            <div id="left-panel" class="col-sm-2">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="<c:url value="/clients"/>"><s:message
-                            code="messages.clients"/></a></li>
-                    <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a>
-                    </li>
-                    <li class="active"><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
-                    <li><a href="<c:url value="/options"/>"><s:message code="messages.options"/></a></li>
-                </ul>
-            </div>
 
-            <div class="container">
-                <fieldset class="col-sm-10 bordure">
-                    <legend class="legende">Список тарифов</legend>
+<div class="container-fluid">
+    <div class="row">
+        <jsp:include page="fragments/panel.jsp"/>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="page-header">Список тарифов</h2>
 
-                    <table id="table" class="table table-striped table-bordered table-condensed table-hover">
+            <div class="table-responsive">
+                <fieldset class="bordure">
+                    <table id="table" class="table table-striped table-condensed table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -88,8 +75,8 @@
                     </table>
                 </fieldset>
             </div>
-
         </div>
+
     </div>
 </div>
 
@@ -174,7 +161,7 @@
             enableFiltering: true,
             includeSelectAllOption: true,
             maxHeight: 260,
-            buttonWidth:468
+            buttonWidth: 468
         });
         $("#options").multiselect('rebuild');
     }
@@ -310,7 +297,56 @@
         color: white;
     }
 
-    #left-panel ul li:hover a {
+    body {
+        padding-top: 50px;
+    }
+
+    /*
+     * Top navigation
+     * Hide default border to remove 1px line.
+     */
+    .navbar-fixed-top {
+        border: 0;
+    }
+
+    /*
+     * Sidebar
+     */
+
+    /* Hide for mobile, show later */
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            display: block;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+            background-color: #3a434d;
+            border-right: 1px solid #eee;
+        }
+    }
+
+    /* Sidebar navigation */
+    .nav-sidebar {
+        margin-right: -21px; /* 20px padding + 1px border */
+        margin-bottom: 20px;
+        margin-left: -20px;
+    }
+
+    .nav-sidebar > li > a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #left-panel li:hover a {
         background-color: #3a434d;
         color: white;
     }

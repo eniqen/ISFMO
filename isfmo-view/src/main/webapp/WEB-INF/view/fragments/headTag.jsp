@@ -9,7 +9,7 @@
 --%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src='/webjarslocator/jquery/jquery.min.js'></script>
@@ -23,7 +23,6 @@
     <script src='  https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js'></script>
     <link rel='stylesheet' href='   https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
-
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>
 <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>
