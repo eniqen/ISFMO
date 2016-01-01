@@ -64,4 +64,8 @@ public class RootController {
     public ModelAndView contracts() {
         return new ModelAndView("contracts", "contracts", this.contractService.getAll());
     }
+    @RequestMapping(value = "/numbers", method = RequestMethod.GET)
+    public String numbers() {
+        return "numbers";
+    }
 }

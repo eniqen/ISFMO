@@ -14,12 +14,6 @@
 <div class="container row">
     <c:if test="${error}">
         <div class="bg-danger">
-                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-        </div>
-    </c:if>
-
-    <c:if test="${not empty message}">
-        <div class="message">
             <b>Печаль</b>
         </div>
     </c:if>

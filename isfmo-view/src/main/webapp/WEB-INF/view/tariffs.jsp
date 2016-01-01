@@ -311,7 +311,7 @@
     }
 
     #left-panel ul li:hover a {
-        background-color: #54535c;
+        background-color: #3a434d;
         color: white;
     }
 </style>
