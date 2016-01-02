@@ -41,7 +41,7 @@
                             <td>${client.lastname}</td>
                             <td>${client.birthday}</td>
                             <td>${client.address}</td>
-                            <td>${client.email}</td>
+                            <td><a>${client.email}</a></td>
                             <td>${client.passport}</td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${client.id})"><i
