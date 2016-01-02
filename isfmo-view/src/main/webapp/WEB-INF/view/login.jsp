@@ -12,16 +12,8 @@
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
 
-<div class="container row">
-    <c:if test="${error}">
-        <div class="bg-danger">
-            <b>Печаль</b>
-        </div>
-    </c:if>
-</div>
-
 <div class="container">
-    <form style="margin-top: 50px" class="form-signin col-sm-4 col-md-offset-4" role="form"
+    <form style="margin-top: 100px" class="form-signin col-sm-4 col-md-offset-4" role="form"
           action="/j_spring_security_check" method="post">
         <img class="center-block" height="100px" src="/resources/images/t-mobile_iphone5.jpg" alt="T-mobile">
 
@@ -39,9 +31,16 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     </form>
+
+    <div class="container row col-sm-12 text-center">
+        <c:if test="${error}">
+           <div class="bg-danger">
+               <h3>Введен неверный логин или пароль</h3>
+            </div>
+        </c:if>
+    </div>
 </div>
 <!-- /container -->
-
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

@@ -24,9 +24,10 @@
         <!--<access-denied-handler error-page="exception/exception"/>-->
 
         <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/cabinet" access="isAuthenticated()"/>
         <intercept-url pattern="/**/clients/**" access="hasRole('ROLE_OPERATOR')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-        <form-login login-page="/login" default-target-url="/clients"
+        <form-login login-page="/login" default-target-url="/cabinet"
                     authentication-failure-url="/login?error=true"
                     login-processing-url="/j_spring_security_check"/>
         <logout logout-success-url="/login"/>
@@ -35,7 +36,7 @@
 
     <authentication-manager>
         <authentication-provider>
-            <password-encoder ref="passwordUtil"/>
+            <!--<password-encoder ref="passwordUtil"/>-->
             <user-service>
                 <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
                 <user name="operator" password="operator" authorities="ROLE_OPERATOR"/>

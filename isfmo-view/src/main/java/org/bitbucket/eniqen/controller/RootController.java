@@ -64,8 +64,24 @@ public class RootController {
     public ModelAndView contracts() {
         return new ModelAndView("contracts", "contracts", this.contractService.getAll());
     }
+
     @RequestMapping(value = "/numbers", method = RequestMethod.GET)
     public String numbers() {
         return "numbers";
+    }
+
+    @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
+    public String cabinet() {
+        return "cabinet";
+    }
+
+    @RequestMapping(value = "/user_contracts", method = RequestMethod.GET)
+    public String userContracts() {
+        return "user_contracts";
+    }
+
+    @RequestMapping(value = "/user_tariffOptions", method = RequestMethod.GET)
+    public String userTariffOptions() {
+        return "user_tariffOptions";
     }
 }
