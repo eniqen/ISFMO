@@ -81,7 +81,7 @@ public class RootController {
     }
 
     @RequestMapping(value = "/user_tariffOptions", method = RequestMethod.GET)
-    public String userTariffOptions() {
-        return "user_tariffOptions";
+    public ModelAndView userTariffOptions() {
+        return new ModelAndView("user_tariffOptions", "options", this.optionService.getAll());
     }
 }

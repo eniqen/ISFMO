@@ -239,7 +239,7 @@
                 }
             });
             multy();
-            $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
+            $('#modal_title').find('span').text('<s:message code="messages.tariff_edit"/>');
             $('#editRow').modal();
         });
     }
