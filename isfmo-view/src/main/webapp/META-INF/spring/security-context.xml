@@ -24,8 +24,13 @@
         <!--<access-denied-handler error-page="exception/exception"/>-->
 
         <intercept-url pattern="/login" access="permitAll"/>
-        <intercept-url pattern="/cabinet" access="isAuthenticated()"/>
-        <intercept-url pattern="/**/clients/**" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/clients" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/tariffs" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/contracts" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/options" access="hasRole('ROLE_OPERATOR')"/>
+        <intercept-url pattern="/user_contracts" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/user_tariffOptions" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/user_shopCart" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <form-login login-page="/login" default-target-url="/cabinet"
                     authentication-failure-url="/login?error=true"
