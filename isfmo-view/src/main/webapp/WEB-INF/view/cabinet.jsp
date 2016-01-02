@@ -15,6 +15,7 @@
     <div class="row">
         <jsp:include page="fragments/panel.jsp"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1>Тут будут новости компании</h1>
         </div>
     </div>
 </div>

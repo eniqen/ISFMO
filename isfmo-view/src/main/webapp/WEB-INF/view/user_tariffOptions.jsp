@@ -2,23 +2,13 @@
   Created by IntelliJ IDEA.
   User: Mikhail
   Date: 02.01.2016
-  Time: 19:20
+  Time: 18:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title><%--
-  Created by IntelliJ IDEA.
-  User: Mikhail
-  Date: 02.01.2016
-  Time: 18:59
-  To change this template use File | Settings | File Templates.
---%>
-        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-        <html>
 
-        <jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
 <div class="container-fluid">
@@ -28,12 +18,6 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
-</title>
-</head>
-<body>
 
 </body>
 </html>

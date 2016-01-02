@@ -15,8 +15,12 @@ public class PasswordUtil implements PasswordEncoder {
 
     private MessageDigest md;
 
-    public PasswordUtil() throws NoSuchAlgorithmException {
-        this.md = MessageDigest.getInstance("MD5");
+    public PasswordUtil() {
+        try {
+            this.md = MessageDigest.getInstance("MD5");
+        } catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
