@@ -32,60 +32,116 @@
     </ul>
 </div>
 
-<!-- Modal -->
-<div id="profileModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<%--<!-- Modal -->--%>
+<%--<div id="profileModal" class="modal fade" role="dialog">--%>
+    <%--<div class="modal-dialog">--%>
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message
-                        code="messages.tariff_create"/></h3>
-            </div>
-            <div class="modal-body">
-                <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
-                           id="detailsForm">
-                    <input name="id" type="text" hidden="hidden" id="id">
+        <%--<!-- Modal content-->--%>
+        <%--<div class="modal-content">--%>
+            <%--<div class="modal-header">--%>
+                <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                <%--<h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message--%>
+                        <%--code="messages.tariff_create"/></h3>--%>
+            <%--</div>--%>
+            <%--<div class="modal-body">--%>
+                <%--<form:form style="margin-bottom: -8px" class="form-horizontal" method="post"--%>
+                           <%--id="detailsForm">--%>
+                    <%--<input name="id" type="text" hidden="hidden" id="id">--%>
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm" for="title">
-                            <s:message code="messages.tariff.title"/>:</label>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2 input-sm" for="title">--%>
+                            <%--<s:message code="messages.tariff.title"/>:</label>--%>
 
-                        <div class="col-sm-10">
-                            <input name="title" type="text" class="form-control input-sm" id="title"
-                                   value="${tariff.title}"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.tariff.title"/>:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<input name="title" type="text" class="form-control input-sm" id="title"--%>
+                                   <%--value="${tariff.title}"--%>
+                                   <%--placeholder="<s:message code="messages.input.firstname"/>">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2 input-sm">--%>
+                            <%--<s:message code="messages.tariff.title"/>:</label>--%>
 
-                        <div class="col-sm-10">
-                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
-                                   value="${tariff.title}"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
-                        </div>
-                    </div>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<input name="firstname" type="text" class="form-control input-sm" id="firstname"--%>
+                                   <%--value="${tariff.title}"--%>
+                                   <%--placeholder="<s:message code="messages.input.firstname"/>">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit"
-                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
-                                code="messages.save"/>
-                        </button>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Конец модального окна-->
+                    <%--</div>--%>
+                    <%--<div class="modal-footer">--%>
+                        <%--<button type="submit"--%>
+                                <%--class="btn btn-default glyphicon glyphicon-floppy-save"><s:message--%>
+                                <%--code="messages.save"/>--%>
+                        <%--</button>--%>
+                    <%--</div>--%>
+                <%--</form:form>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<%--<!-- Конец модального окна-->--%>
 
 
-<script>
-    $('#profileEdit').click(function () {
-        $('#profileModal').modal('show');
-    });
-</script>
+<%--<script>--%>
+    <%--$('#profileEdit').click(function () {--%>
+        <%--$('#profileModal').modal('show');--%>
+    <%--});--%>
+<%--</script>--%>
+
+<style scoped>
+    body {
+        padding-top: 50px;
+    }
+
+    /*
+     * Top navigation
+     * Hide default border to remove 1px line.
+     */
+    .navbar-fixed-top {
+        border: 0;
+    }
+
+    /*
+     * Sidebar
+     */
+
+    /* Hide for mobile, show later */
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            display: block;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+            background-color: #3a434d;
+            border-right: 1px solid #eee;
+        }
+    }
+
+    /* Sidebar navigation */
+    .nav-sidebar {
+        margin-right: -21px; /* 20px padding + 1px border */
+        margin-bottom: 20px;
+        margin-left: -20px;
+    }
+
+    .nav-sidebar > li > a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    #left-panel li:hover a {
+        background-color: #3a434d;
+        color: white;
+    }
+</style>
