@@ -21,7 +21,7 @@
     <!--</http>-->
 
     <http auto-config="true" use-expressions="true">
-        <access-denied-handler error-page="exception/exception"/>
+        <!--<access-denied-handler error-page="WEB-INF/view/accessDeniedPage"/>-->
 
         <intercept-url pattern="/login" access="permitAll"/>
 

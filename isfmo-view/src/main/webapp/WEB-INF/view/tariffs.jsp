@@ -232,10 +232,11 @@
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
-                if($(this)){
-
+                if (key === 'options') {
+                    $.each(value, function (index, option) {
+                        form.find("option[value='" + option.id + "']").prop("selected", true);
+                    });
                 }
-                console.log(key + '' + value);
             });
             multy();
             $('#modal_title').find('span').text('<s:message code="messages.client_edit"/>');
