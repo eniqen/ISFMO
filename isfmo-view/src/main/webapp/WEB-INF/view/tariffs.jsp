@@ -52,11 +52,11 @@
                                            title="
                                                <c:forEach
                                                items="${tariff.options}" var="option">${option.title}</br>
-                                               </c:forEach>">подключено - ${tariff.options.size()}шт.
+                                               </c:forEach>">подключено <span class="badge">${tariff.options.size()}</span>
                                         </a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a>не подключены</a>
+                                        не подключены
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -297,6 +297,11 @@
     .table-hover tbody tr:hover td {
         background-color: #54535c;
         color: white;
+    }
+
+    .table-hover tbody tr:hover td a {
+        color: white;
+        cursor: pointer;
     }
 </style>
 </body>
