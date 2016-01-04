@@ -19,14 +19,14 @@
 
         <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="username" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
+        <input name="user_login" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+        <input name="password_login" type="password" id="inputPassword" class="form-control" placeholder="Password"
                required>
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> <s:message code="messages.remember"/>
+                <input name="remember-me-parameter" type="checkbox" value="remember-me"> <s:message code="messages.remember"/>
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>

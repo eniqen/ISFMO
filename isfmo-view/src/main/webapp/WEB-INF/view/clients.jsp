@@ -264,6 +264,11 @@
         background-color: #54535c;
         color: white;
     }
+
+    .table-hover tbody tr:hover td a {
+        color: white;
+        cursor: pointer;
+    }
 </style>
 </body>
 </html>

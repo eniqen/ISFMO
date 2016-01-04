@@ -22,7 +22,6 @@
 
     <http auto-config="true" use-expressions="true">
         <!--<access-denied-handler error-page="WEB-INF/view/accessDeniedPage"/>-->
-
         <intercept-url pattern="/login" access="permitAll"/>
 
         <intercept-url pattern="/clients" access="hasRole('ROLE_OPERATOR')"/>
@@ -38,19 +37,25 @@
 
         <form-login login-page="/login" default-target-url="/cabinet"
                     authentication-failure-url="/login?error=true"
+                    username-parameter="user_login"
+                    password-parameter="password_login"
                     login-processing-url="/j_spring_security_check"/>
-        <logout logout-success-url="/login"/>
+        <logout logout-success-url="/login" delete-cookies="JSESSIONID"/>
         <csrf disabled="true"/>
+        <!-- enable remember me -->
+        <remember-me
+                token-validity-seconds="1209600"
+                remember-me-parameter="remember-me"/>
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <!--<password-encoder ref="passwordUtil"/>-->
-            <user-service>
-                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-                <user name="operator" password="operator" authorities="ROLE_OPERATOR"/>
-                <user name="user" password="user" authorities="ROLE_USER"/>
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+    <authentication-provider>
+        <!--<password-encoder ref="passwordUtil"/>-->
+        <user-service>
+            <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+            <user name="operator" password="operator" authorities="ROLE_OPERATOR"/>
+            <user name="user" password="user" authorities="ROLE_USER"/>
+        </user-service>
+    </authentication-provider>
+</authentication-manager>
 </beans:beans>

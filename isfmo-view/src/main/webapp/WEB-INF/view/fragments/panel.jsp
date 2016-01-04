@@ -10,12 +10,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-    <%--<link type="text/css" rel="stylesheet" href="/resources/css/panel.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="/resources/css/panel.css"/>--%>
 <div class="col-sm-3 col-md-2 sidebar">
     <div class="row pg-empty-placeholder text-center">
         <img src="/resources/images/profile-pic-300px.jpg" alt="" class="img-circle text-center" height="100"><br>
         <label class="dropdown page-header col-sm-12">
-            <a class="dropdown-toggle" data-toggle="dropdown">Administrator<b class="caret"></b></a>
+
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.username"/>
+                </sec:authorize><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li id="profileEdit"><a>Редактировать</a></li>
                 <li><a href="<c:url value="/logout"/>">Выйти</a></li>
