@@ -43,24 +43,15 @@
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
         <!-- enable remember me -->
-        <!--<remember-me-->
-                <!--token-validity-seconds="1209600"-->
-                <!--remember-me-parameter="remember-me"/>-->
+        <remember-me
+                user-service-ref="userServiceImpl"
+                token-validity-seconds="1209600"
+                remember-me-parameter="remember-me"/>
     </http>
 
     <authentication-manager>
-    <authentication-provider>
-
-
-    <!--<authentication-provider user-service-ref="userService">-->
-        <!--<password-encoder ref="passwordUtil"/>-->
-
-
-        <user-service>
-            <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-            <user name="operator" password="operator" authorities="ROLE_OPERATOR"/>
-            <user name="user" password="user" authorities="ROLE_USER"/>
-        </user-service>
-    </authentication-provider>
-</authentication-manager>
+        <authentication-provider user-service-ref="userServiceImpl">
+            <password-encoder ref="passwordUtil"/>
+        </authentication-provider>
+    </authentication-manager>
 </beans:beans>

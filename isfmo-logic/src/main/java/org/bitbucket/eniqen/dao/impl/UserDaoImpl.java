@@ -1,7 +1,7 @@
 package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.UserDao;
-import org.springframework.security.core.userdetails.User;
+import org.bitbucket.eniqen.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -41,6 +41,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findUserByUsername(String username) {
-        return (User) entityManager.createNamedQuery("findUserByUsername").setParameter("username", username).getSingleResult();
+        return (User)entityManager.createNamedQuery("findUserByUsername").setParameter(1, username).getSingleResult();
     }
 }

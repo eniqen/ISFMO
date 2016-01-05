@@ -1,6 +1,7 @@
 package org.bitbucket.eniqen.service.impl;
 
 import org.bitbucket.eniqen.dao.UserDao;
+import org.bitbucket.eniqen.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +22,10 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.userDao.findUserByUsername(username);
+        User user = this.userDao.findUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("username %s not found", username));
+        }
+        return user;
     }
 }

@@ -1,6 +1,7 @@
 package org.bitbucket.eniqen.dao;
 
-import org.springframework.security.core.userdetails.User;
+
+import org.bitbucket.eniqen.model.User;
 
 /**
  * Created by Mikhail on 05.01.2016.

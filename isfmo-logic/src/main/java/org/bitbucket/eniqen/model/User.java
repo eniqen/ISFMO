@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table
 @NamedQueries({@NamedQuery(name = "User.getAll", query = "select u from User u"),
-        @NamedQuery(name = "findUserByUsername", query = "select u from User u where u.username=:username")})
+        @NamedQuery(name = "findUserByUsername", query = "SELECT u FROM User u LEFT JOIN FETCH u.userRoles WHERE u.username=?1")})
 public class User extends BaseEntity implements UserDetails {
 
     @Column(name = "USERNAME")
@@ -39,7 +39,7 @@ public class User extends BaseEntity implements UserDetails {
     private Set<UserRole> userRoles;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="CLIENT_ID", unique = true, nullable = false, updatable = false)
+    @JoinColumn(name = "CLIENT_ID", unique = true, nullable = true, updatable = false)
     private Client client;
 
     public void setEnabled(boolean enabled) {
