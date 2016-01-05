@@ -26,18 +26,13 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
-    public void add(Tariff model) {
-        this.tariffDAO.add(model);
-    }
-
-    @Override
     public void delete(Tariff model) {
         this.tariffDAO.delete(model);
     }
 
     @Override
-    public void update(Tariff model) {
-        this.tariffDAO.update(model);
+    public void save(Tariff model) {
+        this.tariffDAO.save(model);
     }
 
     @Override

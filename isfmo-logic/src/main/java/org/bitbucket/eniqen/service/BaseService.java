@@ -10,11 +10,9 @@ public interface BaseService<T extends Serializable> {
 
     T getById(Long id);
 
-    void add(T model);
-
     void delete(T model);
 
-    void update(T model);
+    void save(T model);
 
     List<T> getAll();
 

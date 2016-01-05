@@ -37,17 +37,12 @@ public class TariffDAOImpl implements TariffDAO {
     }
 
     @Override
-    public void add(Tariff model) {
-        this.entityManager.persist(model);
-    }
-
-    @Override
     public void delete(Tariff model) {
         this.entityManager.remove(model);
     }
 
     @Override
-    public void update(Tariff model) {
+    public void save(Tariff model) {
         this.entityManager.merge(model);
     }
 }

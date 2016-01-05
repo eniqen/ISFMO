@@ -26,19 +26,13 @@ public class OptionServiceImpl implements OptionService {
     }
 
     @Override
-    public void add(Option model) {
-        this.optionDAO.add(model);
-    }
-
-    @Override
     public void delete(Option model) {
         this.optionDAO.delete(model);
-
     }
 
     @Override
-    public void update(Option model) {
-        this.optionDAO.update(model);
+    public void save(Option model) {
+        this.optionDAO.save(model);
     }
 
     @Override

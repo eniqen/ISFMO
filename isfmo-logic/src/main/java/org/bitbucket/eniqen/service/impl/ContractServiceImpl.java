@@ -25,18 +25,13 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public void add(Contract model) {
-        this.contractDAO.add(model);
-    }
-
-    @Override
     public void delete(Contract model) {
         this.contractDAO.delete(model);
     }
 
     @Override
-    public void update(Contract model) {
-        this.contractDAO.update(model);
+    public void save(Contract model) {
+        this.contractDAO.save(model);
     }
 
     @Override

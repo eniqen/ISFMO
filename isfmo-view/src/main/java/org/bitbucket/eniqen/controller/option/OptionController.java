@@ -25,13 +25,11 @@ public class OptionController {
     public void update(Option option) {
         if (option.getId() == 0) {
             option.setId(null);
-            this.optionService.add(option);
-        } else {
-            this.optionService.update(option);
         }
+        this.optionService.save(option);
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces="application/json")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Option> getAll() {
         return this.optionService.getAll();

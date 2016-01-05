@@ -54,13 +54,11 @@ public class OperatorController {
      * @param client
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void update(Client client) {
+    public void save(Client client) {
         if (client.getId() == 0) {
             client.setId(null);
-            this.clientService.add(client);
-        } else {
-            this.clientService.update(client);
         }
+        this.clientService.save(client);
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)

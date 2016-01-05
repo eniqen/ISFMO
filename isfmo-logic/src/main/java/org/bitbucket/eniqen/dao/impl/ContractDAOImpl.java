@@ -34,17 +34,12 @@ public class ContractDAOImpl implements ContractDAO {
     }
 
     @Override
-    public void add(Contract model) {
-        this.entityManager.persist(model);
-    }
-
-    @Override
     public void delete(Contract model) {
         this.entityManager.remove(model);
     }
 
     @Override
-    public void update(Contract model) {
+    public void save(Contract model) {
         this.entityManager.merge(model);
     }
 

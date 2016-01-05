@@ -38,17 +38,12 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public void add(Client model) {
-        this.entityManager.persist(model);
-    }
-
-    @Override
     public void delete(Client model) {
         this.entityManager.remove(model);
     }
 
     @Override
-    public void update(Client model) {
+    public void save(Client model) {
         this.entityManager.merge(model);
     }
 

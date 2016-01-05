@@ -38,18 +38,13 @@ public class OptionDAOImpl implements OptionDAO {
     }
 
     @Override
-    public void add(Option model) {
-        this.entityManager.persist(model);
-    }
-
-    @Override
     public void delete(Option model) {
         this.entityManager.remove(model);
     }
 
 
     @Override
-    public void update(Option model) {
+    public void save(Option model) {
         this.entityManager.merge(model);
     }
 }

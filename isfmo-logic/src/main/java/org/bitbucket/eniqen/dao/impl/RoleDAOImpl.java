@@ -38,17 +38,12 @@ public class RoleDAOImpl implements RoleDAO {
     }
 
     @Override
-    public void add(Role model) {
-        this.entityManager.persist(model);
-    }
-
-    @Override
     public void delete(Role model) {
         this.entityManager.remove(model);
     }
 
     @Override
-    public void update(Role model) {
+    public void save(Role model) {
         this.entityManager.merge(model);
     }
 }

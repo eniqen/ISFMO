@@ -42,18 +42,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void add(Client model) {
-        this.clientDAO.add(model);
-    }
-
-    @Override
     public void delete(Client model) {
         this.clientDAO.delete(model);
     }
 
     @Override
-    public void update(Client model) {
-        this.clientDAO.update(model);
+    public void save(Client model) {
+        this.clientDAO.save(model);
     }
 
     @Override

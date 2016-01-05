@@ -17,14 +17,12 @@ public class TariffController {
     @Autowired
     private TariffService tariffService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST,  headers = "accept=application/json")
-    public void update(@RequestBody Tariff tariff) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "accept=application/json")
+    public void save(@RequestBody Tariff tariff) {
         if (tariff.getId() == 0) {
             tariff.setId(null);
-            this.tariffService.add(tariff);
-        } else {
-            this.tariffService.update(tariff);
         }
+        this.tariffService.save(tariff);
     }
 
     @RequestMapping(method = RequestMethod.GET)

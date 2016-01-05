@@ -27,18 +27,13 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
     }
 
     @Override
-    public void add(PhoneNumber model) {
-        this.phoneNumberDAO.add(model);
-    }
-
-    @Override
     public void delete(PhoneNumber model) {
         this.phoneNumberDAO.delete(model);
     }
 
     @Override
-    public void update(PhoneNumber model) {
-        this.phoneNumberDAO.update(model);
+    public void save(PhoneNumber model) {
+        this.phoneNumberDAO.save(model);
     }
 
     @Override

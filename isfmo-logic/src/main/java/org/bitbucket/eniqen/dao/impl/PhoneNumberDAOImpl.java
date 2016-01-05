@@ -38,17 +38,12 @@ public class PhoneNumberDAOImpl implements PhoneNumberDAO {
     }
 
     @Override
-    public void add(PhoneNumber model) {
-        entityManager.persist(model);
-    }
-
-    @Override
     public void delete(PhoneNumber model) {
         entityManager.detach(model);
     }
 
     @Override
-    public void update(PhoneNumber model) {
+    public void save(PhoneNumber model) {
         entityManager.merge(model);
     }
 }
