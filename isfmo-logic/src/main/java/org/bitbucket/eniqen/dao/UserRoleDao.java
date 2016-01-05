@@ -1,7 +1,7 @@
 package org.bitbucket.eniqen.dao;
 
 
-import org.bitbucket.eniqen.model.Role;
+import org.bitbucket.eniqen.model.UserRole;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -10,5 +10,5 @@ import org.bitbucket.eniqen.model.Role;
  *
  * @version 1.0
  */
-public interface RoleDAO extends BaseDAO<Role> {
+public interface UserRoleDao extends BaseDAO<UserRole> {
 }

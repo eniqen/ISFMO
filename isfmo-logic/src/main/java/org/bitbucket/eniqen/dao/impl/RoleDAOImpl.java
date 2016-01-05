@@ -1,9 +1,8 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.RoleDAO;
-import org.bitbucket.eniqen.model.Role;
+import org.bitbucket.eniqen.dao.UserRoleDao;
+import org.bitbucket.eniqen.model.UserRole;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public class RoleDAOImpl implements RoleDAO {
+public class RoleDAOImpl implements UserRoleDao {
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
@@ -28,22 +27,22 @@ public class RoleDAOImpl implements RoleDAO {
 //    }
 
     @Override
-    public List<Role> getAll() {
+    public List<UserRole> getAll() {
         return this.entityManager.createNamedQuery("Role.getAll").getResultList();
     }
 
     @Override
-    public Role getById(Long id) {
-        return this.entityManager.find(Role.class, id);
+    public UserRole getById(Long id) {
+        return this.entityManager.find(UserRole.class, id);
     }
 
     @Override
-    public void delete(Role model) {
+    public void delete(UserRole model) {
         this.entityManager.remove(model);
     }
 
     @Override
-    public void save(Role model) {
+    public void save(UserRole model) {
         this.entityManager.merge(model);
     }
 }

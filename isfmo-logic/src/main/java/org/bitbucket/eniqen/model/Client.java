@@ -4,7 +4,6 @@ package org.bitbucket.eniqen.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -40,20 +39,27 @@ public class Client extends BaseEntity {
     @Column(name = "EMAIL", unique = true, length = 64, nullable = false)
     private String email;
 
-    @Column(name = "PASSWORD", length = 20, nullable = false)
-    private String password;
+    @OneToOne(optional = false, mappedBy = "client")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Client() {
     }
 
-    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email, String password) {
+    public Client(String firstname, String lastname, Date birthday, String passport, String address, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
         this.passport = passport;
         this.address = address;
         this.email = email;
-        this.password = password;
     }
 
 
@@ -103,27 +109,6 @@ public class Client extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", birthday=" + birthday +
-                ", passport='" + passport + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }
 

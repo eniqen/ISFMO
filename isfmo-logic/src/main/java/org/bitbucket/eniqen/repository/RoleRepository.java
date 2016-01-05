@@ -1,6 +1,6 @@
 package org.bitbucket.eniqen.repository;
 
-import org.bitbucket.eniqen.model.Role;
+import org.bitbucket.eniqen.model.UserRole;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,21 +13,21 @@ import java.util.List;
 
 @Transactional(readOnly = true)
 @Repository
-public interface RoleRepository extends CrudRepository<Role, Long> {
+public interface RoleRepository extends CrudRepository<UserRole, Long> {
 
-    List<Role> findByName(String name);
-
-    @Override
-    Role save(Role entity);
+    List<UserRole> findByName(String name);
 
     @Override
-    Role findOne(Long aLong);
+    UserRole save(UserRole entity);
+
+    @Override
+    UserRole findOne(Long aLong);
 
     @Override
     boolean exists(Long aLong);
 
     @Override
-    Iterable<Role> findAll();
+    Iterable<UserRole> findAll();
 
     @Override
     long count();
@@ -36,5 +36,5 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
     void delete(Long aLong);
 
     @Override
-    void delete(Role entity);
+    void delete(UserRole entity);
 }

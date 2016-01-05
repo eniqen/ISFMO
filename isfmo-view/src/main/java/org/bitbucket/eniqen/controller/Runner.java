@@ -72,9 +72,9 @@
 ////        //Роли
 //        RoleDAO roleDAO = new RoleDAOImpl(entityManager);
 //        entityManager.getTransaction().begin();
-//        roleDAO.add(new Role(RoleType.ADMIN));
-//        roleDAO.add(new Role(RoleType.OPERATOR));
-//        roleDAO.add(new Role(RoleType.USER));
+//        roleDAO.add(new UserRole(Role.ADMIN));
+//        roleDAO.add(new UserRole(Role.OPERATOR));
+//        roleDAO.add(new UserRole(Role.USER));
 //        entityManager.getTransaction().commit();
 //
 //        //Тарифы
