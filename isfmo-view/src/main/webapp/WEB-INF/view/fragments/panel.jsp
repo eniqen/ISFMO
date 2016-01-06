@@ -13,7 +13,7 @@
 <%--<link type="text/css" rel="stylesheet" href="/resources/css/panel.css"/>--%>
 <div class="col-sm-3 col-md-2 sidebar">
     <div class="row pg-empty-placeholder text-center">
-        <img src="/resources/images/profile-pic-300px.jpg" alt="" class="img-circle text-center" height="100"><br>
+        <img id="image" src="/resources/images/profile-pic-300px.jpg" alt="" class="img-circle text-center" height="100"><br>
         <label class="dropdown page-header col-sm-12">
 
             <a class="dropdown-toggle" data-toggle="dropdown">
@@ -101,6 +101,15 @@
 <%--});--%>
 <%--</script>--%>
 
+<script>
+        $.ajax({
+            type: "GET",
+            url: '/ajax/user/image',
+            success: function (data) {
+                $('#image').attr('src', 'data:image/png;base64,' + data);
+            }
+        });
+</script>
 <style scoped>
     body {
         padding-top: 50px;
