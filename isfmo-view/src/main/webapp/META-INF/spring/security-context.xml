@@ -8,6 +8,7 @@
 
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjarslocator/**" security="none"/>
+    <http pattern="/favicon.ico" security="none" />
 
     <!--<http pattern="/ajax/**" use-expressions="true" create-session="stateless">-->
     <!--<http-basic/>-->
@@ -22,6 +23,14 @@
 
     <http auto-config="true" use-expressions="true">
         <!--<access-denied-handler error-page="WEB-INF/view/accessDeniedPage"/>-->
+        <form-login login-page="/login" default-target-url="/cabinet"
+                    authentication-failure-url="/login?error=true"
+                    username-parameter="user_login"
+                    password-parameter="password_login"
+                    login-processing-url="/j_spring_security_check"/>
+        <logout logout-success-url="/login" delete-cookies="JSESSIONID"/>
+        <intercept-url pattern="/favicon.ico" access="permitAll"/>
+        <intercept-url pattern="/exception" access="permitAll" />
         <intercept-url pattern="/login" access="permitAll"/>
 
         <intercept-url pattern="/clients" access="hasRole('ROLE_OPERATOR')"/>
@@ -34,12 +43,7 @@
         <intercept-url pattern="/user_shopCart" access="hasRole('ROLE_USER')"/>
 
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-        <form-login login-page="/login" default-target-url="/cabinet"
-                    authentication-failure-url="/login?error=true"
-                    username-parameter="user_login"
-                    password-parameter="password_login"
-                    login-processing-url="/j_spring_security_check"/>
-        <logout logout-success-url="/login" delete-cookies="JSESSIONID"/>
+
         <csrf disabled="true"/>
         <!-- enable remember me -->
         <remember-me
