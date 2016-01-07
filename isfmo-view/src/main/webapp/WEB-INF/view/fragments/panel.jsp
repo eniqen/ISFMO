@@ -13,8 +13,26 @@
 <%--<link type="text/css" rel="stylesheet" href="/resources/css/panel.css"/>--%>
 <div class="col-sm-3 col-md-2 sidebar">
     <div class="row pg-empty-placeholder text-center">
-        <img id="image" src="/resources/images/profile-pic-300px.jpg" alt="" class="img-circle text-center" height="100"><br>
-        <label class="dropdown page-header col-sm-12">
+        <div>
+            <img id="image" src="" alt="" class="img-circle text-center"
+                 height="100"><br>
+
+            <form enctype="multipart/form-data" method="post" name="fileinfo">
+                <label class="btn btn-file btn-info btn-sm browse-button">
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                    <input type="file" name="file" required/>
+                </label>
+                <button type="submit" class="btn btn-success btn-file btn-sm">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <label id="deleteImage" class="btn btn-danger btn-file btn-sm">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </label>
+            </form>
+
+        </div>
+
+        <label style="margin-top: 10px" class="dropdown page-header col-sm-12">
 
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <sec:authorize access="isAuthenticated()">
@@ -43,72 +61,93 @@
     </ul>
 </div>
 
-<%--<!-- Modal -->--%>
-<%--<div id="profileModal" class="modal fade" role="dialog">--%>
-<%--<div class="modal-dialog">--%>
+<!-- Modal -->
+<div id="profileModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-<%--<!-- Modal content-->--%>
-<%--<div class="modal-content">--%>
-<%--<div class="modal-header">--%>
-<%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-<%--<h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message--%>
-<%--code="messages.tariff_create"/></h3>--%>
-<%--</div>--%>
-<%--<div class="modal-body">--%>
-<%--<form:form style="margin-bottom: -8px" class="form-horizontal" method="post"--%>
-<%--id="detailsForm">--%>
-<%--<input name="id" type="text" hidden="hidden" id="id">--%>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i>Редактирование</h3>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Конец модального окна-->
 
-<%--<div class="form-group">--%>
-<%--<label class="control-label col-sm-2 input-sm" for="title">--%>
-<%--<s:message code="messages.tariff.title"/>:</label>--%>
-
-<%--<div class="col-sm-10">--%>
-<%--<input name="title" type="text" class="form-control input-sm" id="title"--%>
-<%--value="${tariff.title}"--%>
-<%--placeholder="<s:message code="messages.input.firstname"/>">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<div class="form-group">--%>
-<%--<label class="control-label col-sm-2 input-sm">--%>
-<%--<s:message code="messages.tariff.title"/>:</label>--%>
-
-<%--<div class="col-sm-10">--%>
-<%--<input name="firstname" type="text" class="form-control input-sm" id="firstname"--%>
-<%--value="${tariff.title}"--%>
-<%--placeholder="<s:message code="messages.input.firstname"/>">--%>
-<%--</div>--%>
-<%--</div>--%>
-
-<%--</div>--%>
-<%--<div class="modal-footer">--%>
-<%--<button type="submit"--%>
-<%--class="btn btn-default glyphicon glyphicon-floppy-save"><s:message--%>
-<%--code="messages.save"/>--%>
-<%--</button>--%>
-<%--</div>--%>
-<%--</form:form>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<!-- Конец модального окна-->--%>
-
-
-<%--<script>--%>
-<%--$('#profileEdit').click(function () {--%>
-<%--$('#profileModal').modal('show');--%>
-<%--});--%>
-<%--</script>--%>
 
 <script>
+    $(document).ready(function () {
+        getImage();
+    });
+
+    function getImage() {
         $.ajax({
             type: "GET",
             url: '/ajax/user/image',
             success: function (data) {
                 $('#image').attr('src', 'data:image/png;base64,' + data);
+            },
+            error: function (data) {
+                $('#image').attr('src', '/resources/images/profile-pic-300px.jpg');
             }
         });
+    }
+    $('#deleteImage').click(function () {
+        $.ajax({
+            type: "DELETE",
+            url: '/ajax/user/image',
+            success: function (data) {
+                getImage();
+            }
+        });
+    });
+
+    $('#profileEdit').click(function () {
+        $('#profileModal').modal('show');
+    });
+
+    //        $("#uploadButton").on("click", function () {
+    //            var form = document.forms.namedItem("fileinfo");
+    //            var formData = new FormData(form);
+    //            formData.append("CustomField", "This is some extra data");
+    //            $.ajax({
+    //                url: '/ajax/user/image',
+    //                data: formData,
+    //                dataType: 'text',
+    //                processData: false,
+    //                contentType: false,
+    //                type: 'POST',
+    //                success: function (response) {
+    //                    alert("success");
+    //                },
+    //                error: function () {
+    //                    alert("unable to create the record");
+    //                }
+    //            });
+    //        });
+
+
+    var form = document.forms.namedItem("fileinfo");
+    form.addEventListener('submit', function (ev) {
+        oData = new FormData(form);
+
+        var oReq = new XMLHttpRequest();
+        oReq.open("POST", '/ajax/user/image', true);
+        oReq.onload = function (oEvent) {
+            if (oReq.status == 200) {
+                getImage();
+            }
+        };
+        oReq.send(oData);
+        ev.preventDefault();
+    }, false);
+
+
 </script>
 <style scoped>
     body {
@@ -163,5 +202,25 @@
     #left-panel li:hover a {
         background-color: #3a434d;
         color: white;
+    }
+
+    .browse-button {
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .browse-button input[type="button"] {
+        cursor: pointer;
+    }
+
+    .browse-button input[type="file"] {
+        width: 16px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
     }
 </style>

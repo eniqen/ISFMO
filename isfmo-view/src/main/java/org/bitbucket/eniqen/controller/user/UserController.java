@@ -28,7 +28,10 @@ public class UserController {
     public String getImage(HttpServletRequest req) {
         String name = req.getUserPrincipal().getName();
         byte[] avatar = this.userService.findUserByUsername(name).getAvatar();
-        return Base64.getEncoder().encodeToString(avatar);
+        if (avatar.length > 0) {
+            return Base64.getEncoder().encodeToString(avatar);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/image", method = RequestMethod.POST)
@@ -42,6 +45,16 @@ public class UserController {
             } catch(IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @RequestMapping(value = "/image", method = RequestMethod.DELETE)
+    public void deleteImage(HttpServletRequest req) {
+        String name = req.getUserPrincipal().getName();
+        User user = this.userService.findUserByUsername(name);
+        if (user != null) {
+            user.setAvatar(null);
+            this.userService.save(user);
         }
     }
 }
