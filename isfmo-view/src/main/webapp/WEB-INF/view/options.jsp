@@ -31,6 +31,7 @@
                         <th>TITLE</th>
                         <th>PRICE</th>
                         <th>CONNECTION PRICE</th>
+                        <th>COMPARABLE OPTIONS</th>
                         <th>
                             <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
                                     class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
@@ -46,6 +47,21 @@
                             <td>${option.title}</td>
                             <td>${option.price}</td>
                             <td>${option.connectionPrice}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${option.compatibleOptions.size() > 0}">
+                                        <a data-toggle="tooltip"
+                                           title="
+                                               <c:forEach
+                                               items="${option.compatibleOptions}" var="compatibleOption">${compatibleOption.title}</br>
+                                               </c:forEach>">подключено <span class="badge">${option.compatibleOptions.size()}</span>
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        нет совместимых опций
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${option.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
@@ -83,7 +99,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="title">
-                            <s:message code="messages.tariff.title"/>:</label>
+                            <s:message code="messages.option.title"/>:</label>
 
                         <div class="col-sm-10">
                             <input name="title" type="text" class="form-control input-sm" id="title"
@@ -92,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.tariff.price"/>:</label>
+                            <s:message code="messages.option.price"/>:</label>
 
                         <div class="col-sm-10">
                             <input name="price" type="text" class="form-control input-sm" id="price"
@@ -101,7 +117,16 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.options"/>:</label>
+                            <s:message code="messages.option.connectionprice"/>:</label>
+
+                        <div class="col-sm-10">
+                            <input name="connectionprice" type="text" class="form-control input-sm" id="connectionprice"
+                                   placeholder="<s:message code="messages.input.price"/>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm">
+                            <s:message code="messages.comparableoptions"/>:</label>
 
                         <div id="select" class="col-sm-10">
                             <select id="options" name="options" multiple="multiple">
@@ -122,21 +147,173 @@
 </div>
 <!-- Конец модального окна-->
 
-<script type="text/javascript">
+<script>
+    var ajaxUrl = '${ajaxUrl}';
+    var form = $('#detailsForm');
+    var table = $('#table');
+
     $(document).ready(function () {
+        /**
+         * Ajax запрос на получение списка опций в прорисовке их в мультиселекте
+         */
+        $.get('ajax/options', function (data) {
+            $.each(data, function (key, option) {
+                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
+            });
+        });
+
         $('#table').DataTable();
+
     });
 
+    function multy() {
+        $('#options').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 260,
+            buttonWidth: 468
+        });
+        $("#options").multiselect('rebuild');
+    }
+    /**
+     * Тултипы для отображения списка подключенных опций у тарифа
+     */
+    $('[data-toggle="tooltip"]').tooltip({html: true});
+
     $('#add').click(function () {
+        form.find(":input").each(function () {
+            $(this).val("");
+        });
+        $('#modal_title').find('span').text('<s:message code="messages.option.create"/>');
+        $('#id').val(0);
+        multy();
         $('#editRow').modal('show');
     });
 
-    $('#multi-select').multiselect();
+    form.submit(function () {
+        save();
+        return false;
+    });
+
+    /**
+     * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
+     */
+    function save() {
+        var options = [];
+        $.each($('#options').find("option:selected"), function () {
+            options.push($(this).val());
+        });
+
+        var sendRequest = {
+            id: $('#id').val(),
+            title: $('#title').val(),
+            price: $('#price').val(),
+            options: []
+        };
+
+        for (var i = 0; i < options.length; i++) {
+            sendRequest.options.push({
+                id: options[i]
+            });
+        }
+
+        $.ajax ({
+            type: "POST",
+            contentType: "application/json",
+            url: ajaxUrl + 'add',
+            data: JSON.stringify(sendRequest),
+            dataType: 'json',
+            timeout: 100000,
+            success: function (data) {
+                $('#editRow').modal('hide');
+                successNoty('Сохранено');
+            },
+            error: function (e) {
+                $('#editRow').modal('hide');
+                successNoty('Сохранено ошибка?');
+            }
+        });
+    }
+
+    /**
+     * Редактирование тарифа
+     * @param id идентификатор тарифа
+     */
+    function updateRow(id) {
+        $("option:selected").prop("selected", false);
+        $.get(ajaxUrl + id + '/edit', function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+                if (key === 'options') {
+                    $.each(value, function (index, option) {
+                        form.find("option[value='" + option.id + "']").prop("selected", true);
+                    });
+                }
+            });
+            multy();
+            $('#modal_title').find('span').text('<s:message code="messages.option.edit"/>');
+            $('#editRow').modal();
+        });
+    }
+
+    /**
+     * Удаление тарифа
+     * @param id идентификатор тарифа
+     */
+    function deleteRow(id) {
+        $.ajax({
+            url: ajaxUrl + id + '/delete',
+            type: 'DELETE',
+            success: function () {
+                successNoty('Deleted');
+            }
+        });
+    }
+
+    /**
+     * Методы работы с JQuery Noty уведомлениями
+     * @param text
+     */
+    //todo Вынести в общий js скрипт
+    function successNoty(text) {
+        noty({
+            text: text,
+            type: 'success',
+            layout: 'bottomRight',
+            timeout: true
+        });
+    }
+
+    function failNoty(event, jqXHR, options, jsExc) {
+        var errorInfo = $.parseJSON(jqXHR.responseText);
+        failedNote = noty({
+            text: 'Failed: ' + jqXHR.statusText + "<br>" + errorInfo.cause + "<br>" + errorInfo.detail,
+            type: 'error',
+            layout: 'bottomRight'
+        });
+
+        $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+            failNoty(event, jqXHR, options, jsExc);
+        });
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    }
+
 </script>
+
 <style scoped>
     .table-hover tbody tr:hover td {
         background-color: #54535c;
         color: white;
+    }
+
+    .table-hover tbody tr:hover td a {
+        color: white;
+        cursor: pointer;
     }
 </style>
 </body>
