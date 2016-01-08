@@ -88,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><span></span></h3>
+                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-list-alt"></i> <span></span></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"

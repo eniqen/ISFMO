@@ -41,7 +41,7 @@
                             <td>${client.lastname}</td>
                             <td>${client.birthday}</td>
                             <td>${client.address}</td>
-                            <td><a>${client.email}</a></td>
+                            <td><a href="mailto:${client.email}">${client.email}</a></td>
                             <td>${client.passport}</td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${client.id})"><i
@@ -70,7 +70,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-user"></i></h3>
+                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-user"></i> <span></span></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"

@@ -40,9 +40,7 @@
                         <tr>
                             <td>${number.id}</td>
                             <td>${number.number}</td>
-                            <td class="text-right"><a id="edit" class="btn btn-success btn-xs pull"
-                                                      onclick="updateRow(${number.id})"><s:message
-                                    code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
+                            <td class="text-right">
                                 <a id="delete" class="btn btn-danger btn-xs"
                                    onclick="deleteRow(${number.id})"><s:message
                                         code="messages.delete"/><i
