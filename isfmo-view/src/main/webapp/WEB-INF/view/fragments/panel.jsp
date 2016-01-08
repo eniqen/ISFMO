@@ -45,13 +45,13 @@
         </label>
     </div>
     <ul id="left-panel" class="nav nav-sidebar">
-        <li><a href="<c:url value="/cabinet"/>">Главная</a></li>
+        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i>  Главная</a></li>
         <sec:authorize access="hasRole('ROLE_OPERATOR')">
-            <li><a href="<c:url value="/clients"/>"><s:message code="messages.clients"/></a></li>
-            <li><a href="<c:url value="/contracts"/>"><s:message code="messages.contracts"/></a></li>
-            <li class="active"><a href="<c:url value="/tariffs"/>"><s:message code="messages.tariffs"/></a></li>
-            <li><a href="<c:url value="/options"/>"><s:message code="messages.options"/></a></li>
-            <li><a href="<c:url value="/numbers"/>"><s:message code="messages.numbers"/></a></li>
+            <li><a href="<c:url value="/clients"/>"><i class="glyphicon glyphicon-user"></i>  <s:message code="messages.clients"/></a></li>
+            <li><a href="<c:url value="/contracts"/>"><i class="glyphicon glyphicon-briefcase"></i>  <s:message code="messages.contracts"/></a></li>
+            <li class="active"><a href="<c:url value="/tariffs"/>"><i class="glyphicon glyphicon-list-alt"></i>  <s:message code="messages.tariffs"/></a></li>
+            <li><a href="<c:url value="/options"/>"><i class="glyphicon glyphicon-list"></i>  <s:message code="messages.options"/></a></li>
+            <li><a href="<c:url value="/numbers"/>"><i class="glyphicon glyphicon-phone"></i>  <s:message code="messages.numbers"/></a></li>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_USER')">
             <li><a href="<c:url value="/user_contracts"/>">Контракты юзера</a></li>
@@ -196,11 +196,15 @@
 
     .nav-sidebar > li > a {
         padding-right: 20px;
-        padding-left: 20px;
+        padding-left: 30px;
+        font-size: 18px;
+        font-family: Consolas, monospace;
+        font-weight: bold;
+        line-height: 0.5;
     }
 
     #left-panel li:hover a {
-        background-color: #3a434d;
+        background-color: #999;
         color: white;
     }
 
