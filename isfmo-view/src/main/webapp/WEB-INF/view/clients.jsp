@@ -15,7 +15,7 @@
         <jsp:include page="fragments/panel.jsp"/>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="page-header">Список клиентов</h2>
+            <h2 class="page-header"><s:message code="messages.client.list"/></h2>
 
             <div class="table-responsive">
                 <table id="table" class="table table-striped table-condensed table-hover">
@@ -29,12 +29,13 @@
                         <th><s:message code="messages.passport"/></th>
                         <th>
                             <button id="add" class="modal-title btn btn-info btn-xs pull-right"><i
-                                    class="glyphicon glyphicon-plus"></i> Создать
+                                    class="glyphicon glyphicon-plus"></i> <s:message code="messages.create"/>
                             </button>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%--@elvariable id="clients" type="java.util.List"--%>
                     <c:forEach var="client" items="${clients}">
                         <tr>
                             <td>${client.firstname}</td>

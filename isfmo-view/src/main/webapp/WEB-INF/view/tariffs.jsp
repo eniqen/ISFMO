@@ -21,7 +21,7 @@
     <div class="row">
         <jsp:include page="fragments/panel.jsp"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="page-header">Список тарифов</h2>
+            <h2 class="page-header"><s:message code="messages.tariff.list"/></h2>
 
             <div class="table-responsive">
                 <table id="table" class="table table-striped table-condensed table-hover">
@@ -33,7 +33,7 @@
                         <th>OPTIONS</th>
                         <th>
                             <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
-                                    class="glyphicon glyphicon-plus"></i>Создать
+                                    class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
                             </button>
                         </th>
                     </tr>
@@ -106,11 +106,11 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.tariff.title"/>:</label>
+                            <s:message code="messages.tariff.price"/>:</label>
 
                         <div class="col-sm-10">
                             <input name="price" type="text" class="form-control input-sm" id="price"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
+                                   placeholder="<s:message code="messages.input.price"/>">
                         </div>
                     </div>
                     <div class="form-group">

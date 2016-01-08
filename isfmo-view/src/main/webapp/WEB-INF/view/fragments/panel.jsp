@@ -39,13 +39,13 @@
                     <sec:authentication property="principal.username"/>
                 </sec:authorize><b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li id="profileEdit"><a>Редактировать</a></li>
-                <li><a href="<c:url value="/logout"/>">Выйти</a></li>
+                <li id="profileEdit"><a><s:message code="messages.edit"/></a></li>
+                <li><a href="<c:url value="/logout"/>"><i class="glyphicon glyphicon-log-out"></i> <s:message code="messages.exit"/></a></li>
             </ul>
         </label>
     </div>
     <ul id="left-panel" class="nav nav-sidebar">
-        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i>  Главная</a></li>
+        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i>  <s:message code="messages.home"/></a></li>
         <sec:authorize access="hasRole('ROLE_OPERATOR')">
             <li><a href="<c:url value="/clients"/>"><i class="glyphicon glyphicon-user"></i>  <s:message code="messages.clients"/></a></li>
             <li><a href="<c:url value="/contracts"/>"><i class="glyphicon glyphicon-briefcase"></i>  <s:message code="messages.contracts"/></a></li>
@@ -69,7 +69,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i>Редактирование</h3>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message code="messages.edit"/></h3>
             </div>
             <div class="modal-body">
                
@@ -152,14 +152,6 @@
 <style scoped>
     body {
         padding-top: 50px;
-    }
-
-    /*
-     * Top navigation
-     * Hide default border to remove 1px line.
-     */
-    .navbar-fixed-top {
-        border: 0;
     }
 
     /*
