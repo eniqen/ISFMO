@@ -1,9 +1,12 @@
 package org.bitbucket.eniqen.model;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
@@ -19,23 +22,34 @@ import java.util.Date;
 @NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
 public class Client extends BaseEntity {
 
+    @Size(min=2, max=50)
+    @NotEmpty
     @Column(name = "FIRSTNAME", length = 50, nullable = false)
     private String firstname;
 
+    @Size(min=2, max=50)
+    @NotEmpty
     @Column(name = "LASTNAME", length = 50, nullable = false)
     private String lastname;
 
+    @NotNull
     @Column(name = "BIRTHDAY", nullable = true)
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
+    @Pattern(regexp="\\d{4}\\s\\d{6}")
+    @NotEmpty
     @Column(name = "PASSPORT", unique = true, nullable = false, length = 12)
     private String passport;
 
+    @NotEmpty
+    @Size(min=3, max=100)
     @Column(name = "ADDRESS", length = 100, nullable = false)
     private String address;
 
+    @Email
+    @NotEmpty
     @Column(name = "EMAIL", unique = true, length = 64, nullable = false)
     private String email;
 

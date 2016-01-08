@@ -11,6 +11,7 @@
     <artifactId>isfmo-logic</artifactId>
 
 
+
     <dependencies>
         <!-- Hibernate -->
         <dependency>
@@ -19,6 +20,12 @@
             <version>${hb.core}</version>
         </dependency>
 
+        <!-- HibernateValidator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hb.validator}</version>
+        </dependency>
         <!-- JPA -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>

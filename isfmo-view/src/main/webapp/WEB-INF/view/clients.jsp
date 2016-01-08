@@ -134,16 +134,6 @@
                                    placeholder="<s:message code="messages.input.email"/>">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm"
-                               for="password">
-                            <s:message code="messages.password"/>:</label>
-
-                        <div class="col-sm-10">
-                            <input name="password" type="text" class="form-control input-sm" id="password"
-                                   placeholder="<s:message code="messages.input.password"/>">
-                        </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="submit"
                                 class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
