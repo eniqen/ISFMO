@@ -1,9 +1,6 @@
 package org.bitbucket.eniqen.controller;
 
-import org.bitbucket.eniqen.service.ClientService;
-import org.bitbucket.eniqen.service.ContractService;
-import org.bitbucket.eniqen.service.OptionService;
-import org.bitbucket.eniqen.service.TariffService;
+import org.bitbucket.eniqen.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,13 +19,15 @@ public class RootController {
     private ContractService contractService;
     private TariffService tariffService;
     private OptionService optionService;
+    private PhoneNumberService phoneNumberService;
 
     @Autowired
-    public RootController(ClientService clientService, ContractService contractService, TariffService tariffService, OptionService optionService) {
+    public RootController(ClientService clientService, ContractService contractService, TariffService tariffService, OptionService optionService, PhoneNumberService phoneNumberService) {
         this.clientService = clientService;
         this.contractService = contractService;
         this.tariffService = tariffService;
         this.optionService = optionService;
+        this.phoneNumberService = phoneNumberService;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -66,8 +65,8 @@ public class RootController {
     }
 
     @RequestMapping(value = "/numbers", method = RequestMethod.GET)
-    public String numbers() {
-        return "numbers";
+    public ModelAndView numbers() {
+        return new ModelAndView("numbers", "numbers", this.phoneNumberService.getAll());
     }
 
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)

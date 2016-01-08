@@ -1,9 +1,8 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.PhoneNumberDAO;
+import org.bitbucket.eniqen.dao.PhoneNumberDao;
 import org.bitbucket.eniqen.model.PhoneNumber;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,17 +13,17 @@ import java.util.List;
  * Created by Mikhail on 29.11.2015.
  */
 @Repository
-public class PhoneNumberDAOImpl implements PhoneNumberDAO {
+public class PhoneNumberDaoImpl implements PhoneNumberDao {
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
 
-//    public PhoneNumberDAOImpl(EntityManager entityManager) {
+//    public PhoneNumberDaoImpl(EntityManager entityManager) {
 //        this.entityManager = entityManager;
 //    }
 
-    public PhoneNumberDAOImpl() {
+    public PhoneNumberDaoImpl() {
     }
 
     @Override
@@ -39,7 +38,7 @@ public class PhoneNumberDAOImpl implements PhoneNumberDAO {
 
     @Override
     public void delete(PhoneNumber model) {
-        entityManager.detach(model);
+        entityManager.remove(model);
     }
 
     @Override

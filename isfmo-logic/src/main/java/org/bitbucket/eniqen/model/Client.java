@@ -39,7 +39,7 @@ public class Client extends BaseEntity {
     @Column(name = "EMAIL", unique = true, length = 64, nullable = false)
     private String email;
 
-    @OneToOne(optional = false, mappedBy = "client")
+    @OneToOne(optional = true, mappedBy = "client")
     private User user;
 
     public User getUser() {

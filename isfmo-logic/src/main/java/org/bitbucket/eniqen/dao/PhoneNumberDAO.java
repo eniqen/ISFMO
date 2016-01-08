@@ -5,5 +5,5 @@ import org.bitbucket.eniqen.model.PhoneNumber;
 /**
  * Created by Mikhail on 29.11.2015.
  */
-public interface PhoneNumberDAO extends BaseDAO<PhoneNumber> {
+public interface PhoneNumberDao extends BaseDAO<PhoneNumber> {
 }

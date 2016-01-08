@@ -1,7 +1,6 @@
 package org.bitbucket.eniqen.service.impl;
 
-import org.bitbucket.eniqen.dao.PhoneNumberDAO;
-import org.bitbucket.eniqen.model.Option;
+import org.bitbucket.eniqen.dao.PhoneNumberDao;
 import org.bitbucket.eniqen.model.PhoneNumber;
 import org.bitbucket.eniqen.service.PhoneNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,31 +18,31 @@ import java.util.List;
 public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     @Autowired
-    private PhoneNumberDAO phoneNumberDAO;
+    private PhoneNumberDao phoneNumberDao;
 
     @Override
     public PhoneNumber getById(Long id) {
-        return this.phoneNumberDAO.getById(id);
+        return this.phoneNumberDao.getById(id);
     }
 
     @Override
     public void delete(PhoneNumber model) {
-        this.phoneNumberDAO.delete(model);
+        this.phoneNumberDao.delete(model);
     }
 
     @Override
     public void save(PhoneNumber model) {
-        this.phoneNumberDAO.save(model);
+        this.phoneNumberDao.save(model);
     }
 
     @Override
     public List<PhoneNumber> getAll() {
-        return this.phoneNumberDAO.getAll();
+        return this.phoneNumberDao.getAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        PhoneNumber phoneNumber = this.phoneNumberDAO.getById(id);
-        this.phoneNumberDAO.delete(phoneNumber);
+        PhoneNumber phoneNumber = this.phoneNumberDao.getById(id);
+        this.phoneNumberDao.delete(phoneNumber);
     }
 }

@@ -25,9 +25,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>TITLE</th>
-                        <th>PRICE</th>
-                        <th>CONNECTION PRICE</th>
+                        <th>NUMBER</th>
                         <th>
                             <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
                                     class="glyphicon glyphicon-plus"></i>Создать
@@ -36,18 +34,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--@elvariable id="tariffs" type="java.util.List<org.bitbucket.eniqen.model.Option>"--%>
-                    <c:forEach items="${options}" var="option">
+
+                    <%--@elvariable id="numbers" type="java.util.List"--%>
+                    <c:forEach items="${numbers}" var="number">
                         <tr>
-                            <td>${option.id}</td>
-                            <td>${option.title}</td>
-                            <td>${option.price}</td>
-                            <td>${option.connectionPrice}</td>
+                            <td>${number.id}</td>
+                            <td>${number.number}</td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs pull"
-                                                      onclick="updateRow(${tariff.id})"><s:message
+                                                      onclick="updateRow(${number.id})"><s:message
                                     code="messages.edit"/><i class="glyphicon glyphicon-pencil"></i></a>
                                 <a id="delete" class="btn btn-danger btn-xs"
-                                   onclick="deleteRow(${tariff.id})"><s:message
+                                   onclick="deleteRow(${number.id})"><s:message
                                         code="messages.delete"/><i
                                         class="glyphicon glyphicon-trash"></i></a>
                             </td>
