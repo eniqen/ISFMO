@@ -20,7 +20,7 @@
             <form enctype="multipart/form-data" method="post" name="fileinfo">
                 <label class="btn btn-file btn-info btn-sm browse-button">
                     <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                    <input type="file" name="file" required/>
+                    <input type="file" class="file" name="file" required/>
                 </label>
                 <button type="submit" class="btn btn-success btn-file btn-sm">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

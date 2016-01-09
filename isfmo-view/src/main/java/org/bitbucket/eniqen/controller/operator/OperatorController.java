@@ -1,10 +1,14 @@
 package org.bitbucket.eniqen.controller.operator;
 
+import org.bitbucket.eniqen.exception.ExceptionInfoHandler;
 import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ajax/clients")
-public class OperatorController {
+public class OperatorController extends ExceptionInfoHandler {
 
     @Autowired
     public ClientService clientService;
@@ -54,11 +58,16 @@ public class OperatorController {
      * @param client
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void save(Client client) {
-        if (client.getId() == 0) {
-            client.setId(null);
+    public void save(@Valid Client client, BindingResult result, SessionStatus status) {
+        if (result.hasErrors()) {
+            throw LOG.getValidationException(result);
+        } else {
+            status.setComplete();
+            if (client.getId() == 0) {
+                client.setId(null);
+            }
+            this.clientService.save(client);
         }
-        this.clientService.save(client);
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)

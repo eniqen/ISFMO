@@ -19,5 +19,5 @@ public interface BaseDAO<T extends Serializable> {
 
     void delete(T model);
 
-    void save(T model);
+    T save(T model);
 }

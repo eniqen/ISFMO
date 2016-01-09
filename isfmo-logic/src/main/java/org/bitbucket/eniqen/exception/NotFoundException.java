@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller.exception;
+package org.bitbucket.eniqen.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

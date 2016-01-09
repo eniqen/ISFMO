@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller.exception;
+package org.bitbucket.eniqen.exception;
 
 /**
  * Created by Mikhail on 30.12.2015.

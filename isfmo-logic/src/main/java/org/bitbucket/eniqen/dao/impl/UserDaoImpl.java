@@ -35,12 +35,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void save(User model) {
-        entityManager.merge(model);
+    public User save(User model) {
+        return this.entityManager.merge(model);
     }
 
     @Override
     public User findUserByUsername(String username) {
-        return (User)entityManager.createNamedQuery("findUserByUsername").setParameter(1, username).getSingleResult();
+        return (User) entityManager.createNamedQuery("findUserByUsername").setParameter(1, username).getSingleResult();
     }
 }

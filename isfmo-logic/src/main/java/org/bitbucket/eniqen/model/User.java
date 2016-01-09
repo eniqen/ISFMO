@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +23,8 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "USERNAME")
     private String username;
 
+    @NotNull
+    @Size(min = 5, max = 64, message = " must between 5 and 64 characters")
     @Column(name = "PASSWORD")
     private String password;
 

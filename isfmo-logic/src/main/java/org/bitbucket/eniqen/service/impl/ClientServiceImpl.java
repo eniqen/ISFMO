@@ -1,6 +1,7 @@
 package org.bitbucket.eniqen.service.impl;
 
 import org.bitbucket.eniqen.dao.ClientDAO;
+import org.bitbucket.eniqen.exception.ExceptionUtil;
 import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
 import org.bitbucket.eniqen.service.ClientService;
@@ -28,17 +29,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client findByEmail(String email) {
-        return this.clientDAO.findByEmail(email);
+        return ExceptionUtil.check(this.clientDAO.findByEmail(email), "email=" + email);
     }
 
     @Override
     public Client findByNumber(String number) {
-        return this.clientDAO.findByNumber(number);
+        return ExceptionUtil.check(this.clientDAO.findByNumber(number), "number=" + number);
     }
 
     @Override
     public Client getById(Long id) {
-        return this.clientDAO.getById(id);
+        return ExceptionUtil.check(this.clientDAO.getById(id), id);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void save(Client model) {
-        this.clientDAO.save(model);
+        ExceptionUtil.check(this.clientDAO.save(model), model.toString());
     }
 
     @Override

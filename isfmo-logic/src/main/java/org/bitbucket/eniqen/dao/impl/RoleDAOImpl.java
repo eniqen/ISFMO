@@ -42,7 +42,7 @@ public class RoleDAOImpl implements UserRoleDao {
     }
 
     @Override
-    public void save(UserRole model) {
-        this.entityManager.merge(model);
+    public UserRole save(UserRole model) {
+        return this.entityManager.merge(model);
     }
 }

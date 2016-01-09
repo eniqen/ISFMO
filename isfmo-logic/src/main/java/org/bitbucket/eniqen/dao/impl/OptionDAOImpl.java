@@ -44,7 +44,7 @@ public class OptionDAOImpl implements OptionDAO {
 
 
     @Override
-    public void save(Option model) {
-        this.entityManager.merge(model);
+    public Option save(Option model) {
+       return this.entityManager.merge(model);
     }
 }

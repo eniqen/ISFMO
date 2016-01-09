@@ -42,7 +42,7 @@ public class TariffDAOImpl implements TariffDAO {
     }
 
     @Override
-    public void save(Tariff model) {
-        this.entityManager.merge(model);
+    public Tariff save(Tariff model) {
+        return this.entityManager.merge(model);
     }
 }

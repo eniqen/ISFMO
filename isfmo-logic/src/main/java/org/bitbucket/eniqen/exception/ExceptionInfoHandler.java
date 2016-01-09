@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller.exception;
+package org.bitbucket.eniqen.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

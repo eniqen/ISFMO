@@ -47,6 +47,7 @@
         <csrf disabled="true"/>
         <!-- enable remember me -->
         <remember-me
+                key="mobile"
                 user-service-ref="userServiceImpl"
                 token-validity-seconds="1209600"
                 remember-me-parameter="remember-me"/>

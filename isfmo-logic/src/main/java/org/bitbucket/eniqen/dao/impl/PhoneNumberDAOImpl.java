@@ -42,7 +42,7 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao {
     }
 
     @Override
-    public void save(PhoneNumber model) {
-        entityManager.merge(model);
+    public PhoneNumber save(PhoneNumber model) {
+       return this.entityManager.merge(model);
     }
 }

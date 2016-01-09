@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller.exception;
+package org.bitbucket.eniqen.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

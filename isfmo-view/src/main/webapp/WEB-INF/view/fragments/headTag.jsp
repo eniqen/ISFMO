@@ -13,17 +13,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src='/webjarslocator/jquery/jquery.min.js'></script>
+
     <script src='/webjarslocator/jquery-ui/jquery-ui.js'></script>
     <link rel='stylesheet' href='/webjarslocator/jquery-ui/jquery-ui.css'>
+
     <link rel='stylesheet' href='/webjarslocator/bootstrap/css/bootstrap.min.css'>
     <script src='/webjarslocator/bootstrap/js/bootstrap.min.js'></script>
+
     <script src='/webjarslocator/bootstrap-multiselect/js/bootstrap-multiselect.js'></script>
     <link rel='stylesheet' href='/webjarslocator/bootstrap-multiselect/css/bootstrap-multiselect.css'>
-    <script src='https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js'></script>
-    <script src='  https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js'></script>
-    <link rel='stylesheet' href='   https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css'>
+
+    <link rel='stylesheet' href='/webjarslocator/datatables/css/jquery.dataTables.min.css'>
+    <script src="/webjarslocator/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/webjarslocator/datatables/js/dataTables.bootstrap.min.js"></script>
+
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
-    <script src="/webjarslocator/bootstrap-contextmenu/0.3.3/bootstrap-contextmenu.js"></script>
+    <script src="/webjarslocator/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>
 <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>

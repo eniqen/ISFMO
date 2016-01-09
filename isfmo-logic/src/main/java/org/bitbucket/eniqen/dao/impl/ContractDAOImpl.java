@@ -39,13 +39,14 @@ public class ContractDAOImpl implements ContractDAO {
     }
 
     @Override
-    public void save(Contract model) {
-        this.entityManager.merge(model);
+    public Contract save(Contract model) {
+        return this.entityManager.merge(model);
     }
 
     @Override
     public Contract findContractByNumber(String number) {
-        Query query = this.entityManager.createQuery("select c from Client c where c.number =:number");
-        return (Contract) query.setParameter("number", number).getSingleResult();
+//        Query query = this.entityManager.createQuery("select c from Client c where c.number =:number");
+//        return (Contract) query.setParameter("number", number).getSingleResult();
+        return null;
     }
 }

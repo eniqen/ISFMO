@@ -2,6 +2,7 @@ package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ClientDAO;
 import org.bitbucket.eniqen.model.Client;
+import org.bitbucket.eniqen.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -43,8 +44,8 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public void save(Client model) {
-        this.entityManager.merge(model);
+    public Client save(Client model) {
+       return this.entityManager.merge(model);
     }
 
     @Override
