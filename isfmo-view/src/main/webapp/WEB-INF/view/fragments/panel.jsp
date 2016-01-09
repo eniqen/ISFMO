@@ -13,23 +13,20 @@
 <%--<link type="text/css" rel="stylesheet" href="/resources/css/panel.css"/>--%>
 <div class="col-sm-3 col-md-2 sidebar">
     <div class="row pg-empty-placeholder text-center">
+
         <div>
             <img id="image" src="" alt="" class="img-circle text-center"
                  height="100"><br>
-
-            <form enctype="multipart/form-data" method="post" name="fileinfo">
                 <label class="btn btn-file btn-info btn-sm browse-button">
                     <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                    <input type="file" class="file" name="file" required/>
+                    <input type="file" class="file" name="file" id="fileLoader" required/>
                 </label>
-                <button type="submit" class="btn btn-success btn-file btn-sm">
+                <button id="fileSubmit" value="Upload" type="submit" class="btn btn-success btn-file btn-sm">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
                 <label id="deleteImage" class="btn btn-danger btn-file btn-sm">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </label>
-            </form>
-
         </div>
 
         <label style="margin-top: 10px" class="dropdown page-header col-sm-12">
@@ -110,41 +107,32 @@
         $('#profileModal').modal('show');
     });
 
-    //        $("#uploadButton").on("click", function () {
-    //            var form = document.forms.namedItem("fileinfo");
-    //            var formData = new FormData(form);
-    //            formData.append("CustomField", "This is some extra data");
-    //            $.ajax({
-    //                url: '/ajax/user/image',
-    //                data: formData,
-    //                dataType: 'text',
-    //                processData: false,
-    //                contentType: false,
-    //                type: 'POST',
-    //                success: function (response) {
-    //                    alert("success");
-    //                },
-    //                error: function () {
-    //                    alert("unable to create the record");
-    //                }
-    //            });
-    //        });
+    var files = [];
+    $(document).on("change", "#fileLoader", function (event) {
+        files = event.target.files;
+    });
 
+    $(document).on("click", "#fileSubmit", function () {
+        processUpload();
+    });
 
-    var form = document.forms.namedItem("fileinfo");
-    form.addEventListener('submit', function (ev) {
-        oData = new FormData(form);
-
-        var oReq = new XMLHttpRequest();
-        oReq.open("POST", '/ajax/user/image', true);
-        oReq.onload = function (oEvent) {
-            if (oReq.status == 200) {
+    function processUpload() {
+        var oMyForm = new FormData();
+        oMyForm.append("file", files[0]);
+        $.ajax({
+            dataType: 'text',
+            url: '/ajax/user/image',
+            data: oMyForm,
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            success: function (response) {
                 getImage();
             }
-        };
-        oReq.send(oData);
-        ev.preventDefault();
-    }, false);
+        });
+    }
+
 
     function successNoty(text) {
         noty({
@@ -239,6 +227,5 @@
         top: 0px;
         cursor: pointer;
         opacity: 0;
-        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
     }
 </style>

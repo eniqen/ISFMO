@@ -210,15 +210,11 @@
             contentType: "application/json",
             url: ajaxUrl + 'add',
             data: JSON.stringify(sendRequest),
-            dataType: 'json',
+            dataType: 'text',
             timeout: 100000,
             success: function (data) {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
-            },
-            error: function (e) {
-                $('#editRow').modal('hide');
-                successNoty('Сохранено ошибка?');
             }
         });
     }

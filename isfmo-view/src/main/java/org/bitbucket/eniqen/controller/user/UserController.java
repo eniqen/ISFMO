@@ -1,5 +1,6 @@
 package org.bitbucket.eniqen.controller.user;
 
+import org.bitbucket.eniqen.exception.ExceptionInfoHandler;
 import org.bitbucket.eniqen.model.User;
 import org.bitbucket.eniqen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.Base64;
 
 @RestController
 @RequestMapping("/ajax/user")
-public class UserController {
+public class UserController extends ExceptionInfoHandler{
 
     @Autowired
     private UserService userService;
