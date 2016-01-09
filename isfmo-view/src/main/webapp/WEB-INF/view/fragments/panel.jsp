@@ -76,11 +76,12 @@
 </div>
 <!-- Конец модального окна-->
 
-<script itemscope="we">
+<script>
     $(document).ready(function () {
         getImage();
     });
 
+    <!-- Получение аватара -->
     function getImage() {
         $.ajax({
             type: "GET",
@@ -93,6 +94,8 @@
             }
         });
     }
+
+    <!-- Удаление аватара -->
     $('#deleteImage').click(function () {
         $.ajax({
             type: "DELETE",
@@ -103,10 +106,12 @@
         });
     });
 
+    <!-- Модальное окно редактирования юзера-->
     $('#profileEdit').click(function () {
         $('#profileModal').modal('show');
     });
 
+    <!-- Загрузка аватара -->
     var files = [];
     $(document).on("change", "#fileLoader", function (event) {
         files = event.target.files;
@@ -133,7 +138,7 @@
         });
     }
 
-
+    <!-- Ноти -->
     function successNoty(text) {
         noty({
             text: text,
