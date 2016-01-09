@@ -108,13 +108,6 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
             <version>${webjars-locator.version}</version>
@@ -143,13 +136,6 @@
             <groupId>org.webjars</groupId>
             <artifactId>noty</artifactId>
             <version>${webjars-noty.version}</version>
-        </dependency>
-
-        <!-- HibernateValidator -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hb.validator}</version>
         </dependency>
 
         <!-- Apache Commons Upload -->

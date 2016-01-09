@@ -20,12 +20,6 @@
             <version>${hb.core}</version>
         </dependency>
 
-        <!-- HibernateValidator -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hb.validator}</version>
-        </dependency>
         <!-- JPA -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -74,14 +68,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.2.3.RELEASE</version>
         </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet}</version>
-            <scope>provided</scope>
-        </dependency>
-
 
         <!-- JSON для @JsonIgnore-->
         <dependency>
