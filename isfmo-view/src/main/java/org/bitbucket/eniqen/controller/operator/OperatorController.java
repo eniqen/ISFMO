@@ -17,8 +17,10 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-@RequestMapping("/ajax/clients")
+@RequestMapping(OperatorController.REST_URL)
 public class OperatorController extends ExceptionInfoHandler {
+
+    public static final String REST_URL = "/ajax/clients";
 
     @Autowired
     public ClientService clientService;

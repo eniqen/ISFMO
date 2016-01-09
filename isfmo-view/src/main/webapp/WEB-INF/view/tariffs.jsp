@@ -257,40 +257,6 @@
             }
         });
     }
-
-    /**
-     * Методы работы с JQuery Noty уведомлениями
-     * @param text
-     */
-    //todo Вынести в общий js скрипт
-    function successNoty(text) {
-        noty({
-            text: text,
-            type: 'success',
-            layout: 'bottomRight',
-            timeout: true
-        });
-    }
-
-    function failNoty(event, jqXHR, options, jsExc) {
-        var errorInfo = $.parseJSON(jqXHR.responseText);
-        failedNote = noty({
-            text: 'Failed: ' + jqXHR.statusText + "<br>" + errorInfo.cause + "<br>" + errorInfo.detail,
-            type: 'error',
-            layout: 'bottomRight'
-        });
-
-        $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-            failNoty(event, jqXHR, options, jsExc);
-        });
-
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-        $(document).ajaxSend(function (e, xhr, options) {
-            xhr.setRequestHeader(header, token);
-        });
-    }
-
 </script>
 
 <style scoped>

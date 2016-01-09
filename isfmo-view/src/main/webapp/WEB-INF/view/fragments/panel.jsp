@@ -79,8 +79,7 @@
 </div>
 <!-- Конец модального окна-->
 
-
-<script>
+<script itemscope="we">
     $(document).ready(function () {
         getImage();
     });
@@ -147,13 +146,36 @@
         ev.preventDefault();
     }, false);
 
+    function successNoty(text) {
+        noty({
+            text: text,
+            type: 'success',
+            layout: 'bottomRight',
+            timeout: true
+        });
+    }
 
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(event, jqXHR, options, jsExc);
+    });
+
+    function failNoty(event, jqXHR, options, jsExc) {
+        var errorInfo = $.parseJSON(jqXHR.responseText);
+        failedNote = noty({
+            text: 'Failed: ' + jqXHR.statusText + "<br>" + errorInfo.cause + "<br>" + errorInfo.detail,
+            type: 'error',
+            layout: 'bottomRight'
+        });
+    }
 </script>
 <style scoped>
     body {
         padding-top: 50px;
     }
 
+    .table-responsive{
+    overflow-x: hidden;
+    }
     /*
      * Sidebar
      */
