@@ -33,7 +33,7 @@ public class Client extends BaseEntity {
     private String lastname;
 
     @NotNull
-    @Column(name = "BIRTHDAY", nullable = true)
+    @Column(name = "BIRTHDAY", nullable = false)
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;

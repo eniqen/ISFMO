@@ -1,13 +1,14 @@
 package org.bitbucket.eniqen.controller.option;
 
+import org.bitbucket.eniqen.exception.ExceptionInfoHandler;
 import org.bitbucket.eniqen.model.Option;
 import org.bitbucket.eniqen.service.OptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -15,14 +16,21 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/ajax/options")
-public class OptionController {
+@RequestMapping(OptionController.REST_URL)
+public class OptionController extends ExceptionInfoHandler {
+
+    public static final String REST_URL = "/ajax/options";
 
     @Autowired
     private OptionService optionService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void update(Option option) {
+    public void save(@Valid @RequestBody Option option, BindingResult result, SessionStatus status) {
+        if (result.hasErrors()) {
+            throw LOG.getValidationException(result);
+        }
+
+        status.setComplete();
         if (option.getId() == 0) {
             option.setId(null);
         }
@@ -30,8 +38,17 @@ public class OptionController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
     public List<Option> getAll() {
         return this.optionService.getAll();
+    }
+
+    @RequestMapping(value = "/{id}/edit")
+    public Option getTariffById(@PathVariable long id) {
+        return optionService.getById(id);
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") long id) {
+        this.optionService.deleteById(id);
     }
 }

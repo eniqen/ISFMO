@@ -120,7 +120,7 @@
                             <s:message code="messages.option.connectionprice"/>:</label>
 
                         <div class="col-sm-10">
-                            <input name="connectionprice" type="text" class="form-control input-sm" id="connectionprice"
+                            <input name="connectionPrice" type="text" class="form-control input-sm" id="connectionPrice"
                                    placeholder="<s:message code="messages.input.price"/>">
                         </div>
                     </div>
@@ -208,11 +208,12 @@
             id: $('#id').val(),
             title: $('#title').val(),
             price: $('#price').val(),
-            options: []
+            connectionPrice: $('#connectionPrice').val(),
+            compatibleOptions: []
         };
 
         for (var i = 0; i < options.length; i++) {
-            sendRequest.options.push({
+            sendRequest.compatibleOptions.push({
                 id: options[i]
             });
         }
@@ -222,15 +223,11 @@
             contentType: "application/json",
             url: ajaxUrl + 'add',
             data: JSON.stringify(sendRequest),
-            dataType: 'json',
+            dataType: 'text',
             timeout: 100000,
             success: function (data) {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
-            },
-            error: function (e) {
-                $('#editRow').modal('hide');
-                successNoty('Сохранено ошибка?');
             }
         });
     }

@@ -55,9 +55,59 @@
     </div>
 </div>
 
+<!--Подвал сайта-->
+<jsp:include page="fragments/footer.jsp"/>
+
+<!-- Modal -->
+<div id="editRow" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-user"></i> <span></span></h3>
+            </div>
+            <div class="modal-body">
+                <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
+                           id="detailsForm">
+                    <input name="id" hidden="hidden" type="text" id="id">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm" for="firstname">
+                            <s:message code="messages.firstname"/>:</label>
+
+                        <div class="col-sm-10">
+                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                                   placeholder="<s:message code="messages.input.firstname"/>">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
+                                code="messages.save"/>
+                        </button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Конец модального окна-->
+
 <script>
+    var form = $('#detailsForm');
+    var table = $('#table');
+
     $(document).ready(function () {
         $('#table').DataTable();
+    });
+
+    $('#add').click(function () {
+        form.find(":input").each(function () {
+            $(this).val("");
+        });
+        $('#id').val(0);
+        $('#modal_title').find('span').text('<s:message code="messages.client_create"/>');
+        $('#editRow').modal('show');
     });
 </script>
 </body>

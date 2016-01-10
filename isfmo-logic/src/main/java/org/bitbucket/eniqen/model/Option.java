@@ -1,8 +1,12 @@
 package org.bitbucket.eniqen.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 /**
@@ -17,16 +21,20 @@ import java.util.Set;
 @NamedQuery(name = "Option.getAll", query = "SELECT o FROM Option o")
 public class Option extends BaseEntity {
 
+    @Size(min = 5, max = 100)
     @Column(name = "TITLE", length = 100, nullable = false)
     private String title;
 
+    @Digits(integer = 6, fraction = 2)
+    @NotNull
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
+    @Digits(integer = 6, fraction = 2)
+    @NotNull
     @Column(name = "CONNECTION_PRICE", nullable = false)
     private Double connectionPrice;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "COMPATIBLE_OPTIONS_TBL",
             joinColumns = @JoinColumn(name = "OPTION_ID"),
