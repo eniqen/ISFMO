@@ -17,16 +17,16 @@
         <div>
             <img id="image" src="" alt="" class="img-circle text-center"
                  height="100"><br>
-                <label class="btn btn-file btn-info btn-sm browse-button">
-                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                    <input type="file" class="file" name="file" id="fileLoader" required/>
-                </label>
-                <button id="fileSubmit" value="Upload" type="submit" class="btn btn-success btn-file btn-sm">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                </button>
-                <label id="deleteImage" class="btn btn-danger btn-file btn-sm">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </label>
+            <label class="btn btn-file btn-info btn-sm browse-button">
+                <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                <input type="file" class="file" name="file" id="fileLoader" required/>
+            </label>
+            <button id="fileSubmit" value="Upload" type="submit" class="btn btn-success btn-file btn-sm">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+            <label id="deleteImage" class="btn btn-danger btn-file btn-sm">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </label>
         </div>
 
         <label style="margin-top: 10px" class="dropdown page-header col-sm-12">
@@ -37,18 +37,25 @@
                 </sec:authorize><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li id="profileEdit"><a><s:message code="messages.edit"/></a></li>
-                <li><a href="<c:url value="/logout"/>"><i class="glyphicon glyphicon-log-out"></i> <s:message code="messages.exit"/></a></li>
+                <li><a href="<c:url value="/logout"/>"><i class="glyphicon glyphicon-log-out"></i> <s:message
+                        code="messages.exit"/></a></li>
             </ul>
         </label>
     </div>
     <ul id="left-panel" class="nav nav-sidebar">
-        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i>  <s:message code="messages.home"/></a></li>
+        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i> <s:message
+                code="messages.home"/></a></li>
         <sec:authorize access="hasRole('ROLE_OPERATOR')">
-            <li><a href="<c:url value="/clients"/>"><i class="glyphicon glyphicon-user"></i>  <s:message code="messages.clients"/></a></li>
-            <li><a href="<c:url value="/contracts"/>"><i class="glyphicon glyphicon-briefcase"></i>  <s:message code="messages.contracts"/></a></li>
-            <li class="active"><a href="<c:url value="/tariffs"/>"><i class="glyphicon glyphicon-list-alt"></i>  <s:message code="messages.tariffs"/></a></li>
-            <li><a href="<c:url value="/options"/>"><i class="glyphicon glyphicon-list"></i>  <s:message code="messages.options"/></a></li>
-            <li><a href="<c:url value="/numbers"/>"><i class="glyphicon glyphicon-phone"></i>  <s:message code="messages.numbers"/></a></li>
+            <li><a href="<c:url value="/clients"/>"><i class="glyphicon glyphicon-user"></i> <s:message
+                    code="messages.clients"/></a></li>
+            <li><a href="<c:url value="/contracts"/>"><i class="glyphicon glyphicon-briefcase"></i> <s:message
+                    code="messages.contracts"/></a></li>
+            <li class="active"><a href="<c:url value="/tariffs"/>"><i class="glyphicon glyphicon-list-alt"></i>
+                <s:message code="messages.tariffs"/></a></li>
+            <li><a href="<c:url value="/options"/>"><i class="glyphicon glyphicon-list"></i> <s:message
+                    code="messages.options"/></a></li>
+            <li><a href="<c:url value="/numbers"/>"><i class="glyphicon glyphicon-phone"></i> <s:message
+                    code="messages.numbers"/></a></li>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_USER')">
             <li><a href="<c:url value="/user_contracts"/>">Контракты юзера</a></li>
@@ -66,10 +73,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message code="messages.edit"/></h3>
+                <h3 class="modal-title"><i class="glyphicon glyphicon-list-alt"></i><s:message code="messages.edit"/>
+                </h3>
             </div>
             <div class="modal-body">
-               
+
             </div>
         </div>
     </div>
@@ -124,18 +132,22 @@
     function processUpload() {
         var oMyForm = new FormData();
         oMyForm.append("file", files[0]);
-        $.ajax({
-            dataType: 'text',
-            url: '/ajax/user/image',
-            data: oMyForm,
-            type: 'POST',
-            enctype: 'multipart/form-data',
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                getImage();
-            }
-        });
+        if ($('#fileLoader').val() != '') {
+            $.ajax({
+                dataType: 'text',
+                url: '/ajax/user/image',
+                data: oMyForm,
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    getImage();
+                }
+            });
+        } else {
+            successNoty("Выберите файл для загрузки")
+        }
     }
 
     <!-- Ноти -->
@@ -166,9 +178,10 @@
         padding-top: 50px;
     }
 
-    .table-responsive{
-    overflow-x: hidden;
+    .table-responsive {
+        overflow-x: hidden;
     }
+
     /*
      * Sidebar
      */
@@ -232,5 +245,6 @@
         top: 0px;
         cursor: pointer;
         opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
     }
 </style>
