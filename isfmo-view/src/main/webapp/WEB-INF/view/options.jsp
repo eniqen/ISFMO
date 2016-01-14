@@ -21,7 +21,14 @@
     <div class="row">
         <jsp:include page="fragments/panel.jsp"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="page-header"><s:message code="messages.option.list"/></h2>
+            <div>
+                <h2><s:message code="messages.option.list"/>
+                    <button style="float: right" id="add" class="modal-title btn btn-sm btn-info"><i
+                            class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
+                    </button>
+                </h2>
+            </div>
+            <hr>
 
             <div class="table-responsive">
                 <table id="table" class="table table-striped table-condensed table-hover">
@@ -32,11 +39,7 @@
                         <th>PRICE</th>
                         <th>CONNECTION PRICE</th>
                         <th>COMPARABLE OPTIONS</th>
-                        <th>
-                            <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
-                                    class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
-                            </button>
-                        </th>
+                        <th>ACTIONS</th>
                     </tr>
                     </thead>
                     <tbody>

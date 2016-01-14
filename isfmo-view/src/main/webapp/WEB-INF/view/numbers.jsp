@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mikhail
@@ -12,43 +13,45 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
+<c:set var="ajaxUrl" value="/ajax/numbers/"/>
 
 <div class="container-fluid">
     <div class="row">
         <jsp:include page="fragments/panel.jsp"/>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="page-header"><s:message code="messages.number.list"/></h2>
-
+            <div>
+                <h2><s:message code="messages.number.list"/>
+                    <button style="float: right" id="add" class="modal-title btn btn-sm btn-info"><i
+                            class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
+                    </button>
+                </h2>
+            </div>
+            <hr>
             <div class="table-responsive">
                 <table id="table" class="table table-striped table-condensed table-hover">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>NUMBER</th>
-                        <th>
-                            <button id="add" class="modal-title btn btn-xs btn-info pull-right"><i
-                                    class="glyphicon glyphicon-plus"></i><s:message code="messages.create"/>
-                            </button>
-                        </th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <%--<tbody>--%>
 
-                    <%--@elvariable id="numbers" type="java.util.List"--%>
-                    <c:forEach items="${numbers}" var="number">
-                        <tr>
-                            <td>${number.id}</td>
-                            <td>${number.number}</td>
-                            <td class="text-right">
-                                <a id="delete" class="btn btn-danger btn-xs"
-                                   onclick="deleteRow(${number.id})"><s:message
-                                        code="messages.delete"/><i
-                                        class="glyphicon glyphicon-trash"></i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
+                    <%--&lt;%&ndash;@elvariable id="numbers" type="java.util.List"&ndash;%&gt;--%>
+                    <%--<c:forEach items="${numbers}" var="number">--%>
+                    <%--<tr>--%>
+                    <%--<td id="id">${number.id}</td>--%>
+                    <%--<td id="number">${number.number}</td>--%>
+                    <%--<td class="text-right">--%>
+                    <%--<a id="delete" class="btn btn-danger btn-xs"--%>
+                    <%--onclick="deleteRow(${number.id})"><s:message--%>
+                    <%--code="messages.delete"/><i--%>
+                    <%--class="glyphicon glyphicon-trash"></i></a>--%>
+                    <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--</c:forEach>--%>
+                    <%--</tbody>--%>
                 </table>
             </div>
         </div>
@@ -70,13 +73,14 @@
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
                            id="detailsForm">
-                    <input name="id" hidden="hidden" type="text" id="id">
+                    <input name="id" hidden="hidden" type="text" class="id">
+
                     <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm" for="firstname">
+                        <label class="control-label col-sm-2 input-sm" for="number">
                             <s:message code="messages.firstname"/>:</label>
 
                         <div class="col-sm-10">
-                            <input name="firstname" type="text" class="form-control input-sm" id="firstname"
+                            <input name="number" type="text" class="form-control input-sm" id="number"
                                    placeholder="<s:message code="messages.input.firstname"/>">
                         </div>
                     </div>
@@ -94,21 +98,55 @@
 <!-- Конец модального окна-->
 
 <script>
+    var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
     var table = $('#table');
 
     $(document).ready(function () {
-        $('#table').DataTable();
+        $('#table').DataTable({
+            'ajax': {
+                "type": "GET",
+                "url": ajaxUrl,
+                "data": function (d) {
+                    d.id = $('#id').val();
+                    d.number = $('#number').val();
+                },
+                "dataSrc": ""
+            },
+            'columns': [
+                {"data": "id"},
+                {"data": "number"}
+            ]
+        });
     });
 
     $('#add').click(function () {
         form.find(":input").each(function () {
             $(this).val("");
         });
-        $('#id').val(0);
+        $('.id').val(0);
         $('#modal_title').find('span').text('<s:message code="messages.client_create"/>');
         $('#editRow').modal('show');
     });
+
+    form.submit(function () {
+        save();
+        return false;
+    });
+
+    function save() {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl + 'add',
+            data: form.serialize(),
+            success: function (data) {
+                $('#editRow').modal('hide');
+                table.ajax.reload();
+                successNoty('Сохранено');
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
