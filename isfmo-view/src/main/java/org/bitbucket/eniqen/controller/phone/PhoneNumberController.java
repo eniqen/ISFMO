@@ -4,6 +4,7 @@ import org.bitbucket.eniqen.exception.ExceptionInfoHandler;
 import org.bitbucket.eniqen.model.PhoneNumber;
 import org.bitbucket.eniqen.service.PhoneNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
@@ -29,7 +30,7 @@ public class PhoneNumberController extends ExceptionInfoHandler {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void save(@Valid @RequestBody PhoneNumber phoneNumber, BindingResult result, SessionStatus status) {
+    public void save(@Valid PhoneNumber phoneNumber, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             throw LOG.getValidationException(result);
         }

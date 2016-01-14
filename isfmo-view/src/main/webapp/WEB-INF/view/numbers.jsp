@@ -100,12 +100,13 @@
 <script>
     var ajaxUrl = '${ajaxUrl}';
     var form = $('#detailsForm');
-    var table = $('#table');
+    var table;
 
     $(document).ready(function () {
-        $('#table').DataTable({
+        table = $('#table').DataTable({
             'ajax': {
                 "type": "GET",
+                contentType: 'application/json',
                 "url": ajaxUrl,
                 "data": function (d) {
                     d.id = $('#id').val();
