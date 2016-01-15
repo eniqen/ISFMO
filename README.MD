@@ -4,6 +4,7 @@
 
 + authentication with 3 roles (ROLE_ADMIN / ROLE_USER / ROLE_OPERATOR) 
 + ajax loading of clients, tariffs, options, numbers, and contracts  
++ ajax create of clients, tariffs, options, numbers, and contracts  
 + ajax edit client, tariffs, options   
 + ajax delete client, tariffs, options   
 + upload and delete avatar   
