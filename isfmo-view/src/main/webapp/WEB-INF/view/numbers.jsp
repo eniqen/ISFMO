@@ -104,6 +104,8 @@
 
     $(document).ready(function () {
         table = $('#table').DataTable({
+            dom: 'B<"clear">lfrtip',
+            buttons: true,
             'ajax': {
                 "type": "GET",
                 contentType: 'application/json',
@@ -120,6 +122,7 @@
             ]
         });
     });
+
 
     $('#add').click(function () {
         form.find(":input").each(function () {
@@ -149,6 +152,17 @@
     }
 
 </script>
+<style scoped>
+    .table-hover tbody tr:hover td {
+        background-color: #54535c;
+        color: white;
+    }
+
+    .table-hover tbody tr:hover td a {
+        color: white;
+        cursor: pointer;
+    }
+</style>
 </body>
 </html>
 
