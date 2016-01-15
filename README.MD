@@ -2,6 +2,7 @@
 
 ** Functionality: **
 
++ encrypting user password in md5
 + authentication with 3 roles (ROLE_ADMIN / ROLE_USER / ROLE_OPERATOR) 
 + ajax loading of clients, tariffs, options, numbers, and contracts  
 + ajax create of clients, tariffs, options, numbers, and contracts  
@@ -10,7 +11,7 @@
 + upload and delete avatar   
 + i8n with two languages (ru/eng)   
 
-** Functionality plans **
+** Functionality plans: **
 
 + show contracts in user cabinet
 + change tariffs and options in user cabinet
