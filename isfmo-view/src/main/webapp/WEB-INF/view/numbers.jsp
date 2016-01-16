@@ -68,7 +68,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-user"></i> <span></span></h3>
+                <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-phone"></i> <span></span></h3>
             </div>
             <div class="modal-body">
                 <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
@@ -77,11 +77,11 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm" for="number">
-                            <s:message code="messages.firstname"/>:</label>
+                            <s:message code="messages.number"/>:</label>
 
                         <div class="col-sm-10">
                             <input name="number" type="text" class="form-control input-sm" id="number"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
+                                   placeholder="<s:message code="messages.input.number"/>">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -123,13 +123,12 @@
         });
     });
 
-
     $('#add').click(function () {
         form.find(":input").each(function () {
             $(this).val("");
         });
         $('.id').val(0);
-        $('#modal_title').find('span').text('<s:message code="messages.client_create"/>');
+        $('#modal_title').find('span').text('<s:message code="messages.number_create"/>');
         $('#editRow').modal('show');
     });
 
