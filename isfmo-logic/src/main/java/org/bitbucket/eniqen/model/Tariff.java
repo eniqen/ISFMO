@@ -21,7 +21,7 @@ public class Tariff extends BaseEntity {
     @Column(name = "PRICE", nullable = false)
     private Double price;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "TARIFF_OPTION_TBL",
             joinColumns = @JoinColumn(name = "tariff_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "option_id", referencedColumnName = "id"))

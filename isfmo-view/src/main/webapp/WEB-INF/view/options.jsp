@@ -244,7 +244,7 @@
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
-                if (key === 'options') {
+                if (key === 'compatibleOptions') {
                     $.each(value, function (index, option) {
                         form.find("option[value='" + option.id + "']").prop("selected", true);
                     });

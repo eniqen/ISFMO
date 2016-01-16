@@ -1,4 +1,4 @@
-package org.bitbucket.eniqen.controller.operator;
+package org.bitbucket.eniqen.controller.client;
 
 import org.bitbucket.eniqen.exception.ExceptionInfoHandler;
 import org.bitbucket.eniqen.model.Client;
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-@RequestMapping(OperatorController.REST_URL)
-public class OperatorController extends ExceptionInfoHandler {
+@RequestMapping(ClientController.REST_URL)
+public class ClientController extends ExceptionInfoHandler {
 
     public static final String REST_URL = "/ajax/clients";
 
@@ -43,12 +43,6 @@ public class OperatorController extends ExceptionInfoHandler {
                 ).collect(Collectors.toList());
     }
 
-    /**
-     * Получение профиля пользователя
-     *
-     * @param id идентификатор пользователя
-     * @return
-     */
     @RequestMapping(value = "/{id}/edit")
     public Client getClientProfile(@PathVariable long id) {
         return clientService.getById(id);

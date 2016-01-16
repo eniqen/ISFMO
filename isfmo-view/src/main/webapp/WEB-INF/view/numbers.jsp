@@ -151,6 +151,16 @@
         });
     }
 
+    function deleteRow(id) {
+        $.ajax({
+            url: ajaxUrl + id + '/delete',
+            type: 'DELETE',
+            success: function () {
+                successNoty('Deleted');
+            }
+        });
+    }
+
 </script>
 <style scoped>
     .table-hover tbody tr:hover td {
