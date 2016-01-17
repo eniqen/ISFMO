@@ -27,7 +27,7 @@
 
         <div class="checkbox">
             <label>
-                <input name="remember-me-parameter" type="checkbox" value="remember-me"> <s:message
+                <input name="_spring_security_remember_me" type="checkbox" value="remember-me"> <s:message
                     code="messages.remember"/>
             </label>
         </div>

@@ -38,6 +38,7 @@
                     <tr>
                         <th>#</th>
                         <th>CLIENT</th>
+                        <th>CREATE DATE</th>
                         <th>NUMBER</th>
                         <th>TARIFF</th>
                         <th>OPTIONS</th>
@@ -51,6 +52,7 @@
                         <tr>
                             <td>#</td>
                             <td>CLIENT</td>
+                            <td>CREATE DATE</td>
                             <td>NUMBER</td>
                             <td>TARIFF</td>
                             <td>OPTIONS</td>
