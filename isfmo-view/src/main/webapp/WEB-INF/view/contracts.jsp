@@ -125,16 +125,6 @@
                                    placeholder="<s:message code="messages.input.price"/>">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.options"/>:</label>
-
-                        <div id="select" class="col-sm-10">
-                            <select id="options" name="options" multiple="multiple">
-                            </select>
-                        </div>
-
-                    </div>
                     <div class="modal-footer">
                         <button type="submit"
                                 class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
@@ -153,14 +143,6 @@
     var table = $('#table');
 
     $(document).ready(function () {
-        /**
-         * Ajax запрос на получение списка опций в прорисовке их в мультиселекте
-         */
-        $.get('ajax/options', function (data) {
-            $.each(data, function (key, option) {
-                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
-            });
-        });
 
         $('#table').DataTable();
     });
@@ -176,7 +158,6 @@
         });
         $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
         $('#id').val(0);
-        multy();
         $('#editRow').modal('show');
     });
 
@@ -185,17 +166,5 @@
         return false;
     });
 </script>
-
-<style scoped>
-    .table-hover tbody tr:hover td {
-        background-color: #54535c;
-        color: white;
-    }
-
-    .table-hover tbody tr:hover td a {
-        color: white;
-        cursor: pointer;
-    }
-</style>
 </body>
 </html>
