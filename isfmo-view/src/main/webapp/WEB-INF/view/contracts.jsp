@@ -38,11 +38,11 @@
                     <tr>
                         <th>#</th>
                         <th>NUMBER</th>
-                        <th>CLIENT_FIRSTNAME</th>
                         <th>CLIENT_LASTNAME</th>
+                        <th>CLIENT_FIRSTNAME</th>
                         <th>TARIFF</th>
                         <th>OPTIONS</th>
-                        <th>BLOCKED</th>
+                        <th>ACTIVE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -53,16 +53,30 @@
                         <tr>
                             <td>${contract.id}</td>
                             <td>${contract.number.number}</td>
-                            <td>${contract.client.firstname}</td>
                             <td>${contract.client.lastname}</td>
+                            <td>${contract.client.firstname}</td>
                             <td>${contract.tariff.title}</td>
-                            <td>${contract.option.title}</td>
-                            <td>${contract.blocked}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${contract.options.size() > 0}">
+                                        <a data-toggle="tooltip"
+                                           title="
+                                               <c:forEach
+                                               items="${contract.options}" var="option">${option.title}</br>
+                                               </c:forEach>">подключено <span class="badge">${contract.options.size()}</span>
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        не подключены
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}</label></td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${contract.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${contract.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="swalDelete(контракт ,'${contract.id}',${contract.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -149,18 +163,8 @@
         });
 
         $('#table').DataTable();
-
     });
 
-    function multy() {
-        $('#options').multiselect({
-            enableFiltering: true,
-            includeSelectAllOption: true,
-            maxHeight: 260,
-            buttonWidth: 468
-        });
-        $("#options").multiselect('rebuild');
-    }
     /**
      * Тултипы для отображения списка подключенных опций у тарифа
      */
@@ -180,77 +184,6 @@
         save();
         return false;
     });
-
-    /**
-     * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
-     */
-    function save() {
-        var options = [];
-        $.each($('#options').find("option:selected"), function () {
-            options.push($(this).val());
-        });
-
-        var sendRequest = {
-            id: $('#id').val(),
-            title: $('#title').val(),
-            price: $('#price').val(),
-            options: []
-        };
-
-        for (var i = 0; i < options.length; i++) {
-            sendRequest.options.push({
-                id: options[i]
-            });
-        }
-
-        $.ajax ({
-            type: "POST",
-            contentType: "application/json",
-            url: ajaxUrl + 'add',
-            data: JSON.stringify(sendRequest),
-            dataType: 'text',
-            timeout: 100000,
-            success: function (data) {
-                $('#editRow').modal('hide');
-                successNoty('Сохранено');
-            }
-        });
-    }
-
-    /**
-     * Редактирование тарифа
-     * @param id идентификатор тарифа
-     */
-    function updateRow(id) {
-        $("option:selected").prop("selected", false);
-        $.get(ajaxUrl + id + '/edit', function (data) {
-            $.each(data, function (key, value) {
-                form.find("input[name='" + key + "']").val(value);
-                if (key === 'options') {
-                    $.each(value, function (index, option) {
-                        form.find("option[value='" + option.id + "']").prop("selected", true);
-                    });
-                }
-            });
-            multy();
-            $('#modal_title').find('span').text('<s:message code="messages.contract_edit"/>');
-            $('#editRow').modal();
-        });
-    }
-
-    /**
-     * Удаление тарифа
-     * @param id идентификатор тарифа
-     */
-    function deleteRow(id) {
-        $.ajax({
-            url: ajaxUrl + id + '/delete',
-            type: 'DELETE',
-            success: function () {
-                successNoty('Deleted');
-            }
-        });
-    }
 </script>
 
 <style scoped>

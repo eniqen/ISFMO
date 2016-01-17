@@ -179,6 +179,35 @@
         },1000);
     }
 
+    /**
+     * Удаление тарифа
+     * @param id идентификатор тарифа
+     */
+    function deleteRow(id) {
+        $.ajax({
+            url: ajaxUrl + id + '/delete',
+            type: 'DELETE',
+            success: function () {
+                reloadPage();
+            }
+        });
+    }
+
+    function swalDelete(type, name, id) {
+        swal({
+            title: 'Вы уверены?',
+            text: 'Вы удаляете ' + type + ': ' + name,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d8504c',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Да, удалить!',
+            closeOnConfirm: false
+        }, function () {
+            deleteRow(id);
+            swal('Удалено!', type + ' ' + name + ' удален', 'success');
+        });
+    }
 </script>
 <style scoped>
     body {

@@ -29,6 +29,10 @@
 
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
     <script src="/webjarslocator/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
+
+
+    <script src="/webjarslocator/sweetalert/sweetalert.min.js"></script>
+    <link rel='stylesheet' href='/webjarslocator/sweetalert/sweetalert.css'>
 </head>
 <%--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--%>
 <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>

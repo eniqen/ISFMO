@@ -70,7 +70,7 @@
                                                       onclick="updateRow(${tariff.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${tariff.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="swalDelete('тариф','${tariff.title}',${tariff.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -220,7 +220,7 @@
             timeout: 100000,
             success: function (data) {
                 $('#editRow').modal('hide');
-                successNoty('Сохранено');
+                swal('Сохранено!', 'Данные успешно сохранены', 'success');
                 reloadPage();
             }
         });
@@ -246,22 +246,8 @@
             $('#editRow').modal();
         });
     }
-
-    /**
-     * Удаление тарифа
-     * @param id идентификатор тарифа
-     */
-    function deleteRow(id) {
-        $.ajax({
-            url: ajaxUrl + id + '/delete',
-            type: 'DELETE',
-            success: function () {
-                successNoty('Deleted');
-                reloadPage();
-            }
-        });
-    }
 </script>
+
 
 <style scoped>
     .table-hover tbody tr:hover td {

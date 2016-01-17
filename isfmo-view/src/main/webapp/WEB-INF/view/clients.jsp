@@ -51,7 +51,7 @@
                                                       onclick="updateRow(${client.id})"><i
                                     class="glyphicon glyphicon-pencil"></i><s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${client.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="swalDelete('клиент','${client.lastname} ${client.firstname}',${client.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -186,7 +186,7 @@
             data: form.serialize(),
             success: function (data) {
                 $('#editRow').modal('hide');
-                successNoty('Сохранено');
+                swal('Сохранено!', 'Данные успешно сохранены', 'success');
                 reloadPage();
             }
         });
@@ -212,16 +212,6 @@
         });
     }
 
-    function deleteRow(id) {
-        $.ajax({
-            url: ajaxUrl + id + '/delete',
-            type: 'DELETE',
-            success: function () {
-                successNoty('Deleted');
-                reloadPage();
-            }
-        });
-    }
 </script>
 
 <style scoped>

@@ -4,10 +4,10 @@
 
 + encrypting user password in md5
 + authentication with 3 roles (ROLE_ADMIN / ROLE_USER / ROLE_OPERATOR) 
-+ ajax loading of clients, tariffs, options, numbers
-+ ajax create of clients, tariffs, options, numbers 
-+ ajax edit client, tariffs, options   
-+ ajax delete client, tariffs, options   
++ loading of clients, tariffs, options, numbers
++ create of clients, tariffs, options, numbers 
++ edit client, tariffs, options   
++ delete client, tariffs, options   
 + upload and delete avatar   
 + i8n with two languages (ru/eng)   
 

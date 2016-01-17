@@ -145,17 +145,7 @@
             success: function (data) {
                 $('#editRow').modal('hide');
                 table.ajax.reload();
-                successNoty('Сохранено');
-            }
-        });
-    }
-
-    function deleteRow(id) {
-        $.ajax({
-            url: ajaxUrl + id + '/delete',
-            type: 'DELETE',
-            success: function () {
-                successNoty('Deleted');
+                swal('Сохранено!', 'Данные успешно сохранены', 'success');
             }
         });
     }
