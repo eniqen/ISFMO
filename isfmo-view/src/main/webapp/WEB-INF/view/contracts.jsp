@@ -37,9 +37,9 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>CLIENT</th>
-                        <th>CREATE DATE</th>
                         <th>NUMBER</th>
+                        <th>CLIENT_FIRSTNAME</th>
+                        <th>CLIENT_LASTNAME</th>
                         <th>TARIFF</th>
                         <th>OPTIONS</th>
                         <th>BLOCKED</th>
@@ -47,21 +47,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--@elvariable id="tariffs" type="java.util.List<org.bitbucket.eniqen.model.Tariff>"--%>
-                    <c:forEach items="${tariffs}" var="tariff">
+
+                    <%--@elvariable id="contracts" type="java.util.List"--%>
+                    <c:forEach items="${contracts}" var="contract">
                         <tr>
-                            <td>#</td>
-                            <td>CLIENT</td>
-                            <td>CREATE DATE</td>
-                            <td>NUMBER</td>
-                            <td>TARIFF</td>
-                            <td>OPTIONS</td>
-                            <td>BLOCKED</td>
+                            <td>${contract.id}</td>
+                            <td>${contract.number.number}</td>
+                            <td>${contract.client.firstname}</td>
+                            <td>${contract.client.lastname}</td>
+                            <td>${contract.tariff.title}</td>
+                            <td>${contract.option.title}</td>
+                            <td>${contract.blocked}</td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
-                                                      onclick="updateRow(${tariff.id})"><i
+                                                      onclick="updateRow(${contract.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${tariff.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs" onclick="deleteRow(${contract.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>

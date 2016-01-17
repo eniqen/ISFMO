@@ -24,7 +24,7 @@
 
 ** Tools: **  
 
-  JDK 8, Spring 4 Core/Security/MVC, JPA 2/Hibernate 4, Hibernate Validation JSR 330, jQuery, jQuery Noty, Twitter Bootstrap 3, JQuery Datatable, Ajax, REST, JSP/JSTL, MySQL, Apache Maven, Git/Bitbucket, Apache Tomcat, IntelliJIDEA 15, i8n (ru/en).  
+ JDK 8, Spring 4 Core / Security / MVC, JPA / Hibernate, Hibernate Validator, jQuery, jQuery Noty, WebJars, DataTables plugin, Bootstrap, SLF4J, Json Jackson, JSP, JSTL, MySQL, Apache Maven, Apache Tomcat.  
 
 ** Notes: **  
 
