@@ -231,6 +231,7 @@
             success: function (data) {
                 $('#editRow').modal('hide');
                 successNoty('Сохранено');
+                reloadPage();
             }
         });
     }
@@ -266,6 +267,7 @@
             type: 'DELETE',
             success: function () {
                 successNoty('Deleted');
+                reloadPage();
             }
         });
     }

@@ -172,6 +172,13 @@
             layout: 'bottomRight'
         });
     }
+
+    function reloadPage(){
+        setTimeout(function(){
+            location.reload();
+        },1000);
+    }
+
 </script>
 <style scoped>
     body {
