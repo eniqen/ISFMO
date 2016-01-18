@@ -17,7 +17,7 @@ import java.util.Set;
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
 public class Contract extends BaseEntity {
 
-    @Column(name = "BLOCKED", nullable = false)
+    @Column(name = "BLOCKED", nullable = false, columnDefinition="boolean default false")
     private boolean blocked;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -32,7 +32,7 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "CONTRACT_OPTION_TBL",
             joinColumns = {@JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")},

@@ -19,7 +19,7 @@
                  height="100"><br>
             <label class="btn btn-file btn-info btn-sm browse-button">
                 <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                <input type="file" class="file" name="file" id="fileLoader" required/>
+                <input type="file" class="file" name="file" id="fileLoader" required accept="image/gif, image/jpeg, image/png"/>
             </label>
             <button id="fileSubmit" value="Upload" type="submit" class="btn btn-success btn-file btn-sm">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

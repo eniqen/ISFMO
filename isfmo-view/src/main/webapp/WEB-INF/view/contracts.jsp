@@ -14,7 +14,7 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHead.jsp"/>
-<c:set var="ajaxUrl" value="/ajax/tariffs/"/>
+<c:set var="ajaxUrl" value="/ajax/contracts/"/>
 
 
 <div class="container-fluid">
@@ -63,7 +63,8 @@
                                            title="
                                                <c:forEach
                                                items="${contract.options}" var="option">${option.title}</br>
-                                               </c:forEach>">подключено <span class="badge">${contract.options.size()}</span>
+                                               </c:forEach>">подключено <span
+                                                class="badge">${contract.options.size()}</span>
                                         </a>
                                     </c:when>
                                     <c:otherwise>
@@ -71,12 +72,14 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}</label></td>
+                            <td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}
+                            </label></td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${contract.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="swalDelete(контракт ,'${contract.id}',${contract.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs"
+                                   onclick="swalDelete(контракт ,'${contract.id}',${contract.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -103,30 +106,51 @@
                 <h3 id="modal_title" class="modal-title"><i class="glyphicon glyphicon-list-alt"></i> <span></span></h3>
             </div>
             <div class="modal-body">
-                <form:form style="margin-bottom: -8px" class="form-horizontal" method="post"
+                <form:form style="margin-bottom: -8px" class="form-horizontal"
                            id="detailsForm">
                     <input name="id" type="text" hidden="hidden" id="id">
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2 input-sm" for="title">
-                            <s:message code="messages.tariff.title"/>:</label>
+                        <label class="control-label col-sm-2 input-sm" for="">
+                            Номер телефона:</label>
 
                         <div class="col-sm-10">
-                            <input name="title" type="text" class="form-control input-sm" id="title"
-                                   placeholder="<s:message code="messages.input.firstname"/>">
+                            <select id="numbers" class="form-control" name="number.id">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm" for="">
+                            Клиент:</label>
+
+                        <div class="col-sm-10">
+                            <select id="clients" class="form-control" name="client.id">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 input-sm" for="">
+                            Тариф:</label>
+
+                        <div class="col-sm-10">
+                            <select id="tariffs" class="form-control" name="tariff.id">
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2 input-sm">
-                            <s:message code="messages.tariff.price"/>:</label>
+                            Опции:</label>
 
-                        <div class="col-sm-10">
-                            <input name="price" type="text" class="form-control input-sm" id="price"
-                                   placeholder="<s:message code="messages.input.price"/>">
+                        <div id="select" class="col-sm-10">
+                            <select id="options" multiple="multiple">
+                            </select>
                         </div>
+
                     </div>
+
                     <div class="modal-footer">
-                        <button type="submit"
+                        <button id="save" type="button"
                                 class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
                                 code="messages.save"/>
                         </button>
@@ -145,8 +169,55 @@
     $(document).ready(function () {
 
         $('#table').DataTable();
+
+        /**
+         * Ajax запрос на получение списка номеров
+         */
+        $.get('ajax/clients', function (data) {
+            $.each(data, function (key, client) {
+                $('#clients').append($('<option></option>').attr('value', client.id).text(client.lastname + ' ' + client.firstname));
+            });
+        });
+
+        /**
+         * Ajax запрос на получение списка номеров
+         */
+        $.get('ajax/numbers', function (data) {
+            $.each(data, function (key, number) {
+                $('#numbers').append($('<option></option>').attr('value', number.id).text(number.number));
+            });
+        });
+
+        /**
+         * Ajax запрос на получение списка опций
+         */
+        $.get('ajax/options', function (data) {
+            var index = 0;
+            $.each(data, function (key, option) {
+                $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
+            });
+        });
+
+        /**
+         * Ajax запрос на получение списка тариффов
+         */
+        $.get('ajax/tariffs', function (data) {
+            $.each(data, function (key, tariff) {
+                $('#tariffs').append($('<option></option>').attr('value', tariff.id).text(tariff.title));
+            });
+        });
+
     });
 
+    function multy() {
+        $('#options').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 260,
+            buttonWidth: 468
+        });
+        $("#options").multiselect('rebuild');
+    }
     /**
      * Тултипы для отображения списка подключенных опций у тарифа
      */
@@ -156,15 +227,49 @@
         form.find(":input").each(function () {
             $(this).val("");
         });
-        $('#modal_title').find('span').text('<s:message code="messages.tariff_create"/>');
+        $('#modal_title').find('span').text('<s:message code="messages.contract_create"/>');
         $('#id').val(0);
+        multy();
         $('#editRow').modal('show');
     });
 
-    form.submit(function () {
-        save();
-        return false;
+
+    $("#save").click(function () {
+        var options = [];
+        $.each($('#options').find("option:selected"), function () {
+            options.push($(this).val());
+        });
+
+        var sendRequest = {
+            id: $('#id').val(),
+            number: {id: $('#numbers').val()},
+            client: {id: $('#clients').val()},
+            tariff: {id: $('#tariffs').val()},
+            contractOptions: []
+        };
+
+        for (var i = 0; i < options.length; i++) {
+            sendRequest.contractOptions.push({
+                id: options[i]
+            });
+        }
+
+        swal($.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: ajaxUrl + 'add',
+            data: JSON.stringify(sendRequest),
+            dataType: 'text',
+            timeout: 100000,
+            success: function () {
+                swal('Изменения сохранены', '', 'success');
+            },
+            error: function () {
+                swal('Изменения не сохранены', 'Во время сохранения произошла ошибка', 'error');
+            }
+        }))
     });
+
 </script>
 </body>
 </html>
