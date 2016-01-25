@@ -42,7 +42,7 @@
                         <th>CLIENT_FIRSTNAME</th>
                         <th>TARIFF</th>
                         <th>OPTIONS</th>
-                        <th>ACTIVE</th>
+                        <%--<th>ACTIVE</th>--%>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -72,7 +72,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}
+                            <%--<td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}--%>
                             </label></td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${contract.id})"><i
@@ -150,7 +150,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button id="save" type="button"
+                        <button type="submit"
                                 class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
                                 code="messages.save"/>
                         </button>
@@ -233,8 +233,12 @@
         $('#editRow').modal('show');
     });
 
+    form.submit(function () {
+        save();
+        return false;
+    });
 
-    $("#save").click(function () {
+    function save() {
         var options = [];
         $.each($('#options').find("option:selected"), function () {
             options.push($(this).val());
@@ -267,8 +271,8 @@
             error: function () {
                 swal('Изменения не сохранены', 'Во время сохранения произошла ошибка', 'error');
             }
-        }))
-    });
+        }));
+    }
 
 </script>
 </body>

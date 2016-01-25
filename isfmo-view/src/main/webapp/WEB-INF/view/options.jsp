@@ -13,7 +13,6 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-
 <jsp:include page="fragments/bodyHead.jsp"/>
 <c:set var="ajaxUrl" value="/ajax/options/"/>
 
@@ -57,7 +56,8 @@
                                            title="
                                                <c:forEach
                                                items="${option.compatibleOptions}" var="compatibleOption">${compatibleOption.title}</br>
-                                               </c:forEach>">подключено <span class="badge">${option.compatibleOptions.size()}</span>
+                                               </c:forEach>">подключено <span
+                                                class="badge">${option.compatibleOptions.size()}</span>
                                         </a>
                                     </c:when>
                                     <c:otherwise>
@@ -69,7 +69,8 @@
                                                       onclick="updateRow(${option.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs" onclick="swalDelete('опция','${option.title}',${option.id})"><i
+                                <a id="delete" class="btn btn-danger t btn-xs"
+                                   onclick="swalDelete('опция' ,'${option.title}',${option.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -138,7 +139,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit"
+                        <button id="save"
                                 class="btn btn-default glyphicon glyphicon-floppy-save"><s:message
                                 code="messages.save"/>
                         </button>
@@ -166,7 +167,6 @@
         });
 
         $('#table').DataTable();
-
     });
 
     function multy() {
@@ -193,14 +193,15 @@
         $('#editRow').modal('show');
     });
 
+    /**
+     * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
+     */
+
     form.submit(function () {
         save();
         return false;
     });
 
-    /**
-     * При сохранении пробегаемся по списку выбранных тарифов и собираем строчку Json
-     */
     function save() {
         var options = [];
         $.each($('#options').find("option:selected"), function () {
@@ -220,8 +221,7 @@
                 id: options[i]
             });
         }
-
-        $.ajax ({
+        swal($.ajax ({
             type: "POST",
             contentType: "application/json",
             url: ajaxUrl + 'add',
@@ -230,11 +230,15 @@
             timeout: 100000,
             success: function (data) {
                 $('#editRow').modal('hide');
-                swal('Сохранено!', 'Данные успешно сохранены', 'success');
+                swal('Изменения сохранены', '', 'success');
                 reloadPage();
+            },
+            error: function () {
+                swal('Изменения не сохранены', 'Во время сохранения произошла ошибка', 'error');
             }
-        });
+        }))
     }
+
 
     /**
      * Редактирование тарифа

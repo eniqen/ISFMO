@@ -25,12 +25,8 @@ public class ContractController extends ExceptionInfoHandler {
     private ContractService contractService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "accept=application/json")
-    public void save(@Valid @RequestBody Contract contract, BindingResult result, SessionStatus status) {
-        if (result.hasErrors()) {
-            throw LOG.getValidationException(result);
-        }
+    public void save(@RequestBody Contract contract) {
 
-        status.setComplete();
         if (contract.getId() == 0) {
             contract.setId(null);
         }

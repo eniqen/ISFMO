@@ -65,9 +65,9 @@ public class RootController {
     }
 
     @RequestMapping(value = "/numbers", method = RequestMethod.GET)
-    public String numbers() {
-//        return new ModelAndView("numbers", "numbers", this.phoneNumberService.getAll());
-        return "numbers";
+    public ModelAndView numbers() {
+        return new ModelAndView("numbers", "numbers", this.phoneNumberService.getAll());
+//        return "numbers";
     }
 
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)

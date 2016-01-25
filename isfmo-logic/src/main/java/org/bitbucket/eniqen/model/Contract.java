@@ -17,9 +17,6 @@ import java.util.Set;
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
 public class Contract extends BaseEntity {
 
-    @Column(name = "BLOCKED", nullable = false, columnDefinition="boolean default false")
-    private boolean blocked;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
     private PhoneNumber phoneNumber;
@@ -74,16 +71,7 @@ public class Contract extends BaseEntity {
         this.tariff = tariff;
     }
 
-    public boolean isBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
-    }
-
-    public Contract(boolean blocked, PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
-        this.blocked = blocked;
+    public Contract( PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
         this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.client = client;

@@ -34,24 +34,28 @@
                     <tr>
                         <th>#</th>
                         <th>NUMBER</th>
+                        <th>ACTIONS</th>
                     </tr>
                     </thead>
-                    <%--<tbody>--%>
+                    <tbody>
 
-                    <%--&lt;%&ndash;@elvariable id="numbers" type="java.util.List"&ndash;%&gt;--%>
-                    <%--<c:forEach items="${numbers}" var="number">--%>
-                    <%--<tr>--%>
-                    <%--<td id="id">${number.id}</td>--%>
-                    <%--<td id="number">${number.number}</td>--%>
-                    <%--<td class="text-right">--%>
-                    <%--<a id="delete" class="btn btn-danger btn-xs"--%>
-                    <%--onclick="deleteRow(${number.id})"><s:message--%>
-                    <%--code="messages.delete"/><i--%>
-                    <%--class="glyphicon glyphicon-trash"></i></a>--%>
-                    <%--</td>--%>
-                    <%--</tr>--%>
-                    <%--</c:forEach>--%>
-                    <%--</tbody>--%>
+                    <%--@elvariable id="numbers" type="java.util.List"--%>
+                    <c:forEach items="${numbers}" var="number">
+                        <tr>
+                            <td id="id">${number.id}</td>
+                            <td>${number.number}</td>
+                            <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
+                                                      onclick="updateRow(${number.id})"><i
+                                    class="glyphicon glyphicon-pencil"></i> <s:message
+                                    code="messages.edit"/></a>
+                                <a id="delete" class="btn btn-danger t btn-xs"
+                                   onclick="swalDelete('номер' ,'${number.number}',${number.id})"><i
+                                        class="glyphicon glyphicon-trash"></i> <s:message
+                                        code="messages.delete"/></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -103,24 +107,25 @@
     var table;
 
     $(document).ready(function () {
-        table = $('#table').DataTable({
-            dom: 'B<"clear">lfrtip',
-            buttons: true,
-            'ajax': {
-                "type": "GET",
-                contentType: 'application/json',
-                "url": ajaxUrl,
-                "data": function (d) {
-                    d.id = $('#id').val();
-                    d.number = $('#number').val();
-                },
-                "dataSrc": ""
-            },
-            'columns': [
-                {"data": "id"},
-                {"data": "number"}
-            ]
-        });
+//        table = $('#table').DataTable({
+//            dom: 'B<"clear">lfrtip',
+//            buttons: true,
+//            'ajax': {
+//                "type": "GET",
+//                contentType: 'application/json',
+//                "url": ajaxUrl,
+//                "data": function (d) {
+//                    d.id = $('#id').val();
+//                    d.number = $('#number').val();
+//                },
+//                "dataSrc": ""
+//            },
+//            'columns': [
+//                {"data": "id"},
+//                {"data": "number"}
+//            ]
+//        });
+        $('#table').DataTable();
     });
 
     $('#add').click(function () {
@@ -144,9 +149,23 @@
             data: form.serialize(),
             success: function (data) {
                 $('#editRow').modal('hide');
-                table.ajax.reload();
+//                table.ajax.reload();
                 swal('Сохранено!', 'Данные успешно сохранены', 'success');
+                reloadPage();
+            },
+            error: function () {
+                swal('Изменения не сохранены', 'Во время сохранения произошла ошибка', 'error');
             }
+        });
+    }
+
+    function updateRow(id) {
+        $.get(ajaxUrl + id + '/edit', function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            $('#modal_title').find('span').text('<s:message code="messages.number_edit"/>');
+            $('#editRow').modal();
         });
     }
 
