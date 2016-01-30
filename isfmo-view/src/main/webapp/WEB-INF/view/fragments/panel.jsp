@@ -19,7 +19,8 @@
                  height="100"><br>
             <label class="btn btn-file btn-info btn-sm browse-button">
                 <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                <input type="file" class="file" name="file" id="fileLoader" required accept="image/gif, image/jpeg, image/png"/>
+                <input type="file" class="file" name="file" id="fileLoader" required
+                       accept="image/gif, image/jpeg, image/png"/>
             </label>
             <button id="fileSubmit" value="Upload" type="submit" class="btn btn-success btn-file btn-sm">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -32,11 +33,10 @@
         <label style="margin-top: 10px" class="dropdown page-header col-sm-12">
 
             <a class="dropdown-toggle" data-toggle="dropdown">
-                <sec:authorize access="isAuthenticated()">
-                    <sec:authentication property="principal.username"/>
-                </sec:authorize><b class="caret"></b></a>
+                <sec:authentication property="principal.username"/>
+                ( <i class="glyphicon glyphicon glyphicon-envelope"></i> 0 )<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li id="profileEdit"><a><s:message code="messages.edit"/></a></li>
+                <li id="profileEdit"><a><s:message code="messages.profile"/></a></li>
                 <li><a href="<c:url value="/logout"/>"><i class="glyphicon glyphicon-log-out"></i> <s:message
                         code="messages.exit"/></a></li>
             </ul>
@@ -173,10 +173,10 @@
         });
     }
 
-    function reloadPage(){
-        setTimeout(function(){
+    function reloadPage() {
+        setTimeout(function () {
             location.reload();
-        },1000);
+        }, 1000);
     }
 
     /**
@@ -212,6 +212,8 @@
 <style scoped>
     body {
         padding-top: 50px;
+        background-image: url(/resources/images/body.jpg);
+        background-repeat: repeat;
     }
 
     .table-responsive {

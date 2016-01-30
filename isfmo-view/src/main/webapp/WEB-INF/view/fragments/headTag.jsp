@@ -12,25 +12,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src='/webjarslocator/jquery/jquery.min.js'></script>
 
+    <!-- JQuery -->
+    <script src='/webjarslocator/jquery/jquery.min.js'></script>
     <script src='/webjarslocator/jquery-ui/jquery-ui.js'></script>
     <link rel='stylesheet' href='/webjarslocator/jquery-ui/jquery-ui.css'>
 
+    <!-- Bootstrap -->
     <link rel='stylesheet' href='/webjarslocator/bootstrap/css/bootstrap.min.css'>
     <script src='/webjarslocator/bootstrap/js/bootstrap.min.js'></script>
 
+    <!-- Bootstrap MultiSelect -->
     <script src='/webjarslocator/bootstrap-multiselect/js/bootstrap-multiselect.js'></script>
     <link rel='stylesheet' href='/webjarslocator/bootstrap-multiselect/css/bootstrap-multiselect.css'>
 
+    <!-- Bootstrap Datatable -->
     <link rel='stylesheet' href='/webjarslocator/datatables/css/jquery.dataTables.min.css'>
     <script src="/webjarslocator/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/webjarslocator/datatables/js/dataTables.bootstrap.min.js"></script>
 
+    <!-- Noty -->
     <script src="/webjarslocator/noty/jquery.noty.packaged.min.js"></script>
+
+    <!-- Bootstrap contextMenu -->
     <script src="/webjarslocator/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
 
-
+    <!-- Sweet alert -->
     <script src="/webjarslocator/sweetalert/sweetalert.min.js"></script>
     <link rel='stylesheet' href='/webjarslocator/sweetalert/sweetalert.css'>
 </head>

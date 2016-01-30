@@ -279,11 +279,19 @@
         $("option:selected").prop("selected", false);
         $.get(ajaxUrl + id + '/edit', function (data) {
             $.each(data, function (key, value) {
-                form.find("input[name='" + key + "']").val(value);
-                if (key === 'options') {
-                    $.each(value, function (index, option) {
-                        form.find("option[value='" + option.id + "']").prop("selected", true);
-                    });
+                switch (key) {
+                    case 'id':
+                        break;
+                    case 'number':
+                        break;
+                    case 'client':
+                        form.find("option[value='" + key.id + "']").prop("disabled", true).text(value.lastname + ' ' + value.firstname);
+                        break;
+                    case 'options':
+                        $.each(value, function (index, option) {
+                            form.find("option[value='" + option.id + "']").prop("selected", true);
+                        });
+                        break;
                 }
             });
             multy();
