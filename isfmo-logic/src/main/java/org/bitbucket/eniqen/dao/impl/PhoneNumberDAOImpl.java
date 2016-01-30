@@ -43,6 +43,13 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao {
 
     @Override
     public PhoneNumber save(PhoneNumber model) {
-       return this.entityManager.merge(model);
+        return this.entityManager.merge(model);
+    }
+
+    @Override
+    public List<PhoneNumber> getAllFree() {
+        return this.entityManager
+                .createQuery("SELECT p FROM PhoneNumber p left join p.contract contract where contract is null")
+                .getResultList();
     }
 }

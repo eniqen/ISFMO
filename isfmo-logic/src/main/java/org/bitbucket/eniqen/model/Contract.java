@@ -1,7 +1,6 @@
 package org.bitbucket.eniqen.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -76,5 +75,11 @@ public class Contract extends BaseEntity {
         this.tariff = tariff;
         this.client = client;
         this.contractOptions = contractOptions;
+    }
+
+    public Contract(PhoneNumber phoneNumber, Tariff tariff, Client client) {
+        this.phoneNumber = phoneNumber;
+        this.tariff = tariff;
+        this.client = client;
     }
 }

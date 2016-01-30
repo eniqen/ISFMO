@@ -26,7 +26,7 @@ public class PhoneNumberController extends ExceptionInfoHandler {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<PhoneNumber> getAll() {
-        return this.phoneNumberService.getAll();
+        return this.phoneNumberService.getAllFree();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

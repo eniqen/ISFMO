@@ -45,4 +45,9 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
         PhoneNumber phoneNumber = this.phoneNumberDao.getById(id);
         this.phoneNumberDao.delete(phoneNumber);
     }
+
+    @Override
+    public List<PhoneNumber> getAllFree() {
+        return this.phoneNumberDao.getAllFree();
+    }
 }

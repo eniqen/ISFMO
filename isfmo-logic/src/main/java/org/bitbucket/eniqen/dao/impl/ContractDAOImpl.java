@@ -23,6 +23,10 @@ public class ContractDAOImpl implements ContractDAO {
     public ContractDAOImpl() {
     }
 
+//    public ContractDAOImpl(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
+
     @Override
     public List<Contract> getAll() {
         return this.entityManager.createNamedQuery("Contract.getAll").getResultList();

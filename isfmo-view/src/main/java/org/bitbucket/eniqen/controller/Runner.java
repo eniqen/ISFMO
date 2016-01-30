@@ -1,12 +1,14 @@
 //package org.bitbucket.eniqen.controller;
 //
-//import org.bitbucket.eniqen.dao.*;
-//import org.bitbucket.eniqen.dao.impl.*;
-//import org.bitbucket.eniqen.model.*;
+//import org.bitbucket.eniqen.dao.ContractDAO;
+//import org.bitbucket.eniqen.dao.impl.ContractDAOImpl;
+//import org.bitbucket.eniqen.model.Client;
+//import org.bitbucket.eniqen.model.Contract;
+//import org.bitbucket.eniqen.model.PhoneNumber;
+//import org.bitbucket.eniqen.model.Tariff;
 //
 //import javax.persistence.EntityManager;
 //import javax.persistence.Persistence;
-//import java.util.Date;
 //
 ///**
 // * Created by Mikhail on 29.11.2015.
@@ -23,7 +25,7 @@
 //            phoneNumber.save(new PhoneNumber(String.valueOf(i)));
 //            entityManager.getTransaction().commit();
 //        }
-
+//
 //        //Клиенты
 //        ClientDAO clientDAO = new ClientDAOImpl(entityManager);
 //        entityManager.getTransaction().begin();
@@ -38,7 +40,7 @@
 //        clientDAO.save(new Client("Иван", "Неиван", new Date(), "0809 234856", "Кролики 152", "salatik@mail.ru"));
 //        clientDAO.save(new Client("Гоген", "Солнцев", new Date(), "0809 567994", "Флегонтова 2", "volprivetosat@mail.ru"));
 //        entityManager.getTransaction().commit();
-
+//
 //        //Опции
 //        OptionDAO optionDAO = new OptionDAOImpl(entityManager);
 //        entityManager.getTransaction().begin();
@@ -68,7 +70,7 @@
 //        optionDAO.save(new Option("Обещанный платеж 300", 0.0, 50.0));
 //        optionDAO.save(new Option("Обещанный платеж 500", 0.0, 50.0));
 //        entityManager.getTransaction().commit();
-
+//
 ////        //Роли
 //        RoleDAO roleDAO = new RoleDAOImpl(entityManager);
 //        entityManager.getTransaction().begin();
@@ -76,7 +78,7 @@
 //        roleDAO.save(new UserRole(Role.OPERATOR));
 //        roleDAO.save(new UserRole(Role.USER));
 //        entityManager.getTransaction().commit();
-
+//
 //        //Тарифы
 //        TariffDAO tariffDAO = new TariffDAOImpl(entityManager);
 //        entityManager.getTransaction().begin();
@@ -88,6 +90,21 @@
 //        tariffDAO.save(new Tariff("Все Просто", 200.0));
 //        tariffDAO.save(new Tariff("Переходи на 0", 250.0));
 //        tariffDAO.save(new Tariff("Теплый прием", 400.0));
+//        entityManager.getTransaction().commit();
+
+        //Контракты
+//        ContractDAO contractDAO = new ContractDAOImpl(entityManager);
+//        entityManager.getTransaction().begin();
+//        PhoneNumber phoneNumber = new PhoneNumber();
+//        phoneNumber.setId(3L);
+//
+//        Tariff tariff = new Tariff();
+//        tariff.setId(9L);
+//
+//        Client client = new Client();
+//        client.setId(6L);
+//
+//        contractDAO.save(new Contract(phoneNumber, tariff, client));
 //        entityManager.getTransaction().commit();
 //    }
 //}

@@ -10,7 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PHONENUMBER_TBL")
-@NamedQuery(name = "PhoneNumber.getAll", query = "select n from PhoneNumber n")
+@NamedQueries({
+        @NamedQuery(name = "PhoneNumber.getAll", query = "select n from PhoneNumber n")
+})
 public class PhoneNumber extends BaseEntity {
 
     @Column(name = "PHONENUMBER", length = 11, nullable = false, unique = true)
