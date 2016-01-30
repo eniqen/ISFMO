@@ -10,14 +10,15 @@
         <!--<jta-data-source>jdbc/mobile_office</jta-data-source>-->
 
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/privet"/>
-            <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="root"/>
+            <!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
+            <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/privet"/>-->
+            <!--<property name="hibernate.connection.username" value="root"/>-->
+            <!--<property name="hibernate.connection.password" value="root"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
-            <!--<property name="hibernate.enable_lazy_load_no_trans" value="true"/>-->
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

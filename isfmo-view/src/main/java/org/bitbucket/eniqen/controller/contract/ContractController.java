@@ -26,7 +26,6 @@ public class ContractController extends ExceptionInfoHandler {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, headers = "accept=application/json")
     public void save(@RequestBody Contract contract) {
-
         if (contract.getId() == 0) {
             contract.setId(null);
         }
