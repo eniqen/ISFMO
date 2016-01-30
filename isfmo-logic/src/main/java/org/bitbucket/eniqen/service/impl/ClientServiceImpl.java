@@ -16,7 +16,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
@@ -43,11 +42,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public void delete(Client model) {
         this.clientDAO.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(Client model) {
         ExceptionUtil.check(this.clientDAO.save(model), model.toString());
     }
@@ -58,6 +59,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         Client client = this.clientDAO.getById(id);
         this.clientDAO.delete(client);

@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class OptionServiceImpl implements OptionService {
 
     @Autowired
@@ -26,11 +25,13 @@ public class OptionServiceImpl implements OptionService {
     }
 
     @Override
+    @Transactional
     public void delete(Option model) {
         this.optionDAO.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(Option model) {
         this.optionDAO.save(model);
     }
@@ -41,6 +42,7 @@ public class OptionServiceImpl implements OptionService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         Option option = this.optionDAO.getById(id);
         this.optionDAO.delete(option);

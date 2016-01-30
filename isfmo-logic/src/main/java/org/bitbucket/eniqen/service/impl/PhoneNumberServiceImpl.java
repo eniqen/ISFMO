@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     @Autowired
@@ -26,11 +25,13 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
     }
 
     @Override
+    @Transactional
     public void delete(PhoneNumber model) {
         this.phoneNumberDao.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(PhoneNumber model) {
         this.phoneNumberDao.save(model);
     }
@@ -41,6 +42,7 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         PhoneNumber phoneNumber = this.phoneNumberDao.getById(id);
         this.phoneNumberDao.delete(phoneNumber);

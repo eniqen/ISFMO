@@ -17,7 +17,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
@@ -38,11 +37,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void delete(User model) {
         this.userDao.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(User model) {
         this.userDao.save(model);
     }
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         User user = this.getById(id);
         this.userDao.delete(user);

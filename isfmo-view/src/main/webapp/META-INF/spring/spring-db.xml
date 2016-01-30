@@ -16,12 +16,43 @@
         <!--<constructor-arg value="ISFMO"/>-->
     <!--</bean>-->
 
-    <jee:jndi-lookup jndi-name="jdbc/isfmo" id="dataSource" />
+    <!--<jee:jndi-lookup jndi-name="jdbc/isfmo" id="dataSource" />-->
 
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
+    <!--<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">-->
+        <!--<property name="dataSource" ref="dataSource" />-->
+    <!--</bean>-->
 
     <!-- Бин для анотации @PersistenceContext-->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <!-- Hikari CP  -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="MYSQL"/>
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"/>
+        <property name="maximumPoolSize" value="5"/>
+        <property name="maxLifetime" value="30000"/>
+        <property name="idleTimeout" value="30000"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">jdbc:mysql://localhost:3306/privet</prop>
+                <prop key="user">root</prop>
+                <prop key="password">root</prop>
+                <prop key="prepStmtCacheSize">250</prop>
+                <prop key="prepStmtCacheSqlLimit">2048</prop>
+                <prop key="cachePrepStmts">true</prop>
+                <prop key="useServerPrepStmts">true</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>

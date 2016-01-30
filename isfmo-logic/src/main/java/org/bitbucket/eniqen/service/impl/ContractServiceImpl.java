@@ -13,7 +13,6 @@ import java.util.List;
  * Created by Mikhail on 23.12.2015.
  */
 @Service
-@Transactional(readOnly = true)
 public class ContractServiceImpl implements ContractService {
 
     @Autowired
@@ -25,11 +24,13 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    @Transactional
     public void delete(Contract model) {
         this.contractDAO.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(Contract model) {
         this.contractDAO.save(model);
     }
@@ -40,6 +41,7 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         Contract contract = this.contractDAO.getById(id);
         this.contractDAO.delete(contract);

@@ -38,11 +38,10 @@
                     <tr>
                         <th>#</th>
                         <th>NUMBER</th>
-                        <th>CLIENT_LASTNAME</th>
-                        <th>CLIENT_FIRSTNAME</th>
+                        <th>CLIENT</th>
                         <th>TARIFF</th>
                         <th>OPTIONS</th>
-                        <%--<th>ACTIVE</th>--%>
+                        <th>ACTIVE</th>
                         <th>ACTIONS</th>
                     </tr>
                     </thead>
@@ -53,8 +52,7 @@
                         <tr>
                             <td>${contract.id}</td>
                             <td>${contract.number.number}</td>
-                            <td>${contract.client.lastname}</td>
-                            <td>${contract.client.firstname}</td>
+                            <td>${contract.client.lastname} ${contract.client.firstname}</td>
                             <td>${contract.tariff.title}</td>
                             <td>
                                 <c:choose>
@@ -72,14 +70,15 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <%--<td><label class="checkbox-inline"><input type="checkbox" value="">${contract.blocked}--%>
+                            <td><label class="checkbox-inline"><input id="ch" style="margin-left: 10px" type="checkbox"
+                                                                      value="${contract.id}"></label></td>
                             </label></td>
                             <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
                                                       onclick="updateRow(${contract.id})"><i
                                     class="glyphicon glyphicon-pencil"></i> <s:message
                                     code="messages.edit"/></a>
                                 <a id="delete" class="btn btn-danger t btn-xs"
-                                   onclick="swalDelete(контракт ,'${contract.id}',${contract.id})"><i
+                                   onclick="swalDelete('контракт' ,'${contract.id}',${contract.id})"><i
                                         class="glyphicon glyphicon-trash"></i> <s:message
                                         code="messages.delete"/></a>
                             </td>
@@ -265,8 +264,10 @@
             data: JSON.stringify(sendRequest),
             dataType: 'text',
             timeout: 100000,
-            success: function () {
-                swal('Изменения сохранены', '', 'success');
+            success: function (data) {
+                $('#editRow').modal('hide');
+                swal('Сохранено!', 'Данные успешно сохранены', 'success');
+                reloadPage();
             },
             error: function () {
                 swal('Изменения не сохранены', 'Во время сохранения произошла ошибка', 'error');
@@ -274,6 +275,22 @@
         }));
     }
 
+    function updateRow(id) {
+        $("option:selected").prop("selected", false);
+        $.get(ajaxUrl + id + '/edit', function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+                if (key === 'options') {
+                    $.each(value, function (index, option) {
+                        form.find("option[value='" + option.id + "']").prop("selected", true);
+                    });
+                }
+            });
+            multy();
+            $('#modal_title').find('span').text('<s:message code="messages.contract_edit"/>');
+            $('#editRow').modal();
+        });
+    }
 </script>
 </body>
 </html>

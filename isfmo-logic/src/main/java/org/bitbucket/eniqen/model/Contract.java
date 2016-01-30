@@ -16,7 +16,7 @@ import java.util.Set;
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
 public class Contract extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
     private PhoneNumber phoneNumber;
 
@@ -24,7 +24,7 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "TARIFF_ID", nullable = false)
     private Tariff tariff;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
@@ -82,4 +82,5 @@ public class Contract extends BaseEntity {
         this.tariff = tariff;
         this.client = client;
     }
+
 }

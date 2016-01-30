@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class TariffServiceImpl implements TariffService {
 
     @Autowired
@@ -26,11 +25,13 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
+    @Transactional
     public void delete(Tariff model) {
         this.tariffDAO.delete(model);
     }
 
     @Override
+    @Transactional
     public void save(Tariff model) {
         this.tariffDAO.save(model);
     }
@@ -41,6 +42,7 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         Tariff tariff = this.tariffDAO.getById(id);
         this.tariffDAO.delete(tariff);
