@@ -35,7 +35,7 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "TARIFF_ID", nullable = false)
     private Tariff tariff;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 

@@ -16,17 +16,15 @@ import java.util.Map;
  */
 public class PdfBuilder extends AbstractPdfView {
 
+    public static final String CONTRACT_WITH_NUMBER = "Договор №";
+    public static final String PHONE_NUMBER = "Номер телефона: ";
+    public static final String TARIFF = "Наименование тарифа: ";
     public static final String BIRTH_DATE = "Дата рождения: ";
+    public static final String PASSPORT = "Номер паспорта: ";
     public static final String EMAIL = "E-mail: ";
-    public static final String MAIN_EDU = "Основное образование: ";
-    public static final String PRIOR_WORKPLACE = "Предыдущее место работы: ";
     public static final String ADD_EDU = "Дополнительное образование: ";
-    public static final String ADD_SKILLS = "Дополнительные навыки: ";
-    public static final String PROF_EXP = "Профессиональный опыт: ";
     public static final String CONTACT_INFO = "Контактная информация: ";
     public static final String ADD_INFO = "Дополнительная информация: ";
-    public static final String HAS_CHILDREN = "Есть дети: ";
-    public static final String READY_FOR_RELOCATION = "Готовность к переезду: ";
     private static final char CHECKED = '\u00FE';
     private static final char UNCHECKED = '\u00A8';
 
@@ -37,8 +35,14 @@ public class PdfBuilder extends AbstractPdfView {
         Contract contract = (Contract) request.getAttribute("contract");
 
         Paragraph addInfo = new Paragraph();
-        addInfo.add(new Chunk("HUEKST" + contract.getClient().getEmail()));
+        addInfo.add(new Chunk("TTTT " + contract.getClient().getEmail()));
         document.add(addInfo);
+        Paragraph header = new Paragraph(new Chunk("Договор №" + contract.getId(), FontFactory.getFont(FontFactory.TIMES, 20)));
+        document.add(header);
+        Paragraph by = new Paragraph(new Chunk("Author " + contract.getClient().getLastname() + " " + contract.getClient().getFirstname(), FontFactory.getFont(FontFactory.HELVETICA, 20)));
+
+        document.add(by);
+
         document.close();
         writer.close();
     }

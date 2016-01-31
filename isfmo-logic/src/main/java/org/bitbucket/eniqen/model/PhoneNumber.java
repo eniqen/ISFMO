@@ -3,6 +3,7 @@ package org.bitbucket.eniqen.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Mikhail on 29.11.2015.
@@ -18,8 +19,7 @@ public class PhoneNumber extends BaseEntity {
     @Column(name = "PHONENUMBER", length = 11, nullable = false, unique = true)
     private String number;
 
-    @JsonIgnore
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="phoneNumber", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "phoneNumber")
     private Contract contract;
 
     public PhoneNumber() {
@@ -37,6 +37,7 @@ public class PhoneNumber extends BaseEntity {
         this.number = number;
     }
 
+    @JsonIgnore
     public Contract getContract() {
         return contract;
     }
