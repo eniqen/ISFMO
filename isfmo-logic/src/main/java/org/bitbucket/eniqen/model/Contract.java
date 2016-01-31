@@ -1,6 +1,9 @@
 package org.bitbucket.eniqen.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -16,15 +19,23 @@ import java.util.Set;
 @NamedQuery(name = "Contract.getAll", query = "SELECT c FROM Contract c")
 public class Contract extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY)
+//    @Temporal(value = TemporalType.DATE)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @Column(name = "CREATEDATE", columnDefinition="TIMESTAMP DEFAULT CURRENT_DATE")
+//    private Date createDate;
+//
+//    @Column(name = "ACTIVE", columnDefinition = "boolean default true")
+//    private Boolean active;
+
+    @OneToOne
     @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
     private PhoneNumber phoneNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "TARIFF_ID", nullable = false)
     private Tariff tariff;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
@@ -70,7 +81,23 @@ public class Contract extends BaseEntity {
         this.tariff = tariff;
     }
 
-    public Contract( PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
+//    public Date getCreateDate() {
+//        return createDate;
+//    }
+//
+//    public void setCreateDate(Date createDate) {
+//        this.createDate = createDate;
+//    }
+//
+//    public boolean isActive() {
+//        return active;
+//    }
+//
+//    public void setActive(boolean active) {
+//        this.active = active;
+//    }
+
+    public Contract(PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
         this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.client = client;
@@ -82,5 +109,4 @@ public class Contract extends BaseEntity {
         this.tariff = tariff;
         this.client = client;
     }
-
 }

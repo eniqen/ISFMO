@@ -71,16 +71,22 @@
                                 </c:choose>
                             </td>
                             <td><label class="checkbox-inline"><input id="ch" style="margin-left: 10px" type="checkbox"
-                                                                      value="${contract.id}"></label></td>
-                            </label></td>
-                            <td class="text-right"><a id="edit" class="btn btn-success btn-xs"
-                                                      onclick="updateRow(${contract.id})"><i
-                                    class="glyphicon glyphicon-pencil"></i> <s:message
-                                    code="messages.edit"/></a>
-                                <a id="delete" class="btn btn-danger t btn-xs"
-                                   onclick="swalDelete('контракт' ,'${contract.id}',${contract.id})"><i
-                                        class="glyphicon glyphicon-trash"></i> <s:message
-                                        code="messages.delete"/></a>
+                                                                      value="${contract.id}"></label>
+                            </td>
+                            <td class="text-right">
+                                    <form:form target="_blank" action="ajax/contracts/downloadPdf" method="post">
+                                        <input type="hidden" name="id" value="${contract.id}">
+                                        <button id="pdf" class="btn btn-success btn-xs" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>PDF
+                                        </button>
+                                    </form:form>
+                                    <a id="edit" class="btn btn-success btn-xs" onclick="updateRow(${contract.id})">
+                                        <i class="glyphicon glyphicon-pencil"></i> <s:message code="messages.edit"/>
+                                    </a>
+                                    <a id="delete" class="btn btn-danger t btn-xs"
+                                       onclick="swalDelete('контракт' ,'${contract.id}',${contract.id})">
+                                        <i class="glyphicon glyphicon-trash"></i> <s:message code="messages.delete"/>
+                                    </a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -283,9 +289,10 @@
                     case 'id':
                         break;
                     case 'number':
+                        form.find('#numbers').prop("disabled", 'disabled').append($('<option></option>').attr('value', value.id).text(value.number));
                         break;
                     case 'client':
-                        form.find("option[value='" + key.id + "']").prop("disabled", true).text(value.lastname + ' ' + value.firstname);
+                        form.find('#clients').prop("disabled", 'disabled').append($('<option></option>').attr('value', value.id).text(value.lastname + ' ' + value.firstname));
                         break;
                     case 'options':
                         $.each(value, function (index, option) {
@@ -299,6 +306,15 @@
             $('#editRow').modal();
         });
     }
+
+    //    function pdfView(id) {
+    //        $.ajax({
+    //            type: "POST",
+    //            contentType: "application/json",
+    //            url: ajaxUrl + id + '/downloadPdf',
+    //            dataType: 'text'
+    //        })
+    //    }
 </script>
 </body>
 </html>
