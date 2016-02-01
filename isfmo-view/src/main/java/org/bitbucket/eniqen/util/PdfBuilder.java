@@ -124,6 +124,17 @@ public class PdfBuilder extends AbstractPdfView {
         address.add(new Chunk(client.getAddress(), contractFont));
         document.add(address);
 
+        Paragraph tariffC = new Paragraph();
+        tariffC.setSpacingBefore(10f);
+        tariffC.add(new Chunk("Тарифный план: ", tahomaBold));
+        tariffC.add(new Chunk(tariff.getTitle(), contractFont));
+        document.add(tariffC);
+
+        Paragraph numberC = new Paragraph();
+        numberC.setSpacingBefore(10f);
+        numberC.add(new Chunk("Номер телефона: ", tahomaBold));
+        numberC.add(new Chunk(number.getNumber(), contractFont));
+        document.add(numberC);
 
         LineSeparator separator = new LineSeparator();
         separator.setLineWidth(1);

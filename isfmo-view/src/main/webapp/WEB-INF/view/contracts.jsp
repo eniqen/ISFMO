@@ -254,11 +254,11 @@
             number: {id: $('#numbers').val()},
             client: {id: $('#clients').val()},
             tariff: {id: $('#tariffs').val()},
-            contractOptions: []
+            options: []
         };
 
         for (var i = 0; i < options.length; i++) {
-            sendRequest.contractOptions.push({
+            sendRequest.options.push({
                 id: options[i]
             });
         }

@@ -39,7 +39,7 @@ public class Contract extends BaseEntity {
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "CONTRACT_OPTION_TBL",
             joinColumns = {@JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")},
