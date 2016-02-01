@@ -74,19 +74,19 @@
                                                                       value="${contract.id}"></label>
                             </td>
                             <td class="text-right">
-                                    <form:form target="_blank" action="ajax/contracts/downloadPdf" method="post">
+                                    <form:form style="display: inline" target="_blank" action="ajax/contracts/downloadPdf" method="post">
                                         <input type="hidden" name="id" value="${contract.id}">
-                                        <button id="pdf" class="btn btn-success btn-xs" type="submit">
-                                            <i class="glyphicon glyphicon-search"></i>PDF
+                                        <button id="pdf" class="btn btn-info btn-xs" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i> PDF
                                         </button>
                                     </form:form>
-                                    <a id="edit" class="btn btn-success btn-xs" onclick="updateRow(${contract.id})">
-                                        <i class="glyphicon glyphicon-pencil"></i> <s:message code="messages.edit"/>
-                                    </a>
-                                    <a id="delete" class="btn btn-danger t btn-xs"
-                                       onclick="swalDelete('контракт' ,'${contract.id}',${contract.id})">
-                                        <i class="glyphicon glyphicon-trash"></i> <s:message code="messages.delete"/>
-                                    </a>
+                                <a id="edit" class="btn btn-success btn-xs" onclick="updateRow(${contract.id})">
+                                    <i class="glyphicon glyphicon-pencil"></i> <s:message code="messages.edit"/>
+                                </a>
+                                <a id="delete" class="btn btn-danger t btn-xs"
+                                   onclick="swalDelete('контракт' ,'${contract.id}',${contract.id})">
+                                    <i class="glyphicon glyphicon-trash"></i> <s:message code="messages.delete"/>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>
