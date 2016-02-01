@@ -74,12 +74,12 @@
                                                                       value="${contract.id}"></label>
                             </td>
                             <td class="text-right">
-                                    <%--<form:form target="_blank" action="ajax/contracts/downloadPdf" method="post">--%>
-                                        <%--<input type="hidden" name="id" value="${contract.id}">--%>
-                                        <%--<button id="pdf" class="btn btn-success btn-xs" type="submit">--%>
-                                            <%--<i class="glyphicon glyphicon-search"></i>PDF--%>
-                                        <%--</button>--%>
-                                    <%--</form:form>--%>
+                                    <form:form target="_blank" action="ajax/contracts/downloadPdf" method="post">
+                                        <input type="hidden" name="id" value="${contract.id}">
+                                        <button id="pdf" class="btn btn-success btn-xs" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>PDF
+                                        </button>
+                                    </form:form>
                                     <a id="edit" class="btn btn-success btn-xs" onclick="updateRow(${contract.id})">
                                         <i class="glyphicon glyphicon-pencil"></i> <s:message code="messages.edit"/>
                                     </a>

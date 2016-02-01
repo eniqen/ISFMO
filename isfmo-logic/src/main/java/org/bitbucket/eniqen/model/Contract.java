@@ -24,8 +24,8 @@ public class Contract extends BaseEntity {
 //    @Column(name = "CREATEDATE", columnDefinition="TIMESTAMP DEFAULT CURRENT_DATE")
 //    private Date createDate;
 //
-//    @Column(name = "ACTIVE", columnDefinition = "boolean default true")
-//    private Boolean active;
+    @Column(name = "ACTIVE", columnDefinition = "boolean default true", nullable = false)
+    private Boolean active;
 
     @OneToOne
     @JoinColumn(name = "PHONENUMBER_ID", nullable = false, unique = true)
@@ -44,17 +44,17 @@ public class Contract extends BaseEntity {
             name = "CONTRACT_OPTION_TBL",
             joinColumns = {@JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "OPTION_ID", referencedColumnName = "ID")})
-    private Set<Option> contractOptions;
+    private Set<Option> options;
 
     public Contract() {
     }
 
     public Set<Option> getOptions() {
-        return contractOptions;
+        return options;
     }
 
-    public void setOptions(Set<Option> optionList) {
-        this.contractOptions = optionList;
+    public void setOptions(Set<Option> options) {
+        this.options = options;
     }
 
     public Client getClient() {
@@ -89,19 +89,19 @@ public class Contract extends BaseEntity {
 //        this.createDate = createDate;
 //    }
 //
-//    public boolean isActive() {
-//        return active;
-//    }
-//
-//    public void setActive(boolean active) {
-//        this.active = active;
-//    }
+    public boolean isActive() {
+        return active;
+    }
 
-    public Contract(PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> contractOptions) {
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Contract(PhoneNumber phoneNumber, Tariff tariff, Client client, Set<Option> options) {
         this.phoneNumber = phoneNumber;
         this.tariff = tariff;
         this.client = client;
-        this.contractOptions = contractOptions;
+        this.options = options;
     }
 
     public Contract(PhoneNumber phoneNumber, Tariff tariff, Client client) {

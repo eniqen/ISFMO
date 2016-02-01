@@ -40,7 +40,7 @@ public class ContractController extends ExceptionInfoHandler {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/{id}/edit")
+    @RequestMapping(value = "/{id}/edit", produces = "application/json")
     public Contract getContractById(@PathVariable long id) {
         return contractService.getById(id);
     }

@@ -46,7 +46,7 @@ public class Option extends BaseEntity {
     private Set<Tariff> tariffs;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "contractOptions")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "options")
     private Set<Contract> contracts;
 
     public Option() {
