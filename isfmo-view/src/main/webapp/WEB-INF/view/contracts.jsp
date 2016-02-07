@@ -71,15 +71,17 @@
                                 </c:choose>
                             </td>
                             <td><label class="checkbox-inline"><input id="ch" style="margin-left: 10px" type="checkbox"
+                                                                      <c:if test="${contract.active}">checked="checked"</c:if>
                                                                       value="${contract.id}"></label>
                             </td>
                             <td class="text-right">
-                                    <form:form style="display: inline" target="_blank" action="ajax/contracts/downloadPdf" method="post">
-                                        <input type="hidden" name="id" value="${contract.id}">
-                                        <button id="pdf" class="btn btn-info btn-xs" type="submit">
-                                            <i class="glyphicon glyphicon-search"></i> PDF
-                                        </button>
-                                    </form:form>
+                                <form:form style="display: inline" target="_blank" action="ajax/contracts/downloadPdf"
+                                           method="post">
+                                    <input type="hidden" name="id" value="${contract.id}">
+                                    <button id="pdf" class="btn btn-info btn-xs" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i> PDF
+                                    </button>
+                                </form:form>
                                 <a id="edit" class="btn btn-success btn-xs" onclick="updateRow(${contract.id})">
                                     <i class="glyphicon glyphicon-pencil"></i> <s:message code="messages.edit"/>
                                 </a>

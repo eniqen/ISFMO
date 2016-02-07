@@ -1,6 +1,7 @@
 package org.bitbucket.eniqen.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -56,6 +57,7 @@ public class Client extends BaseEntity {
     @OneToOne(optional = true, mappedBy = "client")
     private User user;
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }

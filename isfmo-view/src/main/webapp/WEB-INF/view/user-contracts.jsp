@@ -52,7 +52,8 @@
 
                                             <div class="col-sm-11">
                                                 <input disabled="disabled" id="client" class="form-control"
-                                                       name="contract.client.id" value="${contract.client.lastname} ${contract.client.firstname}">
+                                                       name="contract.client.id"
+                                                       value="${contract.client.lastname} ${contract.client.firstname}">
                                             </div>
                                         </div>
 
@@ -82,8 +83,7 @@
                                         <c:if test="${contract.options.size() > 0}"><br>
 
                                             <div class="form-group">
-                                                <label class="control-label col-sm-1 input-sm" for="">
-                                                    Опции:</label>
+                                                <label class="control-label col-sm-1 input-sm"> Опции:</label>
 
                                                 <div class="col-sm-11">
                                                     <c:forEach items="${contract.options}" var="option"
