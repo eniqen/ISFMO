@@ -31,24 +31,30 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <img class="img-responsive center-block" src="/resources/images/slide1.jpg" alt="Chania">
+
                         <div class="carousel-caption">
                             <h3>Chania</h3>
+
                             <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
                         </div>
                     </div>
 
                     <div class="item">
                         <img class="img-responsive center-block" src="/resources/images/slide2.jpg" alt="Chania">
+
                         <div class="carousel-caption">
                             <h3>Chania</h3>
+
                             <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
                         </div>
                     </div>
 
                     <div class="item">
                         <img class="img-responsive center-block" src="/resources/images/slide3.jpg" alt="Flower">
+
                         <div class="carousel-caption">
                             <h3>Приходи со своим</h3>
+
                             <p>Лучший тариф месяца</p>
                         </div>
                     </div>
@@ -65,6 +71,56 @@
                 </a>
             </div>
 
+            <div id="NewsPage_Index" class="content-block common">
+                <div id="NewsPage_Index_Content">
+                    <div id="NewsPage_YearNews_Content" class="news-wrap">
+                        <ul class="list-news" id="NewsPage_ScrollLoading">
+                            <li>
+                                <div class="news-block ">
+                                    <h3>
+                                        <a href="#">
+                                            Акция – денежные переводы в офисах «T-mobile» с комиссией 1% по России и в
+                                            СНГ</a>
+                                    </h3>
+                                    <div class="news-article">
+                                        <p></p>
+                                        <p>С 01.02.2016</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="news-block ">
+                                    <h3><a href="#">Изменение правил участия в Программе «Карта T-Mobile»</a></h3>
+                                    <div class="news-article">
+                                        <p></p>
+                                        <p>С 15 февраля 2016 года изменятся правила участия в Программе «Карта
+                                            T-Mobile».</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="news-block ">
+                                    <h3>
+                                        <a href="#">Новые
+                                            тарифы «ВСЁ!»</a></h3>
+                                    <div class="news-article">
+                                        <p></p>
+                                        <p>С 11 февраля 2016 г.</p>
+
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="NewsPage_Index_Loading" class="b-loader hidden" style="">
+                    <div class="load-overlay">&nbsp;</div>
+                    <div class="load" style="">&nbsp;</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

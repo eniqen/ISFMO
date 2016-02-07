@@ -176,7 +176,7 @@
         $('#table').DataTable();
 
         /**
-         * Ajax запрос на получение списка номеров
+         * Ajax запрос на получение списка клиентов
          */
         $.get('ajax/clients', function (data) {
             $.each(data, function (key, client) {
@@ -197,7 +197,6 @@
          * Ajax запрос на получение списка опций
          */
         $.get('ajax/options', function (data) {
-            var index = 0;
             $.each(data, function (key, option) {
                 $('#options').append($('<option></option>').attr('value', option.id).text(option.title));
             });
@@ -306,15 +305,6 @@
             $('#editRow').modal();
         });
     }
-
-    //    function pdfView(id) {
-    //        $.ajax({
-    //            type: "POST",
-    //            contentType: "application/json",
-    //            url: ajaxUrl + id + '/downloadPdf',
-    //            dataType: 'text'
-    //        })
-    //    }
 </script>
 </body>
 </html>

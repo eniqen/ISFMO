@@ -1,12 +1,15 @@
 package org.bitbucket.eniqen.dao.impl;
 
 import org.bitbucket.eniqen.dao.ContractDAO;
+import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Mikhail Nemenko on 04.11.2015.
@@ -46,9 +49,8 @@ public class ContractDAOImpl implements ContractDAO {
     }
 
     @Override
-    public Contract findContractByNumber(String number) {
-//        Query query = this.entityManager.createQuery("select c from Client c where c.number =:number");
-//        return (Contract) query.setParameter("number", number).getSingleResult();
-        return null;
+    public List<Contract> findClientContracts(Client client) {
+        Query query = this.entityManager.createQuery("select c from Contract c where c.client =:client");
+        return (List<Contract>) query.setParameter("client", client).getResultList();
     }
 }

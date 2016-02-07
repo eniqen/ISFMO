@@ -1,7 +1,10 @@
 package org.bitbucket.eniqen.dao;
 
 
+import org.bitbucket.eniqen.model.Client;
 import org.bitbucket.eniqen.model.Contract;
+
+import java.util.List;
 
 /**
  * Created by Mikhail Nemenko on 31.10.2015.
@@ -11,5 +14,5 @@ import org.bitbucket.eniqen.model.Contract;
 
 public interface ContractDAO extends BaseDAO<Contract> {
 
-    Contract findContractByNumber(String number);
+    List<Contract> findClientContracts (Client client);
 }

@@ -43,8 +43,6 @@
         </label>
     </div>
     <ul id="left-panel" class="nav nav-sidebar">
-        <li><a href="<c:url value="/cabinet"/>"><i class="glyphicon glyphicon-home"></i> <s:message
-                code="messages.home"/></a></li>
         <sec:authorize access="hasRole('ROLE_OPERATOR')">
             <li><a href="<c:url value="/clients"/>"><i class="glyphicon glyphicon-user"></i> <s:message
                     code="messages.clients"/></a></li>
@@ -58,8 +56,8 @@
                     code="messages.numbers"/></a></li>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_USER')">
-            <li><a href="<c:url value="/user_contracts"/>">Контракты юзера</a></li>
-            <li><a href="<c:url value="/user_tariffOptions"/>">Опции юзера</a></li>
+            <li><a href="<c:url value="/user-contracts"/>"><i class="glyphicon glyphicon-briefcase"></i> Личные контракты</a></li>
+            <li><a href="<c:url value="/user-options"/>"><i class="glyphicon glyphicon-list"></i> Выбор опций</a></li>
         </sec:authorize>
 
     </ul>
