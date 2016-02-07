@@ -37,9 +37,9 @@
 
 ![Кабинет оператора - контракты.png](https://bitbucket.org/repo/x5K4db/images/3879136268-%D0%9A%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20-%20%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%B0%D0%BA%D1%82%D1%8B.png)
 
-![Кабинет оператора - клиенты - удаление.png](https://bitbucket.org/repo/x5K4db/images/3968652808-%D0%9A%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20-%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%8B%20-%20%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5.png)
+![Контракт.png](https://bitbucket.org/repo/x5K4db/images/1593198405-%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%B0%D0%BA%D1%82.png)
 
-![Кабинет оператора - клиенты - удаление.png](https://bitbucket.org/repo/x5K4db/images/2065863573-%D0%9A%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20-%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%8B%20-%20%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5.png)
+![Кабинет оператора - клиенты - удаление.png](https://bitbucket.org/repo/x5K4db/images/3968652808-%D0%9A%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20-%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%8B%20-%20%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5.png)
 
 ![Кабинет оператора - клиенты - создание.png](https://bitbucket.org/repo/x5K4db/images/4014884494-%D0%9A%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20-%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%8B%20-%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5.png)
 
