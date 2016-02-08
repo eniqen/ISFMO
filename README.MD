@@ -21,6 +21,7 @@
 + show all user info in admin cabinet
 + edit all user info in admin cabinet
 + show logs in admin cabinet
++ add unit & modular tests
 
 ** Tools: **  
 
@@ -54,5 +55,6 @@
 
 **Nemenko Mikhail**
 Final qualifying work, Nov 2015 - Jan 2016 
+
 Тренинг getJavaJob,   
 [http://www.getjavajob.com](http://www.getjavajob.com)
