@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="hasRole('ROLE_USER')">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    <a href="/user-shopCart" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="glyphicon glyphicon-shopping-cart"></i> <strong>Корзина</strong><b class="caret"></b></a>
                 </li>
             </sec:authorize>

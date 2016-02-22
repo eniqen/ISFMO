@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by Mikhail Nemenko on 01.11.2015.
+ * @author Mikhail Nemenko
+ * @version 1.0
  */
 
 @Repository
@@ -21,10 +23,6 @@ public class ClientDAOImpl implements ClientDAO {
 
     public ClientDAOImpl() {
     }
-
-//    public ClientDAOImpl(EntityManager entityManager) {
-//        this.entityManager = entityManager;
-//    }
 
     @Override
     public List<Client> getAll() {

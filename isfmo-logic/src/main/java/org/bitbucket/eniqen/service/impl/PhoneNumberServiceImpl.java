@@ -1,6 +1,6 @@
 package org.bitbucket.eniqen.service.impl;
 
-import org.bitbucket.eniqen.dao.PhoneNumberDao;
+import org.bitbucket.eniqen.dao.PhoneNumberDAO;
 import org.bitbucket.eniqen.model.PhoneNumber;
 import org.bitbucket.eniqen.service.PhoneNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     @Autowired
-    private PhoneNumberDao phoneNumberDao;
+    private PhoneNumberDAO phoneNumberDao;
 
     @Override
     public PhoneNumber getById(Long id) {

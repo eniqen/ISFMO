@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -100,5 +101,10 @@ public class RootController {
     @RequestMapping(value = "/user-options", method = RequestMethod.GET)
     public ModelAndView userTariffOptions() {
         return new ModelAndView("user-options", "options", this.optionService.getAll());
+    }
+
+    @RequestMapping(value = "/user-shopCart", method = RequestMethod.GET)
+    public ModelAndView userTariffOptions(HttpSession session) {
+        return new ModelAndView("user-shopCart", "shopCart", session.getAttribute("shopCart"));
     }
 }

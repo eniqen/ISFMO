@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Mikhail on 29.11.2015.
  */
-public interface PhoneNumberDao extends BaseDAO<PhoneNumber> {
+public interface PhoneNumberDAO extends BaseDAO<PhoneNumber> {
 
     List<PhoneNumber> getAllFree();
 }

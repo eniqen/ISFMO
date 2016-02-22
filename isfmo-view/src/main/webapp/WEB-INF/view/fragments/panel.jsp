@@ -58,6 +58,7 @@
         <sec:authorize access="hasRole('ROLE_USER')">
             <li><a href="<c:url value="/user-contracts"/>"><i class="glyphicon glyphicon-briefcase"></i> Личные контракты</a></li>
             <li><a href="<c:url value="/user-options"/>"><i class="glyphicon glyphicon-list"></i> Выбор опций</a></li>
+            <li><a href="<c:url value="/user-shopCart"/>"><i class="glyphicon glyphicon-shopping-cart"></i> Корзина</a></li>
         </sec:authorize>
 
     </ul>

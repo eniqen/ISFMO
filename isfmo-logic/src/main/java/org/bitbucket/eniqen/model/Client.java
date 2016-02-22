@@ -11,10 +11,9 @@ import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
- * Created by Mikhail Nemenko on 31.10.2015.
  * <p>
  * Сущность для работы с Клиентами
- *
+ *@author Mikhail Nemenko
  * @version 1.0
  */
 

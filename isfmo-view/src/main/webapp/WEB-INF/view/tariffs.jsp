@@ -210,7 +210,6 @@
                 id: options[i]
             });
         }
-
         $.ajax ({
             type: "POST",
             contentType: "application/json",

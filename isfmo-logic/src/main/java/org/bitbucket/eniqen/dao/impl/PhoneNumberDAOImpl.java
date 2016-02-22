@@ -1,6 +1,6 @@
 package org.bitbucket.eniqen.dao.impl;
 
-import org.bitbucket.eniqen.dao.PhoneNumberDao;
+import org.bitbucket.eniqen.dao.PhoneNumberDAO;
 import org.bitbucket.eniqen.model.PhoneNumber;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Mikhail on 29.11.2015.
  */
 @Repository
-public class PhoneNumberDaoImpl implements PhoneNumberDao {
+public class PhoneNumberDAOImpl implements PhoneNumberDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -22,7 +22,7 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao {
 //        this.entityManager = entityManager;
 //    }
 
-    public PhoneNumberDaoImpl() {
+    public PhoneNumberDAOImpl() {
     }
 
     @Override
