@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ import java.util.Map;
 @RequestMapping(ShopCartController.REST_URI)
 @Scope("request")
 public class ShopCartController {
+
     protected static final String REST_URI = "/ajax/shopCart";
 
     @Autowired
@@ -33,21 +33,15 @@ public class ShopCartController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    void addToCart(@RequestBody Long id, HttpSession session) {
-        shopCart = (ShopCart) session.getAttribute("scopedTarget.shopCart");
+    void addToCart(@RequestBody Long id) {
         Option option = optionService.getById(id);
-        if (option != null) {
-            Map<Option, Integer> items = shopCart.getItems();
-            if (items == null) {
-                items = new HashMap<>();
-            }
+        Map<Option, Integer> items = shopCart.getItems();
 
-            if (items.containsKey(option)) {
-                items.put(option, items.get(option) + 1);
-            } else {
-                items.put(option, 1);
-            }
-            shopCart.setItems(items);
+        if (items.containsKey(option)) {
+            items.put(option, items.get(option) + 1);
+        } else {
+            items.put(option, 1);
         }
+        shopCart.setItems(items);
     }
 }

@@ -48,14 +48,15 @@
 
                     <c:forEach items="${sessionScope.get('scopedTarget.shopCart').items}" var="item">
                         <tr>
-                            <td><label class="checkbox-inline"><input id="ch" type="checkbox"/>
-                            </td>
+                            <td><label class="checkbox-inline"><input id="ch" type="checkbox"/> </label></td>
+
                             <td>${item.key.id}</td>
                             <td>${item.key.title}</td>
                             <td>${item.value}</td>
                             <td>${item.key.price}</td>
                         </tr>
                     </c:forEach>
+                    <h3>Итого: ${sessionScope.get('scopedTarget.shopCart').subTotalCost} р.</h3>
                     </tbody>
                 </table>
             </div>
